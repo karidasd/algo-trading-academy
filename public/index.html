@@ -17,12 +17,22 @@
         <nav class="nav">
             <a href="index.html" class="nav-link active">Curriculum</a>
             <a href="simulator.html" class="nav-link">Strategy Studio</a>
-            <a href="glossary.html" class="nav-link">Dictionary</a>
+            <a href="charts.html" class="nav-link">Live Charts</a>
+            <a href="calculator.html" class="nav-link">🧮 Calculator</a>
+            <a href="game.html" class="nav-link">🎯 Game</a>
+            <a href="calendar.html" class="nav-link">📰 Calendar</a>
+            <a href="downloads.html" class="nav-link">📦 Downloads</a>
             <a href="certificate.html" class="nav-link">🎓 Diploma</a>
         </nav>
         <div class="header-right">
+            <div class="theme-picker">
+                <div class="theme-dot cyan" onclick="setTheme('cyan')" title="Cyber Cyan"></div>
+                <div class="theme-dot matrix" onclick="setTheme('matrix')" title="Matrix Green"></div>
+                <div class="theme-dot gold" onclick="setTheme('gold')" title="FTMO Gold"></div>
+                <div class="theme-dot purple" onclick="setTheme('purple')" title="Solana Purple"></div>
+            </div>
+            <button class="icon-btn" id="muteBtn" onclick="toggleMute()" title="Toggle Sound">🔊</button>
             <div class="progress-badge">
-                <span>Progress:</span>
                 <div class="bar"><div class="bar-fill" id="globalProgressBar" style="width: 0%;"></div></div>
                 <span id="globalProgressText">0% (0/12)</span>
             </div>
@@ -38,8 +48,11 @@
             <div class="hero-actions">
                 <a href="courses/01_gateway.html" class="btn btn-primary">▶ Start Course 01</a>
                 <a href="simulator.html" class="btn btn-outline">⚡ Strategy Sandbox</a>
-                <a href="glossary.html" class="btn btn-outline">📖 Trader's Dictionary</a>
-                <a href="certificate.html" class="btn btn-outline">🎓 Diploma Studio</a>
+                <a href="charts.html" class="btn btn-outline">📊 Live TradingView</a>
+                <a href="calculator.html" class="btn btn-outline">🧮 FTMO Calculator</a>
+                <a href="game.html" class="btn btn-outline">🎯 Pattern Game</a>
+                <a href="downloads.html" class="btn btn-outline">📦 Bot Code</a>
+                <a href="certificate.html" class="btn btn-outline">🎓 Diploma</a>
             </div>
         </div>
     </div>
@@ -217,7 +230,7 @@
                         <span class="course-duration">⏱️ 14 MIN</span>
                     </div>
                     <h3>Macroeconomics & News Sniping</h3>
-                    <p>Interest rates, CPI, NFP catalysts, and automated news delta parsers for instant news sniping.</p>
+                    <p>Interest rates, CPI, NFP catalysts, and automated news delta sniper algorithms.</p>
                     <div class="course-tags">
                         <span class="tag">CPI & NFP</span>
                         <span class="tag">Central Banks</span>

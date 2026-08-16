@@ -1,14 +1,17 @@
 /* ==========================================================================
-   🌑 DARKAIS ACADEMY — PROGRESS, QUIZ & ACADEMY ENGINE
+   🌑 DARKAIS ACADEMY — PROGRESS, THEME & QUIZ ENGINE (ENHANCED)
    ========================================================================== */
 
 const STORAGE_KEY = 'darkais_academy_progress';
+const THEME_KEY = 'darkais_academy_theme';
+const MUTE_KEY = 'darkais_academy_muted';
 
-// Audio Effects (Web Audio API synthesis for zero external dependency)
+// Audio Effects (Web Audio API synthesis)
+let isMuted = localStorage.getItem(MUTE_KEY) === 'true';
 const audioCtx = (typeof window !== 'undefined' && (window.AudioContext || window.webkitAudioContext)) ? new (window.AudioContext || window.webkitAudioContext)() : null;
 
 function playSound(type) {
-    if (!audioCtx) return;
+    if (isMuted || !audioCtx) return;
     if (audioCtx.state === 'suspended') audioCtx.resume();
     
     const now = audioCtx.currentTime;
@@ -27,8 +30,8 @@ function playSound(type) {
         osc.stop(now + 0.25);
     } else if (type === 'error') {
         osc.type = 'sawtooth';
-        osc.frequency.setValueAtTime(220, now); // A3
-        osc.frequency.linearRampToValueAtTime(146.83, now + 0.2); // D3
+        osc.frequency.setValueAtTime(220, now);
+        osc.frequency.linearRampToValueAtTime(146.83, now + 0.2);
         gain.gain.setValueAtTime(0.2, now);
         gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
         osc.start(now);
@@ -41,6 +44,27 @@ function playSound(type) {
         osc.start(now);
         osc.stop(now + 0.1);
     }
+}
+
+// ── THEME MANAGEMENT ─────────────────────────────────────────────
+function initTheme() {
+    const saved = localStorage.getItem(THEME_KEY) || 'cyan';
+    setTheme(saved);
+}
+
+function setTheme(theme) {
+    document.body.classList.remove('theme-matrix', 'theme-gold', 'theme-purple');
+    if (theme !== 'cyan') {
+        document.body.classList.add(`theme-${theme}`);
+    }
+    localStorage.setItem(THEME_KEY, theme);
+}
+
+function toggleMute() {
+    isMuted = !isMuted;
+    localStorage.setItem(MUTE_KEY, isMuted);
+    const btn = document.getElementById('muteBtn');
+    if (btn) btn.innerText = isMuted ? '🔇' : '🔊';
 }
 
 // ── PROGRESS MANAGEMENT ──────────────────────────────────────────
@@ -139,5 +163,8 @@ function copyCode(btn) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    initTheme();
     updateProgressUI();
+    const muteBtn = document.getElementById('muteBtn');
+    if (muteBtn) muteBtn.innerText = isMuted ? '🔇' : '🔊';
 });

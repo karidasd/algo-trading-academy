@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candlestick Speed Game — DarkAIs Academy</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;800;900&family=Roboto:wght@300;400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="index.html">
+                <h1>🌑 DARKAIS <span class="accent">ACADEMY</span></h1>
+            </a>
+        </div>
+        <nav class="nav">
+            <a href="index.html" class="nav-link">Curriculum</a>
+            <a href="simulator.html" class="nav-link">Strategy Studio</a>
+            <a href="charts.html" class="nav-link">Live Charts</a>
+            <a href="calculator.html" class="nav-link">🧮 Calculator</a>
+            <a href="game.html" class="nav-link active">🎯 Game</a>
+            <a href="calendar.html" class="nav-link">📰 Calendar</a>
+            <a href="downloads.html" class="nav-link">📦 Downloads</a>
+            <a href="certificate.html" class="nav-link">🎓 Diploma</a>
+        </nav>
+        <div class="header-right">
+            <div class="theme-picker">
+                <div class="theme-dot cyan" onclick="setTheme('cyan')" title="Cyber Cyan"></div>
+                <div class="theme-dot matrix" onclick="setTheme('matrix')" title="Matrix Green"></div>
+                <div class="theme-dot gold" onclick="setTheme('gold')" title="FTMO Gold"></div>
+                <div class="theme-dot purple" onclick="setTheme('purple')" title="Solana Purple"></div>
+            </div>
+            <button class="icon-btn" id="muteBtn" onclick="toggleMute()" title="Toggle Sound">🔊</button>
+            <div class="progress-badge">
+                <div class="bar"><div class="bar-fill" id="globalProgressBar" style="width: 0%;"></div></div>
+                <span id="globalProgressText">0%</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="hero-wrapper" style="padding: 30px 20px 20px;">
+        <div class="hero-content">
+            <span class="hero-tag">PATTERN SPEED TRAINING</span>
+            <h1 class="hero-title">Candlestick <span class="glow">Pattern Reflex Game</span></h1>
+            <p class="hero-desc">Train your institutional pattern recognition speed. You have 5 seconds to identify the formation and choose BUY (Bullish) or SELL (Bearish).</p>
+        </div>
+    </div>
+
+    <div class="academy-container" style="max-width: 800px;">
+        <div class="game-box">
+            <!-- Score bar -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                <div style="font-family:'Orbitron'; font-size:16px; color:var(--accent);">Score: <span id="gameScore">0</span></div>
+                <div style="font-family:'Orbitron'; font-size:16px; color:var(--warning);">Streak: <span id="gameStreak">0</span> 🔥</div>
+                <div style="font-family:'Orbitron'; font-size:14px; color:var(--text-muted);">High Score: <span id="gameHighScore">0</span></div>
+            </div>
+
+            <!-- Timer Bar -->
+            <div class="game-timer-bar">
+                <div class="game-timer-fill" id="timerFill"></div>
+            </div>
+
+            <!-- Candlestick Canvas -->
+            <canvas id="gameCanvas" width="600" height="260" style="width: 100%; max-width: 600px; height: 260px; background:#04070B; border:1px solid var(--border); border-radius:8px; margin-bottom:20px;"></canvas>
+
+            <!-- Pattern Hint / Explanation -->
+            <div id="gameExplanation" style="min-height: 48px; font-size: 15px; color: var(--text-secondary); margin-bottom: 20px; font-weight: 500;">
+                Press START to begin pattern reflex training!
+            </div>
+
+            <!-- Game Actions -->
+            <div style="display: flex; justify-content: center; gap: 16px;" id="gameButtons">
+                <button id="startGameBtn" class="btn btn-primary" style="padding: 14px 40px; font-size: 14px;">▶ START TRAINING</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 DarkAIs Academy. Institutional-grade algorithmic education.</p>
+    </footer>
+
+    <script src="js/academy.js"></script>
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const scoreEl = document.getElementById('gameScore');
+        const streakEl = document.getElementById('gameStreak');
+        const highEl = document.getElementById('gameHighScore');
+        const explainEl = document.getElementById('gameExplanation');
+        const timerFill = document.getElementById('timerFill');
+        const btnContainer = document.getElementById('gameButtons');
+
+        let score = 0;
+        let streak = 0;
+        let highScore = parseInt(localStorage.getItem('darkais_game_high') || '0');
+        highEl.innerText = highScore;
+
+        let currentPattern = null;
+        let timerInterval = null;
+        let timeLeft = 100;
+
+        const PATTERNS = [
+            { name: "Bullish Hammer / Pinbar", signal: "BUY", type: "hammer", desc: "Long lower wick signals strong buyers absorbing liquidity at the lows." },
+            { name: "Bearish Shooting Star", signal: "SELL", type: "shooting_star", desc: "Long upper wick signals aggressive selling rejection from the highs." },
+            { name: "Bullish Engulfing", signal: "BUY", type: "bull_engulf", desc: "Large green candle completely engulfs previous red candle body." },
+            { name: "Bearish Engulfing", signal: "SELL", type: "bear_engulf", desc: "Large red candle completely engulfs previous green candle body." },
+            { name: "Bullish Morning Star", signal: "BUY", type: "morning_star", desc: "Three-candle reversal pattern marking a definitive market bottom." }
+        ];
+
+        function drawCandle(x, o, h, l, c, isGreen) {
+            ctx.strokeStyle = isGreen ? '#00E676' : '#FF3366';
+            ctx.fillStyle = isGreen ? '#00E676' : '#FF3366';
+            ctx.lineWidth = 2;
+
+            // Wick
+            ctx.beginPath();
+            ctx.moveTo(x, h);
+            ctx.lineTo(x, l);
+            ctx.stroke();
+
+            // Body
+            const top = Math.min(o, c);
+            const height = Math.max(4, Math.abs(c - o));
+            ctx.fillRect(x - 14, top, 28, height);
+        }
+
+        function renderPattern(pattern) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const midY = 130;
+
+            if (pattern.type === "hammer") {
+                drawCandle(220, 100, 95, 140, 130, false); // prior red
+                drawCandle(300, 120, 115, 230, 118, true);  // hammer (long lower wick)
+            } else if (pattern.type === "shooting_star") {
+                drawCandle(220, 150, 110, 160, 120, true);  // prior green
+                drawCandle(300, 130, 40, 140, 138, false); // shooting star (long upper wick)
+            } else if (pattern.type === "bull_engulf") {
+                drawCandle(240, 120, 110, 160, 150, false); // small red
+                drawCandle(300, 165, 80, 170, 90, true);    // giant green engulf
+            } else if (pattern.type === "bear_engulf") {
+                drawCandle(240, 150, 110, 160, 120, true);  // small green
+                drawCandle(300, 110, 90, 190, 180, false);  // giant red engulf
+            } else if (pattern.type === "morning_star") {
+                drawCandle(180, 80, 75, 160, 150, false);
+                drawCandle(260, 180, 170, 200, 185, true);
+                drawCandle(340, 170, 70, 175, 80, true);
+            }
+        }
+
+        function nextRound() {
+            clearInterval(timerInterval);
+            currentPattern = PATTERNS[Math.floor(Math.random() * PATTERNS.length)];
+            renderPattern(currentPattern);
+            explainEl.innerHTML = `<span style="color:var(--accent);">Identify the pattern:</span> Is this formation Bullish or Bearish?`;
+
+            btnContainer.innerHTML = `
+                <button class="btn btn-success" style="padding: 14px 40px; font-size: 15px;" onclick="handleAnswer('BUY')">🟢 BUY (Bullish)</button>
+                <button class="btn btn-danger" style="padding: 14px 40px; font-size: 15px;" onclick="handleAnswer('SELL')">🔴 SELL (Bearish)</button>
+            `;
+
+            timeLeft = 100;
+            timerFill.style.width = '100%';
+            timerInterval = setInterval(() => {
+                timeLeft -= 2;
+                timerFill.style.width = `${timeLeft}%`;
+                if (timeLeft <= 0) {
+                    handleTimeout();
+                }
+            }, 100);
+        }
+
+        function handleAnswer(choice) {
+            clearInterval(timerInterval);
+            if (choice === currentPattern.signal) {
+                score += 100 + (streak * 20);
+                streak++;
+                playSound('success');
+                explainEl.innerHTML = `<strong style="color:var(--success);">✓ CORRECT!</strong> It's a <strong>${currentPattern.name}</strong>. ${currentPattern.desc}`;
+            } else {
+                streak = 0;
+                playSound('error');
+                explainEl.innerHTML = `<strong style="color:var(--danger);">✕ WRONG!</strong> This is a <strong>${currentPattern.name}</strong> (${currentPattern.signal}). ${currentPattern.desc}`;
+            }
+
+            if (score > highScore) {
+                highScore = score;
+                localStorage.setItem('darkais_game_high', highScore);
+                highEl.innerText = highScore;
+            }
+
+            scoreEl.innerText = score;
+            streakEl.innerText = streak;
+
+            btnContainer.innerHTML = `
+                <button class="btn btn-primary" onclick="nextRound()">Next Pattern →</button>
+            `;
+        }
+
+        function handleTimeout() {
+            clearInterval(timerInterval);
+            streak = 0;
+            streakEl.innerText = streak;
+            playSound('error');
+            explainEl.innerHTML = `<strong style="color:var(--warning);">⏱️ Time's Up!</strong> This was a <strong>${currentPattern.name}</strong> (${currentPattern.signal}).`;
+            btnContainer.innerHTML = `
+                <button class="btn btn-primary" onclick="nextRound()">Next Pattern →</button>
+            `;
+        }
+
+        document.getElementById('startGameBtn').addEventListener('click', () => {
+            score = 0;
+            streak = 0;
+            scoreEl.innerText = '0';
+            streakEl.innerText = '0';
+            nextRound();
+        });
+    </script>
+</body>
+</html>

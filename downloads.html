@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Downloads & Code Starters — DarkAIs Academy</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;800;900&family=Roboto:wght@300;400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="index.html">
+                <h1>🌑 DARKAIS <span class="accent">ACADEMY</span></h1>
+            </a>
+        </div>
+        <nav class="nav">
+            <a href="index.html" class="nav-link">Curriculum</a>
+            <a href="simulator.html" class="nav-link">Strategy Studio</a>
+            <a href="charts.html" class="nav-link">Live Charts</a>
+            <a href="calculator.html" class="nav-link">🧮 Calculator</a>
+            <a href="game.html" class="nav-link">🎯 Game</a>
+            <a href="calendar.html" class="nav-link">📰 Calendar</a>
+            <a href="downloads.html" class="nav-link active">📦 Downloads</a>
+            <a href="certificate.html" class="nav-link">🎓 Diploma</a>
+        </nav>
+        <div class="header-right">
+            <div class="theme-picker">
+                <div class="theme-dot cyan" onclick="setTheme('cyan')" title="Cyber Cyan"></div>
+                <div class="theme-dot matrix" onclick="setTheme('matrix')" title="Matrix Green"></div>
+                <div class="theme-dot gold" onclick="setTheme('gold')" title="FTMO Gold"></div>
+                <div class="theme-dot purple" onclick="setTheme('purple')" title="Solana Purple"></div>
+            </div>
+            <button class="icon-btn" id="muteBtn" onclick="toggleMute()" title="Toggle Sound">🔊</button>
+            <div class="progress-badge">
+                <div class="bar"><div class="bar-fill" id="globalProgressBar" style="width: 0%;"></div></div>
+                <span id="globalProgressText">0%</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="hero-wrapper" style="padding: 30px 20px 20px;">
+        <div class="hero-content">
+            <span class="hero-tag">DEPLOYMENT VAULT</span>
+            <h1 class="hero-title">Downloadable Bot <span class="glow">Starter Kits</span></h1>
+            <p class="hero-desc">Download production-ready source code templates in Python, Node.js, and MetaTrader 5 (MQL5) to deploy your custom strategies.</p>
+        </div>
+    </div>
+
+    <div class="academy-container">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 24px;">
+            <!-- Python Bot -->
+            <div class="download-card">
+                <div>
+                    <span class="tag" style="color:#38BDF8; margin-bottom:12px; display:inline-block;">🐍 PYTHON 3.10+</span>
+                    <h3>DarkAIs Async Forex Bot</h3>
+                    <p>Clean Python algorithmic bot featuring dynamic position sizing, mean reversion triggers, and automated Stop Loss / Take Profit circuit breakers.</p>
+                </div>
+                <a href="downloads/darkais_forex_bot.py" download="darkais_forex_bot.py" class="btn btn-primary" style="width:100%;">📥 Download Python Bot (.py)</a>
+            </div>
+
+            <!-- Node.js Engine -->
+            <div class="download-card">
+                <div>
+                    <span class="tag" style="color:#4ADE80; margin-bottom:12px; display:inline-block;">🟢 NODE.JS / JS</span>
+                    <h3>DarkAIs WebSocket Trading Engine</h3>
+                    <p>High-frequency JavaScript engine optimized for streaming tick ingestion via WebSockets, multi-level scale outs, and real-time execution.</p>
+                </div>
+                <a href="downloads/darkais_node_bot.js" download="darkais_node_bot.js" class="btn btn-primary" style="width:100%;">📥 Download Node Engine (.js)</a>
+            </div>
+
+            <!-- MT5 Expert Advisor -->
+            <div class="download-card">
+                <div>
+                    <span class="tag" style="color:#FBBF24; margin-bottom:12px; display:inline-block;">📊 METATRADER 5 (MQL5)</span>
+                    <h3>DarkAIs MT5 Expert Advisor (EA)</h3>
+                    <p>Native MQL5 Expert Advisor source code ready to compile in MetaEditor and attach directly to your MetaTrader 5 live or prop firm charts.</p>
+                </div>
+                <a href="downloads/DarkAIs_EA.mq5" download="DarkAIs_EA.mq5" class="btn btn-primary" style="width:100%;">📥 Download MT5 EA (.mq5)</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 DarkAIs Academy. Institutional-grade algorithmic education.</p>
+    </footer>
+
+    <script src="js/academy.js"></script>
+</body>
+</html>

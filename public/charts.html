@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live TradingView Terminal — DarkAIs Academy</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;800;900&family=Roboto:wght@300;400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="index.html">
+                <h1>🌑 DARKAIS <span class="accent">ACADEMY</span></h1>
+            </a>
+        </div>
+        <nav class="nav">
+            <a href="index.html" class="nav-link">Curriculum</a>
+            <a href="simulator.html" class="nav-link">Strategy Studio</a>
+            <a href="charts.html" class="nav-link active">Live Charts</a>
+            <a href="calculator.html" class="nav-link">🧮 Calculator</a>
+            <a href="game.html" class="nav-link">🎯 Game</a>
+            <a href="calendar.html" class="nav-link">📰 Calendar</a>
+            <a href="downloads.html" class="nav-link">📦 Downloads</a>
+            <a href="certificate.html" class="nav-link">🎓 Diploma</a>
+        </nav>
+        <div class="header-right">
+            <div class="theme-picker">
+                <div class="theme-dot cyan" onclick="setTheme('cyan')" title="Cyber Cyan"></div>
+                <div class="theme-dot matrix" onclick="setTheme('matrix')" title="Matrix Green"></div>
+                <div class="theme-dot gold" onclick="setTheme('gold')" title="FTMO Gold"></div>
+                <div class="theme-dot purple" onclick="setTheme('purple')" title="Solana Purple"></div>
+            </div>
+            <button class="icon-btn" id="muteBtn" onclick="toggleMute()" title="Toggle Sound">🔊</button>
+            <div class="progress-badge">
+                <div class="bar"><div class="bar-fill" id="globalProgressBar" style="width: 0%;"></div></div>
+                <span id="globalProgressText">0%</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="hero-wrapper" style="padding: 30px 20px 20px;">
+        <div class="hero-content">
+            <span class="hero-tag">INSTITUTIONAL WORKSTATION</span>
+            <h1 class="hero-title">Live TradingView <span class="glow">Technical Terminal</span></h1>
+            <p class="hero-desc">Practice technical analysis on real-time market data across Forex, Gold, and Crypto assets directly inside your academy dashboard.</p>
+        </div>
+    </div>
+
+    <div class="academy-container" style="max-width: 1400px; padding-bottom: 40px;">
+        <!-- Asset Switcher Tabs -->
+        <div style="display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap;">
+            <button class="btn btn-primary" onclick="loadChart('FX:EURUSD', this)">EUR/USD</button>
+            <button class="btn btn-outline" onclick="loadChart('FX:GBPUSD', this)">GBP/USD</button>
+            <button class="btn btn-outline" onclick="loadChart('OANDA:XAUUSD', this)">Gold (XAU/USD)</button>
+            <button class="btn btn-outline" onclick="loadChart('BINANCE:BTCUSDT', this)">Bitcoin (BTC/USDT)</button>
+            <button class="btn btn-outline" onclick="loadChart('BINANCE:SOLUSDT', this)">Solana (SOL/USDT)</button>
+        </div>
+
+        <!-- TradingView Embed Widget Container -->
+        <div style="height: 650px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden;" id="tradingview_container">
+            <div class="tradingview-widget-container" style="height:100%; width:100%">
+                <div id="tradingview_chart" style="height:calc(100% - 32px); width:100%"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 DarkAIs Academy. Institutional-grade algorithmic education.</p>
+    </footer>
+
+    <script src="js/academy.js"></script>
+    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+    <script type="text/javascript">
+        let currentWidget = null;
+
+        function loadChart(symbol, btnEl) {
+            if (btnEl) {
+                document.querySelectorAll('.academy-container .btn').forEach(b => {
+                    b.className = 'btn btn-outline';
+                });
+                btnEl.className = 'btn btn-primary';
+            }
+
+            document.getElementById('tradingview_chart').innerHTML = '';
+
+            new TradingView.widget({
+                "autosize": true,
+                "symbol": symbol,
+                "interval": "15",
+                "timezone": "Etc/UTC",
+                "theme": "dark",
+                "style": "1",
+                "locale": "en",
+                "enable_publishing": false,
+                "allow_symbol_change": true,
+                "container_id": "tradingview_chart",
+                "hide_side_toolbar": false,
+                "studies": [
+                    "MASimple@tv-basicstudies",
+                    "RSI@tv-basicstudies"
+                ]
+            });
+            playSound('trade');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadChart('FX:EURUSD');
+        });
+    </script>
+</body>
+</html>

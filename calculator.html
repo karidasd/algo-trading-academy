@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FTMO & Prop Firm Risk Calculator — DarkAIs Academy</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;800;900&family=Roboto:wght@300;400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="index.html">
+                <h1>🌑 DARKAIS <span class="accent">ACADEMY</span></h1>
+            </a>
+        </div>
+        <nav class="nav">
+            <a href="index.html" class="nav-link">Curriculum</a>
+            <a href="simulator.html" class="nav-link">Strategy Studio</a>
+            <a href="charts.html" class="nav-link">Live Charts</a>
+            <a href="calculator.html" class="nav-link active">🧮 Calculator</a>
+            <a href="game.html" class="nav-link">🎯 Game</a>
+            <a href="calendar.html" class="nav-link">📰 Calendar</a>
+            <a href="downloads.html" class="nav-link">📦 Downloads</a>
+            <a href="certificate.html" class="nav-link">🎓 Diploma</a>
+        </nav>
+        <div class="header-right">
+            <div class="theme-picker">
+                <div class="theme-dot cyan" onclick="setTheme('cyan')" title="Cyber Cyan"></div>
+                <div class="theme-dot matrix" onclick="setTheme('matrix')" title="Matrix Green"></div>
+                <div class="theme-dot gold" onclick="setTheme('gold')" title="FTMO Gold"></div>
+                <div class="theme-dot purple" onclick="setTheme('purple')" title="Solana Purple"></div>
+            </div>
+            <button class="icon-btn" id="muteBtn" onclick="toggleMute()" title="Toggle Sound">🔊</button>
+            <div class="progress-badge">
+                <div class="bar"><div class="bar-fill" id="globalProgressBar" style="width: 0%;"></div></div>
+                <span id="globalProgressText">0%</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="hero-wrapper" style="padding: 40px 20px 30px;">
+        <div class="hero-content">
+            <span class="hero-tag">INSTITUTIONAL RISK TOOL</span>
+            <h1 class="hero-title">FTMO & Prop Firm <span class="glow">Challenge Calculator</span></h1>
+            <p class="hero-desc">Calculate exact lot sizing, maximum daily loss buffers, target profit projections, and Risk of Ruin probabilities to pass funded trader challenges with 100% mathematical consistency.</p>
+        </div>
+    </div>
+
+    <div class="academy-container">
+        <div style="display: grid; grid-template-columns: 360px 1fr; gap: 30px; align-items: start;">
+            <!-- Inputs -->
+            <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 24px;">
+                <h3 style="font-size: 16px; margin-bottom: 20px; color: var(--accent);">⚙️ Challenge Parameters</h3>
+                
+                <div style="margin-bottom: 16px;">
+                    <label style="font-size: 11.5px; color: var(--text-muted); display: block; margin-bottom: 6px;">ACCOUNT SIZE ($)</label>
+                    <select id="calcAccountSize" style="width: 100%; background: var(--bg-panel); color: var(--text-primary); border: 1px solid var(--border); padding: 10px; border-radius: var(--radius-sm); font-size: 14px; font-weight: bold;">
+                        <option value="10000">$10,000 (Micro Challenge)</option>
+                        <option value="25000">$25,000 (Standard)</option>
+                        <option value="50000">$50,000 (Pro)</option>
+                        <option value="100000" selected>$100,000 (Elite)</option>
+                        <option value="200000">$200,000 (Funded Whale)</option>
+                    </select>
+                </div>
+
+                <div style="margin-bottom: 16px;">
+                    <label style="font-size: 11.5px; color: var(--text-muted); display: block; margin-bottom: 6px;">RISK PER TRADE (%)</label>
+                    <input type="number" id="calcRiskPct" value="0.75" step="0.25" min="0.1" max="5.0" style="width: 100%; background: var(--bg-panel); color: var(--text-primary); border: 1px solid var(--border); padding: 10px; border-radius: var(--radius-sm);">
+                </div>
+
+                <div style="margin-bottom: 16px;">
+                    <label style="font-size: 11.5px; color: var(--text-muted); display: block; margin-bottom: 6px;">STOP LOSS DISTANCE (PIPS)</label>
+                    <input type="number" id="calcSlPips" value="20" min="1" max="200" style="width: 100%; background: var(--bg-panel); color: var(--text-primary); border: 1px solid var(--border); padding: 10px; border-radius: var(--radius-sm);">
+                </div>
+
+                <div style="margin-bottom: 16px;">
+                    <label style="font-size: 11.5px; color: var(--text-muted); display: block; margin-bottom: 6px;">REWARD : RISK RATIO (R:R)</label>
+                    <input type="number" id="calcRR" value="2.0" step="0.5" min="1.0" max="10.0" style="width: 100%; background: var(--bg-panel); color: var(--text-primary); border: 1px solid var(--border); padding: 10px; border-radius: var(--radius-sm);">
+                </div>
+
+                <div style="margin-bottom: 24px;">
+                    <label style="font-size: 11.5px; color: var(--text-muted); display: block; margin-bottom: 6px;">ESTIMATED STRATEGY WIN RATE (%)</label>
+                    <input type="number" id="calcWinRate" value="55" min="20" max="95" style="width: 100%; background: var(--bg-panel); color: var(--text-primary); border: 1px solid var(--border); padding: 10px; border-radius: var(--radius-sm);">
+                </div>
+
+                <button id="recalcBtn" class="btn btn-primary" style="width: 100%;">🧮 Compute Risk Plan</button>
+            </div>
+
+            <!-- Mathematical Output -->
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+                <!-- Main Grid Cards -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px;">
+                    <div class="stat-card" style="padding: 18px;">
+                        <div class="stat-info">
+                            <p>Max Position Size</p>
+                            <h4 id="outLotSize" style="color: var(--accent); font-size: 20px;">3.75 Lots</h4>
+                            <span style="font-size:11px; color:var(--text-muted);">on EUR/USD</span>
+                        </div>
+                    </div>
+                    <div class="stat-card" style="padding: 18px;">
+                        <div class="stat-info">
+                            <p>Max Daily Loss Limit</p>
+                            <h4 id="outDailyLoss" style="color: var(--danger); font-size: 20px;">-$5,000.00</h4>
+                            <span style="font-size:11px; color:var(--text-muted);">5% Hard Barrier</span>
+                        </div>
+                    </div>
+                    <div class="stat-card" style="padding: 18px;">
+                        <div class="stat-info">
+                            <p>Max Allowed Consecutive Losses</p>
+                            <h4 id="outLossBuffer" style="color: var(--warning); font-size: 20px;">6.6 Trades</h4>
+                            <span style="font-size:11px; color:var(--text-muted);">Before daily violation</span>
+                        </div>
+                    </div>
+                    <div class="stat-card" style="padding: 18px;">
+                        <div class="stat-info">
+                            <p>Phase 1 Target (+10%)</p>
+                            <h4 id="outTargetProfit" style="color: var(--success); font-size: 20px;">+$10,000.00</h4>
+                            <span style="font-size:11px; color:var(--text-muted);">Est. ~16 Winning Trades</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Strategic Risk Advisory -->
+                <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 24px;">
+                    <h3 style="font-size: 17px; margin-bottom: 14px; color: var(--accent);">🛡️ Algorithmic Execution Guidance</h3>
+                    <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 16px;" id="outGuidanceText">
+                        At a <strong>0.75% risk per trade ($750)</strong> with a 20 pip Stop Loss, your bot will risk exactly $750 per execution. To breach FTMO's daily 5% limit ($5,000), your bot would have to suffer <strong>6 consecutive full stop-outs in a single day</strong> without any winning trades.
+                    </p>
+                    <div class="callout success" style="margin: 0;">
+                        <div class="callout-title">✓ Optimal Bot Configuration Recommendation</div>
+                        <p style="font-size: 13.5px; margin: 0;">Set an automated bot circuit-breaker at <strong>-$3,500 daily loss (3.5%)</strong>. This provides a 1.5% buffer against sudden slippage or spread spikes during unexpected news releases.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 DarkAIs Academy. Institutional-grade algorithmic education.</p>
+    </footer>
+
+    <script src="js/academy.js"></script>
+    <script>
+        function calculatePropRisk() {
+            const capital = parseFloat(document.getElementById('calcAccountSize').value);
+            const riskPct = parseFloat(document.getElementById('calcRiskPct').value);
+            const slPips = parseFloat(document.getElementById('calcSlPips').value);
+            const rr = parseFloat(document.getElementById('calcRR').value);
+            const winRate = parseFloat(document.getElementById('calcWinRate').value) / 100;
+
+            const riskAmount = capital * (riskPct / 100);
+            const maxDailyLoss = capital * 0.05;
+            const targetProfit = capital * 0.10;
+            
+            // Lot size: Risk $ / (StopLoss pips * $10 per lot)
+            const lotSize = Math.max(0.01, Math.floor((riskAmount / (slPips * 10)) * 100) / 100);
+            const consecutiveLosses = Math.floor(maxDailyLoss / riskAmount);
+
+            document.getElementById('outLotSize').innerText = `${lotSize.toFixed(2)} Lots`;
+            document.getElementById('outDailyLoss').innerText = `-$${maxDailyLoss.toLocaleString('en-US', {minimumFractionDigits: 2})}`;
+            document.getElementById('outLossBuffer').innerText = `${consecutiveLosses} Trades`;
+            document.getElementById('outTargetProfit').innerText = `+$${targetProfit.toLocaleString('en-US', {minimumFractionDigits: 2})}`;
+
+            document.getElementById('outGuidanceText').innerHTML = `
+                At a <strong>${riskPct}% risk per trade ($${riskAmount.toLocaleString('en-US')})</strong> with a ${slPips} pip Stop Loss, your bot will risk exactly $${riskAmount.toLocaleString('en-US')} per trade with a position size of <strong>${lotSize} Lots</strong>.
+                To breach the 5% daily limit ($${maxDailyLoss.toLocaleString('en-US')}), your bot would need to take <strong>${consecutiveLosses} consecutive full stop-outs</strong> in a single day.
+            `;
+            playSound('trade');
+        }
+
+        document.getElementById('recalcBtn').addEventListener('click', calculatePropRisk);
+        ['calcAccountSize', 'calcRiskPct', 'calcSlPips', 'calcRR', 'calcWinRate'].forEach(id => {
+            document.getElementById(id).addEventListener('input', calculatePropRisk);
+        });
+        document.addEventListener('DOMContentLoaded', calculatePropRisk);
+    </script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Economic News Calendar & Circuit Breaker — DarkAIs Academy</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;800;900&family=Roboto:wght@300;400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="index.html">
+                <h1>🌑 DARKAIS <span class="accent">ACADEMY</span></h1>
+            </a>
+        </div>
+        <nav class="nav">
+            <a href="index.html" class="nav-link">Curriculum</a>
+            <a href="simulator.html" class="nav-link">Strategy Studio</a>
+            <a href="charts.html" class="nav-link">Live Charts</a>
+            <a href="calculator.html" class="nav-link">🧮 Calculator</a>
+            <a href="game.html" class="nav-link">🎯 Game</a>
+            <a href="calendar.html" class="nav-link active">📰 Calendar</a>
+            <a href="downloads.html" class="nav-link">📦 Downloads</a>
+            <a href="certificate.html" class="nav-link">🎓 Diploma</a>
+        </nav>
+        <div class="header-right">
+            <div class="theme-picker">
+                <div class="theme-dot cyan" onclick="setTheme('cyan')" title="Cyber Cyan"></div>
+                <div class="theme-dot matrix" onclick="setTheme('matrix')" title="Matrix Green"></div>
+                <div class="theme-dot gold" onclick="setTheme('gold')" title="FTMO Gold"></div>
+                <div class="theme-dot purple" onclick="setTheme('purple')" title="Solana Purple"></div>
+            </div>
+            <button class="icon-btn" id="muteBtn" onclick="toggleMute()" title="Toggle Sound">🔊</button>
+            <div class="progress-badge">
+                <div class="bar"><div class="bar-fill" id="globalProgressBar" style="width: 0%;"></div></div>
+                <span id="globalProgressText">0%</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="hero-wrapper" style="padding: 30px 20px 20px;">
+        <div class="hero-content">
+            <span class="hero-tag">MACRO VOLATILITY RADAR</span>
+            <h1 class="hero-title">Economic Calendar & <span class="glow">Circuit Breaker</span></h1>
+            <p class="hero-desc">Monitor high-impact macroeconomic events and study how institutional trading algorithms automatically pause execution to avoid catastrophic slippage.</p>
+        </div>
+    </div>
+
+    <div class="academy-container">
+        <!-- Live Bot Circuit Breaker Status Banner -->
+        <div style="background: var(--bg-card); border: 2px solid var(--accent); border-radius: var(--radius-md); padding: 20px; margin-bottom: 30px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+            <div>
+                <div style="font-size: 12px; color: var(--text-muted); text-transform: uppercase;">Bot Autonomous Circuit Breaker Status</div>
+                <div style="font-size: 20px; font-weight: 700; color: var(--success); display: flex; align-items: center; gap: 8px;">
+                    <span style="display:inline-block; width:10px; height:10px; border-radius:50%; background:var(--success); box-shadow:0 0 10px var(--success);"></span>
+                    SYSTEM OPERATIONAL: NORMAL TRADING ACTIVE
+                </div>
+            </div>
+            <div style="font-family:'JetBrains Mono'; font-size:13px; color:var(--text-secondary);">
+                Next High-Impact Event in: <span id="eventCountdown" style="color:var(--warning); font-weight:bold;">02h 41m 19s</span>
+            </div>
+        </div>
+
+        <!-- Events Table -->
+        <table class="calendar-table">
+            <thead>
+                <tr>
+                    <th>Time (UTC)</th>
+                    <th>Currency</th>
+                    <th>Impact</th>
+                    <th>Economic Event</th>
+                    <th>Forecast</th>
+                    <th>Previous</th>
+                    <th>Bot Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="mono">13:30</td>
+                    <td><strong style="color:var(--accent);">USD</strong></td>
+                    <td><span class="impact-badge impact-high">🔴 HIGH</span></td>
+                    <td><strong>US Core CPI (Consumer Price Index) m/m</strong></td>
+                    <td class="mono">0.3%</td>
+                    <td class="mono">0.2%</td>
+                    <td style="color:var(--danger); font-weight:bold;">🛑 Auto-Pause (-15m/+15m)</td>
+                </tr>
+                <tr>
+                    <td class="mono">14:15</td>
+                    <td><strong style="color:var(--purple);">EUR</strong></td>
+                    <td><span class="impact-badge impact-high">🔴 HIGH</span></td>
+                    <td><strong>ECB Monetary Policy Statement & Rate Decision</strong></td>
+                    <td class="mono">3.75%</td>
+                    <td class="mono">3.75%</td>
+                    <td style="color:var(--danger); font-weight:bold;">🛑 Auto-Pause (-15m/+15m)</td>
+                </tr>
+                <tr>
+                    <td class="mono">15:00</td>
+                    <td><strong style="color:var(--accent);">USD</strong></td>
+                    <td><span class="impact-badge impact-med">🟡 MED</span></td>
+                    <td>ISM Non-Manufacturing PMI</td>
+                    <td class="mono">51.4</td>
+                    <td class="mono">50.8</td>
+                    <td style="color:var(--warning);">⚡ Tighten Stop Loss to 1.5R</td>
+                </tr>
+                <tr>
+                    <td class="mono">18:00</td>
+                    <td><strong style="color:var(--success);">GBP</strong></td>
+                    <td><span class="impact-badge impact-low">🟢 LOW</span></td>
+                    <td>BoE MPC Member Speech</td>
+                    <td class="mono">—</td>
+                    <td class="mono">—</td>
+                    <td style="color:var(--success);">✓ Normal Execution</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 DarkAIs Academy. Institutional-grade algorithmic education.</p>
+    </footer>
+
+    <script src="js/academy.js"></script>
+    <script>
+        // Live simulation countdown timer
+        let seconds = 9679;
+        setInterval(() => {
+            seconds--;
+            if (seconds < 0) seconds = 86400;
+            const h = String(Math.floor(seconds / 3600)).padStart(2, '0');
+            const m = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0');
+            const s = String(seconds % 60).padStart(2, '0');
+            document.getElementById('eventCountdown').innerText = `${h}h ${m}m ${s}s`;
+        }, 1000);
+    </script>
+</body>
+</html>
