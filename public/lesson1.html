@@ -25,21 +25,31 @@
         </div>
 
         <div class="lesson-content">
-            <p>Welcome to the first lesson of the DarkAIs Academy. In this chapter, we will cover the absolute basics of the Foreign Exchange (Forex) market and introduce a fundamental algorithmic trading concept: <strong>Mean Reversion via Moving Averages</strong>.</p>
+            <p>Welcome to the first official module of the DarkAIs Academy. In this chapter, we will lay the foundation of your trading career by covering the absolute basics of the Foreign Exchange (Forex) market. Moreover, we will introduce a fundamental algorithmic trading concept: <strong>Mean Reversion via Moving Averages</strong>.</p>
             
-            <h3>What is Forex?</h3>
-            <p>The Forex market is where currencies are traded. Currencies are important because they allow us to purchase goods and services locally and across borders. International currencies need to be exchanged to conduct foreign trade and business.</p>
-            <p>In Forex, you always trade pairs. For example, <strong>EUR/USD</strong> represents how many US Dollars (the quote currency) are needed to purchase one Euro (the base currency).</p>
-
-            <h3>The Strategy: Mean Reversion</h3>
-            <p>One of the most common algorithmic strategies is based on the idea that prices tend to return to their historical average. In this lesson, we will program our bot to:</p>
+            <h3>1. What is Forex?</h3>
+            <p>The Foreign Exchange market (Forex or FX) is the global marketplace for exchanging national currencies. With a daily trading volume exceeding $6 trillion, it is by far the largest and most liquid financial market in the world.</p>
+            <p>Currencies are important because they allow us to purchase goods and services locally and across borders. In Forex, you always trade in <strong>pairs</strong>. For example, in the pair <strong>EUR/USD</strong>:</p>
             <ul>
-                <li>Calculate a short-term moving average of the EUR/USD price.</li>
-                <li>If the current price drops significantly <strong>below</strong> the average, we assume it's "oversold" and execute a <strong>BUY</strong>.</li>
-                <li>If the price rises significantly <strong>above</strong> the average, we assume it's "overbought" and execute a <strong>SELL</strong>.</li>
+                <li><strong>EUR (Euro):</strong> This is the <em>Base Currency</em>.</li>
+                <li><strong>USD (US Dollar):</strong> This is the <em>Quote Currency</em>.</li>
+            </ul>
+            <p>If EUR/USD is priced at 1.1000, it means 1 Euro is equal to 1.10 US Dollars. When you "Buy" EUR/USD, you are effectively buying Euros and selling US Dollars simultaneously, expecting the Euro to gain value.</p>
+
+            <blockquote style="border-left: 4px solid var(--accent); padding-left: 15px; margin: 20px 0; color: #aaa; font-style: italic;">
+                "The goal of a successful trader is to make the best trades. Money is secondary." — Alexander Elder
+            </blockquote>
+
+            <h3>2. The Strategy: Mean Reversion</h3>
+            <p>While human traders often rely on intuition, algorithmic bots rely on math. One of the most common algorithmic strategies is based on <em>Mean Reversion</em>—the idea that prices tend to return to their historical average over time.</p>
+            <p>In this lesson, we will program our bot to:</p>
+            <ul>
+                <li>Calculate a short-term <strong>Simple Moving Average (SMA)</strong> of the EUR/USD price.</li>
+                <li>If the current price drops significantly <strong>below</strong> the average, the asset is considered "oversold", and the bot executes a <strong>BUY</strong>.</li>
+                <li>If the price rises significantly <strong>above</strong> the average, the asset is considered "overbought", and the bot executes a <strong>SELL</strong>.</li>
             </ul>
 
-            <p>Instead of just reading about it, let's see it in action!</p>
+            <p>Instead of just reading about it, let's see it in action! Use the interactive terminal below to simulate this exact logic on live data.</p>
         </div>
 
         <!-- BOTAKI COMPONENT -->

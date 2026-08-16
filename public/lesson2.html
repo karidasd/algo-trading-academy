@@ -26,24 +26,31 @@
         </div>
 
         <div class="lesson-content">
-            <p>Welcome to the Technical Analysis chapter. Today we focus on one of the most powerful concepts in trading: <strong>Support and Resistance</strong>.</p>
+            <p>Welcome to the Technical Analysis chapter. Today we focus on one of the most powerful and universally applied concepts in financial trading: <strong>Support and Resistance (S&R)</strong>. Whether you are scalping on a 1-minute chart or investing on a weekly chart, these invisible barriers govern price action.</p>
             
-            <h3>What are Support and Resistance?</h3>
-            <p>Imagine a bouncing ball in a room. It hits the floor and bounces up; it hits the ceiling and bounces down.</p>
+            <h3>1. What are Support and Resistance?</h3>
+            <p>Imagine a bouncing ball in an enclosed room. It hits the floor and bounces up; it hits the ceiling and bounces down. Market prices behave similarly within trading ranges.</p>
             <ul>
-                <li><strong>Support (The Floor):</strong> A price level where a downtrend tends to pause due to a concentration of demand (buying interest).</li>
-                <li><strong>Resistance (The Ceiling):</strong> A price level where an uptrend tends to pause due to a concentration of supply (selling interest).</li>
+                <li><strong>Support (The Floor):</strong> A price level where a downtrend tends to pause or reverse due to a concentration of demand (buying interest). When the price drops to this level, buyers step in, thinking it's "cheap."</li>
+                <li><strong>Resistance (The Ceiling):</strong> A price level where an uptrend tends to pause or reverse due to a concentration of supply (selling interest). When the price rises to this level, sellers step in, thinking it's "expensive."</li>
             </ul>
+            <p>A key rule of thumb in technical analysis is: <em>Once broken, Support becomes Resistance, and Resistance becomes Support.</em></p>
 
-            <h3>The Strategy: Range Trading</h3>
-            <p>In algorithmic trading, we can program a bot to identify these "invisible floors and ceilings" by looking at the highest highs and lowest lows over a period.</p>
-            <p>Our strategy rules for the bot:</p>
+            <blockquote style="border-left: 4px solid var(--accent); padding-left: 15px; margin: 20px 0; color: #aaa; font-style: italic;">
+                "Don't anticipate and move without market confirmation - being a little late in your trade is your insurance that you are right or wrong." — Jesse Livermore
+            </blockquote>
+
+            <h3>2. The Strategy: Range Trading Bots</h3>
+            <p>In algorithmic trading, we can program a bot to identify these "floors and ceilings" dynamically by scanning the highest highs and lowest lows over a specific timeframe window.</p>
+            <p>Our strategy rules for the Botaki simulator:</p>
             <ul>
-                <li>If the price drops near the <strong>Support</strong> level, execute a <strong>BUY</strong>, expecting it to bounce up.</li>
+                <li>Continuously track the rolling highest and lowest price to define the <strong>Resistance</strong> and <strong>Support</strong>.</li>
+                <li>If the price drops near the <strong>Support</strong> level, execute a <strong>BUY</strong>, expecting it to bounce up (reversal).</li>
                 <li>If the price rises near the <strong>Resistance</strong> level, execute a <strong>SELL</strong>, expecting it to drop down.</li>
+                <li>Implement strict Take Profit (TP) and Stop Loss (SL) logic to secure profits and prevent catastrophic losses if a "breakout" occurs.</li>
             </ul>
 
-            <p>Let's run the Support & Resistance Botaki and watch it trade the range!</p>
+            <p>Let's put the theory to the test. Start the Support & Resistance Botaki below and watch it automatically map the range and execute trades at the boundaries!</p>
         </div>
 
         <!-- BOTAKI COMPONENT -->
