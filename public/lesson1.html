@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 1: Forex Basics - DarkAIs Academy</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <h1>🌑 DarkAIs <span class="accent">Academy</span></h1>
+        </div>
+        <nav class="nav">
+            <a href="index.html">Home</a>
+            <a href="lesson1.html" class="active">Forex Basics</a>
+        </nav>
+    </header>
+
+    <main class="lesson-container">
+        <div class="lesson-header">
+            <span style="color:var(--text-muted); font-family:'Orbitron'">COURSE 01</span>
+            <h2>Gateway to Trading: Forex Basics & Moving Averages</h2>
+        </div>
+
+        <div class="lesson-content">
+            <p>Welcome to the first lesson of the DarkAIs Academy. In this chapter, we will cover the absolute basics of the Foreign Exchange (Forex) market and introduce a fundamental algorithmic trading concept: <strong>Mean Reversion via Moving Averages</strong>.</p>
+            
+            <h3>What is Forex?</h3>
+            <p>The Forex market is where currencies are traded. Currencies are important because they allow us to purchase goods and services locally and across borders. International currencies need to be exchanged to conduct foreign trade and business.</p>
+            <p>In Forex, you always trade pairs. For example, <strong>EUR/USD</strong> represents how many US Dollars (the quote currency) are needed to purchase one Euro (the base currency).</p>
+
+            <h3>The Strategy: Mean Reversion</h3>
+            <p>One of the most common algorithmic strategies is based on the idea that prices tend to return to their historical average. In this lesson, we will program our bot to:</p>
+            <ul>
+                <li>Calculate a short-term moving average of the EUR/USD price.</li>
+                <li>If the current price drops significantly <strong>below</strong> the average, we assume it's "oversold" and execute a <strong>BUY</strong>.</li>
+                <li>If the price rises significantly <strong>above</strong> the average, we assume it's "overbought" and execute a <strong>SELL</strong>.</li>
+            </ul>
+
+            <p>Instead of just reading about it, let's see it in action!</p>
+        </div>
+
+        <!-- BOTAKI COMPONENT -->
+        <div class="botaki-section">
+            <div class="botaki-header">
+                <h3 class="botaki-title">🤖 Botaki: Mean Reversion Simulator</h3>
+                <div class="bot-controls">
+                    <button id="startBotBtn" class="btn btn-primary">▶ Start Simulation</button>
+                    <button id="stopBotBtn" class="btn" style="background:var(--danger); color:#fff;" disabled>■ Stop</button>
+                </div>
+            </div>
+
+            <div class="bot-stats">
+                <div class="stat-box">
+                    <h5>PAIR</h5>
+                    <div class="val">EUR/USD</div>
+                </div>
+                <div class="stat-box">
+                    <h5>LIVE PRICE</h5>
+                    <div class="val accent" id="livePrice">---</div>
+                </div>
+                <div class="stat-box">
+                    <h5>POSITIONS</h5>
+                    <div class="val" id="openPositions">0</div>
+                </div>
+                <div class="stat-box">
+                    <h5>Simulated PnL</h5>
+                    <div class="val" id="simPnl" style="color:var(--text-main)">$0.00</div>
+                </div>
+            </div>
+
+            <div style="margin-top:20px;">
+                <div class="terminal" id="botTerminal">
+                    <div class="log-entry"><span class="log-time">[System]</span><span class="log-msg info"> Botaki initialized. Ready to simulate EUR/USD...</span></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 DarkAIs Academy. Educational purposes only.</p>
+    </footer>
+
+    <script src="botaki.js"></script>
+</body>
+</html>

@@ -1,0 +1,220 @@
+:root {
+    --bg-main: #0B0E14;
+    --bg-card: #151A24;
+    --text-main: #E0E6ED;
+    --text-muted: #8B949E;
+    --accent: #00F0FF;
+    --accent-hover: #00D0E0;
+    --danger: #FF3366;
+    --success: #00E676;
+    --border: #2A313C;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Orbitron', sans-serif;
+    margin: 0;
+}
+
+.accent { color: var(--accent); }
+
+a { text-decoration: none; color: inherit; }
+
+/* HEADER */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--border);
+}
+
+.logo h1 { font-size: 24px; }
+
+.nav a {
+    margin-left: 20px;
+    font-weight: 700;
+    color: var(--text-muted);
+    transition: 0.3s;
+}
+
+.nav a:hover, .nav a.active {
+    color: var(--accent);
+}
+
+/* HERO */
+.hero {
+    text-align: center;
+    padding: 80px 20px;
+    background: linear-gradient(180deg, var(--bg-card) 0%, var(--bg-main) 100%);
+    border-bottom: 1px solid var(--border);
+}
+
+.hero h2 { font-size: 36px; margin-bottom: 20px; }
+.hero p { font-size: 18px; color: var(--text-muted); margin-bottom: 40px; }
+
+.btn {
+    padding: 12px 24px;
+    border-radius: 4px;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    transition: 0.3s;
+}
+
+.btn-primary {
+    background: var(--accent);
+    color: #000;
+}
+.btn-primary:hover { background: var(--accent-hover); }
+
+/* COURSES */
+.courses-section {
+    padding: 60px 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-size: 28px;
+    margin-bottom: 40px;
+    border-bottom: 2px solid var(--accent);
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+.courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.course-card {
+    background: var(--bg-card);
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    transition: transform 0.3s, border-color 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.course-card:not(.locked):hover {
+    transform: translateY(-5px);
+    border-color: var(--accent);
+}
+
+.course-card.locked {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.course-number {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 40px;
+    color: var(--border);
+    position: absolute;
+    top: -10px;
+    right: 10px;
+    font-weight: bold;
+    z-index: 0;
+}
+
+.course-card h4 { font-size: 22px; margin-bottom: 15px; position: relative; z-index: 1; }
+.course-card p { color: var(--text-muted); position: relative; z-index: 1; }
+
+/* LESSON PAGE */
+.lesson-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 40px;
+    background: var(--bg-card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    line-height: 1.8;
+}
+
+.lesson-container h2 { margin-bottom: 20px; font-size: 32px; color: var(--accent); }
+.lesson-container p { margin-bottom: 20px; font-size: 16px; color: #CCC; }
+.lesson-container ul { margin-bottom: 20px; color: #CCC; }
+
+/* BOTAKI SECTION */
+.botaki-section {
+    margin-top: 50px;
+    padding: 30px;
+    background: #0A0D12;
+    border: 2px solid var(--accent);
+    border-radius: 12px;
+}
+
+.botaki-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.botaki-title {
+    font-size: 24px;
+    color: var(--accent);
+}
+
+.bot-controls {
+    display: flex;
+    gap: 15px;
+}
+
+.terminal {
+    background: #000;
+    padding: 15px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    height: 250px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+.log-entry { margin-bottom: 5px; }
+.log-time { color: var(--text-muted); margin-right: 10px; }
+.log-msg.info { color: var(--text-main); }
+.log-msg.buy { color: var(--success); font-weight: bold; }
+.log-msg.sell { color: var(--danger); font-weight: bold; }
+.log-msg.profit { color: var(--accent); }
+
+.bot-stats {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.stat-box {
+    background: var(--bg-card);
+    padding: 15px;
+    border-radius: 6px;
+    flex: 1;
+    text-align: center;
+    border: 1px solid var(--border);
+}
+
+.stat-box h5 { color: var(--text-muted); font-size: 12px; margin-bottom: 5px; }
+.stat-box .val { font-size: 20px; font-family: 'Orbitron', sans-serif; }
+
+footer {
+    text-align: center;
+    padding: 30px;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border);
+    margin-top: 50px;
+}
