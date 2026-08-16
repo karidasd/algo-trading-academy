@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 2: Technical Analysis - DarkAIs Academy</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <h1>🌑 DarkAIs <span class="accent">Academy</span></h1>
+        </div>
+        <nav class="nav">
+            <a href="index.html">Home</a>
+            <a href="lesson1.html">Forex Basics</a>
+            <a href="lesson2.html" class="active">Technical Analysis</a>
+        </nav>
+    </header>
+
+    <main class="lesson-container">
+        <div class="lesson-header">
+            <span style="color:var(--text-muted); font-family:'Orbitron'">COURSE 04</span>
+            <h2>Technical Analysis: Support & Resistance</h2>
+        </div>
+
+        <div class="lesson-content">
+            <p>Welcome to the Technical Analysis chapter. Today we focus on one of the most powerful concepts in trading: <strong>Support and Resistance</strong>.</p>
+            
+            <h3>What are Support and Resistance?</h3>
+            <p>Imagine a bouncing ball in a room. It hits the floor and bounces up; it hits the ceiling and bounces down.</p>
+            <ul>
+                <li><strong>Support (The Floor):</strong> A price level where a downtrend tends to pause due to a concentration of demand (buying interest).</li>
+                <li><strong>Resistance (The Ceiling):</strong> A price level where an uptrend tends to pause due to a concentration of supply (selling interest).</li>
+            </ul>
+
+            <h3>The Strategy: Range Trading</h3>
+            <p>In algorithmic trading, we can program a bot to identify these "invisible floors and ceilings" by looking at the highest highs and lowest lows over a period.</p>
+            <p>Our strategy rules for the bot:</p>
+            <ul>
+                <li>If the price drops near the <strong>Support</strong> level, execute a <strong>BUY</strong>, expecting it to bounce up.</li>
+                <li>If the price rises near the <strong>Resistance</strong> level, execute a <strong>SELL</strong>, expecting it to drop down.</li>
+            </ul>
+
+            <p>Let's run the Support & Resistance Botaki and watch it trade the range!</p>
+        </div>
+
+        <!-- BOTAKI COMPONENT -->
+        <div class="botaki-section">
+            <div class="botaki-header">
+                <h3 class="botaki-title">🤖 Botaki: Support & Resistance Simulator</h3>
+                <div class="bot-controls">
+                    <button id="startBotBtn" class="btn btn-primary">▶ Start Simulation</button>
+                    <button id="stopBotBtn" class="btn" style="background:var(--danger); color:#fff;" disabled>■ Stop</button>
+                </div>
+            </div>
+
+            <div class="bot-stats">
+                <div class="stat-box">
+                    <h5>RESISTANCE</h5>
+                    <div class="val" id="resLevel" style="color:var(--danger)">---</div>
+                </div>
+                <div class="stat-box">
+                    <h5>LIVE PRICE</h5>
+                    <div class="val accent" id="livePrice">---</div>
+                </div>
+                <div class="stat-box">
+                    <h5>SUPPORT</h5>
+                    <div class="val" id="supLevel" style="color:var(--success)">---</div>
+                </div>
+                <div class="stat-box">
+                    <h5>Simulated PnL</h5>
+                    <div class="val" id="simPnl" style="color:var(--text-main)">$0.00</div>
+                </div>
+            </div>
+
+            <div style="margin-top:20px;">
+                <div class="terminal" id="botTerminal">
+                    <div class="log-entry"><span class="log-time">[System]</span><span class="log-msg info"> S&R Botaki initialized. Ready to map the range...</span></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 DarkAIs Academy. Educational purposes only.</p>
+    </footer>
+
+    <script src="botaki2.js"></script>
+</body>
+</html>
