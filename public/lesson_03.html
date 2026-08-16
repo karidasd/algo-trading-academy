@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 3: Forex Deep Dive - DarkAIs Academy</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <h1>🌑 DarkAIs <span class="accent">Academy</span></h1>
+        </div>
+        <nav class="nav">
+            <a href="index.html">Home</a>
+            <a href="lesson_03.html" class="active">Forex</a>
+        </nav>
+    </header>
+
+    <main class="lesson-container">
+        <div class="lesson-header">
+            <span style="color:var(--text-muted); font-family:'Orbitron'">COURSE 03</span>
+            <h2>Forex: Market Structure & Margin Trading</h2>
+        </div>
+
+        <div class="lesson-content">
+            <p>While we touched on the basics of Forex in Course 01, this chapter dives deeper into the mechanics of the FX market, which is crucial for configuring your trading algorithms.</p>
+            
+            <h3>Market Sessions</h3>
+            <p>Unlike the stock market, Forex is open 24 hours a day, 5 days a week. However, volatility varies depending on which global market session is active:</p>
+            <ul>
+                <li><strong>Sydney & Tokyo (Asian Session):</strong> Usually lower volatility. Great for range-trading bots.</li>
+                <li><strong>London (European Session):</strong> High volatility and tight spreads. Trends often begin here.</li>
+                <li><strong>New York (US Session):</strong> Massive liquidity, especially when it overlaps with the London session (8 AM - 12 PM EST). Breakout bots thrive here.</li>
+            </ul>
+
+            <h3>Pips & Lots</h3>
+            <p>In Forex, price movements are measured in <strong>Pips</strong> (Percentage in Point). For most pairs, a pip is the 4th decimal place (e.g., a move from 1.1000 to 1.1001 is 1 pip).</p>
+            <p>Trade sizes are measured in <strong>Lots</strong>:</p>
+            <ul>
+                <li><strong>Standard Lot:</strong> 100,000 units of the base currency. (1 pip move ≈ $10).</li>
+                <li><strong>Mini Lot:</strong> 10,000 units. (1 pip move ≈ $1).</li>
+                <li><strong>Micro Lot:</strong> 1,000 units. (1 pip move ≈ $0.10).</li>
+            </ul>
+
+            <h3>Margin and Leverage</h3>
+            <p>Because currency movements are so small, traders use Leverage. If your broker offers 1:100 leverage, you can control a $100,000 position with just $1,000 in your account. The $1,000 is your <strong>Margin</strong>.</p>
+            
+            <p><em>Warning for Bot Developers:</em> When coding your bot, ALWAYS hardcode a strict Stop Loss and position sizing limit. A bug in a highly leveraged bot can liquidate an account in seconds!</p>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 DarkAIs Academy. Educational purposes only.</p>
+    </footer>
+</body>
+</html>
