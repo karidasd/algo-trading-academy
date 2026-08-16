@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>08: Statistical & Sentiment — DarkAIs Academy</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;800&family=Roboto:wght@300;400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="../index.html">
+                <h1>🌑 DARKAIS <span class="accent">ACADEMY</span></h1>
+            </a>
+        </div>
+        <nav class="nav">
+            <a href="../index.html" class="nav-link">Curriculum</a>
+            <a href="../simulator.html" class="nav-link">Strategy Studio</a>
+            <a href="../glossary.html" class="nav-link">Dictionary</a>
+        </nav>
+        <div class="header-right">
+            <div class="progress-badge">
+                <span>Progress:</span>
+                <div class="bar"><div class="bar-fill" id="globalProgressBar" style="width: 0%;"></div></div>
+                <span id="globalProgressText">0%</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="lesson-layout">
+        <aside class="lesson-sidebar">
+            <div class="sidebar-title">Curriculum Track</div>
+            <ul class="sidebar-menu">
+                <li class="sidebar-item" data-sidebar-id="01"><a href="01_gateway.html"><span class="num">01</span> Gateway to Trading</a></li>
+                <li class="sidebar-item" data-sidebar-id="02"><a href="02_markets.html"><span class="num">02</span> Financial Markets</a></li>
+                <li class="sidebar-item" data-sidebar-id="03"><a href="03_forex.html"><span class="num">03</span> Forex Deep Dive</a></li>
+                <li class="sidebar-item" data-sidebar-id="04"><a href="04_candlesticks.html"><span class="num">04</span> Candlestick Secrets</a></li>
+                <li class="sidebar-item" data-sidebar-id="05"><a href="05_support_resistance.html"><span class="num">05</span> Support & Resistance</a></li>
+                <li class="sidebar-item" data-sidebar-id="06"><a href="06_indicators.html"><span class="num">06</span> Quantitative Indicators</a></li>
+                <li class="sidebar-item" data-sidebar-id="07"><a href="07_fundamentals.html"><span class="num">07</span> Fundamental News</a></li>
+                <li class="sidebar-item active" data-sidebar-id="08"><a href="08_statistical_sentiment.html"><span class="num">08</span> Sentiment & Quant</a></li>
+                <li class="sidebar-item" data-sidebar-id="09"><a href="09_risk_psychology.html"><span class="num">09</span> Risk & Psychology</a></li>
+                <li class="sidebar-item" data-sidebar-id="10"><a href="10_apis_platforms.html"><span class="num">10</span> APIs & Platforms</a></li>
+                <li class="sidebar-item" data-sidebar-id="11"><a href="11_system_architecture.html"><span class="num">11</span> Bot Architecture</a></li>
+                <li class="sidebar-item" data-sidebar-id="12"><a href="12_prop_firm_challenge.html"><span class="num">12</span> Prop Firm Mastery</a></li>
+            </ul>
+        </aside>
+
+        <main class="lesson-main">
+            <div class="breadcrumbs">
+                <a href="../index.html">Academy</a> <span>›</span> 
+                <a href="../index.html#part2">Part 2: Trading Analysis</a> <span>›</span> 
+                <span>Course 08</span>
+            </div>
+
+            <div class="lesson-header">
+                <div class="lesson-meta">
+                    <span class="lesson-module-tag">MODULE 08 • QUANTITATIVE EDGE</span>
+                    <span class="lesson-time">⏱️ 17 MIN READ</span>
+                </div>
+                <h1 class="lesson-title">Sentiment Analysis, Order Book Imbalance & Quant Arbitrage</h1>
+                <p class="lesson-lead">Explore how hedge funds use sentiment scoring, retail positioning ratios, and statistical arbitrage to profit without traditional chart patterns.</p>
+            </div>
+
+            <div class="lesson-body">
+                <h2>1. The Power of Retail Contrarian Sentiment</h2>
+                <p>Because over 90% of uneducated retail traders consistently lose money, tracking retail sentiment provides a powerful contrarian signal:</p>
+                <ul>
+                    <li><strong>Extreme Long Ratio (&gt; 80% Long):</strong> Smart money is likely preparing to flush long stop-losses downward. The bot looks for <strong>SELL</strong> triggers.</li>
+                    <li><strong>Extreme Short Ratio (&gt; 80% Short):</strong> Smart money builds liquidity to initiate a short squeeze upwards. The bot looks for <strong>BUY</strong> triggers.</li>
+                </ul>
+
+                <h2>2. Statistical Pairs Arbitrage</h2>
+                <p>Statistical arbitrage models trade cointegrated pairs (e.g., AUD/USD vs NZD/USD, or BTC vs ETH). When the spread between two historically correlated assets stretches beyond 2 standard deviations (\(Z\text{-score} &gt; 2.0\)), the bot simultaneously buys the underperforming asset and shorts the outperforming asset, closing when the spread reverts to the historical mean.</p>
+
+                <h2>3. Knowledge Check Exam</h2>
+                <div class="quiz-container" id="quizBox" data-locked="false">
+                    <div class="quiz-header">
+                        <div class="quiz-title">📝 Chapter 08 Certification Quiz</div>
+                        <span style="font-size:12px; color:var(--accent);">100 XP</span>
+                    </div>
+                    <div class="quiz-question">When retail positioning on a currency reaches an extreme 85% Long, how does a contrarian algorithmic model typically interpret this?</div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-idx="0">A) As a bullish confirmation to buy immediately</div>
+                        <div class="quiz-option" data-idx="1">B) As an overbought warning sign and a strong setup for short opportunities</div>
+                        <div class="quiz-option" data-idx="2">C) As an invalid market signal</div>
+                        <div class="quiz-option" data-idx="3">D) As a market closure notice</div>
+                    </div>
+                    <div class="quiz-feedback" id="quizFeedback"></div>
+                    <button class="btn btn-primary" id="quizSubmitBtn" disabled>Submit Answer</button>
+                </div>
+
+                <div class="lesson-nav-footer">
+                    <a href="07_fundamentals.html" class="btn btn-outline">← Previous: Fundamentals</a>
+                    <a href="09_risk_psychology.html" class="btn btn-primary">Next: Risk & Psychology →</a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 DarkAIs Academy. Institutional-grade algorithmic education.</p>
+    </footer>
+
+    <script src="../js/academy.js"></script>
+    <script>
+        setupQuiz(1, "Extreme retail crowding into long positions frequently precedes liquidity flushes and institutional distribution, making it an ideal contrarian short trigger.", "08");
+    </script>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04: Candlestick Secrets — DarkAIs Academy</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;800&family=Roboto:wght@300;400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="../index.html">
+                <h1>🌑 DARKAIS <span class="accent">ACADEMY</span></h1>
+            </a>
+        </div>
+        <nav class="nav">
+            <a href="../index.html" class="nav-link">Curriculum</a>
+            <a href="../simulator.html" class="nav-link">Strategy Studio</a>
+            <a href="../glossary.html" class="nav-link">Dictionary</a>
+        </nav>
+        <div class="header-right">
+            <div class="progress-badge">
+                <span>Progress:</span>
+                <div class="bar"><div class="bar-fill" id="globalProgressBar" style="width: 0%;"></div></div>
+                <span id="globalProgressText">0%</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="lesson-layout">
+        <aside class="lesson-sidebar">
+            <div class="sidebar-title">Curriculum Track</div>
+            <ul class="sidebar-menu">
+                <li class="sidebar-item" data-sidebar-id="01"><a href="01_gateway.html"><span class="num">01</span> Gateway to Trading</a></li>
+                <li class="sidebar-item" data-sidebar-id="02"><a href="02_markets.html"><span class="num">02</span> Financial Markets</a></li>
+                <li class="sidebar-item" data-sidebar-id="03"><a href="03_forex.html"><span class="num">03</span> Forex Deep Dive</a></li>
+                <li class="sidebar-item active" data-sidebar-id="04"><a href="04_candlesticks.html"><span class="num">04</span> Candlestick Secrets</a></li>
+                <li class="sidebar-item" data-sidebar-id="05"><a href="05_support_resistance.html"><span class="num">05</span> Support & Resistance</a></li>
+                <li class="sidebar-item" data-sidebar-id="06"><a href="06_indicators.html"><span class="num">06</span> Quantitative Indicators</a></li>
+                <li class="sidebar-item" data-sidebar-id="07"><a href="07_fundamentals.html"><span class="num">07</span> Fundamental News</a></li>
+                <li class="sidebar-item" data-sidebar-id="08"><a href="08_statistical_sentiment.html"><span class="num">08</span> Sentiment & Quant</a></li>
+                <li class="sidebar-item" data-sidebar-id="09"><a href="09_risk_psychology.html"><span class="num">09</span> Risk & Psychology</a></li>
+                <li class="sidebar-item" data-sidebar-id="10"><a href="10_apis_platforms.html"><span class="num">10</span> APIs & Platforms</a></li>
+                <li class="sidebar-item" data-sidebar-id="11"><a href="11_system_architecture.html"><span class="num">11</span> Bot Architecture</a></li>
+                <li class="sidebar-item" data-sidebar-id="12"><a href="12_prop_firm_challenge.html"><span class="num">12</span> Prop Firm Mastery</a></li>
+            </ul>
+        </aside>
+
+        <main class="lesson-main">
+            <div class="breadcrumbs">
+                <a href="../index.html">Academy</a> <span>›</span> 
+                <a href="../index.html#part2">Part 2: Technical Analysis</a> <span>›</span> 
+                <span>Course 04</span>
+            </div>
+
+            <div class="lesson-header">
+                <div class="lesson-meta">
+                    <span class="lesson-module-tag">MODULE 04 • PRICE ACTION</span>
+                    <span class="lesson-time">⏱️ 16 MIN READ</span>
+                </div>
+                <h1 class="lesson-title">Japanese Candlestick Secrets & Pattern Recognition</h1>
+                <p class="lesson-lead">Deconstruct candlestick anatomy (OHLC), decode liquidity wicks and institutional rejection bars, and write programmatic candle pattern detectors.</p>
+            </div>
+
+            <div class="lesson-body">
+                <h2>1. The Four Pillars of Every Candle (OHLC)</h2>
+                <p>Every candlestick represents a compressed battle between buyers and sellers over a specific timeframe (e.g. 1m, 5m, 1h, 1D):</p>
+                <ul>
+                    <li><strong>Open (O):</strong> Price at the start of the period.</li>
+                    <li><strong>High (H):</strong> The highest price reached during the period.</li>
+                    <li><strong>Low (L):</strong> The lowest price reached during the period.</li>
+                    <li><strong>Close (C):</strong> Price at the conclusion of the period.</li>
+                </ul>
+
+                <h2>2. High-Probability Candlestick Formations</h2>
+                <h3>The Pinbar / Hammer (Rejection Candle)</h3>
+                <p>Features a small real body and a long lower or upper wick (at least 2x the body size). Indicates that aggressive sellers pushed price down, but strong institutional limit orders absorbed all selling pressure and violently pushed price back up.</p>
+
+                <h3>The Bullish / Bearish Engulfing</h3>
+                <p>A multi-candle reversal pattern where the body of the second candle completely covers or "engulfs" the body of the previous opposite candle, signaling a decisive shift in market control.</p>
+
+                <h2>3. Programmatic Candlestick Pattern Detector</h2>
+                <div class="code-block">
+                    <div class="code-header">
+                        <span>Python (Candle Pattern Detection)</span>
+                        <button class="copy-btn" onclick="copyCode(this)">COPY</button>
+                    </div>
+                    <pre><code>def is_bullish_pinbar(open_p, high, low, close_p):
+    body = abs(close_p - open_p)
+    candle_range = high - low
+    lower_wick = min(open_p, close_p) - low
+    upper_wick = high - max(open_p, close_p)
+    
+    # Rules: Lower wick must be >= 60% of total range, upper wick < 15%
+    if candle_range == 0: return False
+    return (lower_wick / candle_range >= 0.60) and (upper_wick / candle_range <= 0.15)
+
+# Example check
+candle = {"O": 1.0820, "H": 1.0825, "L": 1.0780, "C": 1.0822}
+print("Is Bullish Pinbar:", is_bullish_pinbar(candle['O'], candle['H'], candle['L'], candle['C'])) # True</code></pre>
+                </div>
+
+                <h2>4. Knowledge Check Exam</h2>
+                <div class="quiz-container" id="quizBox" data-locked="false">
+                    <div class="quiz-header">
+                        <div class="quiz-title">📝 Chapter 04 Certification Quiz</div>
+                        <span style="font-size:12px; color:var(--accent);">100 XP</span>
+                    </div>
+                    <div class="quiz-question">What does a long lower wick on a daily candlestick typically signal to a quantitative algorithm?</div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-idx="0">A) Strong selling continuation</div>
+                        <div class="quiz-option" data-idx="1">B) Buying liquidity absorption and upward price rejection</div>
+                        <div class="quiz-option" data-idx="2">C) Immediate market closure</div>
+                        <div class="quiz-option" data-idx="3">D) Low volatility consolidation</div>
+                    </div>
+                    <div class="quiz-feedback" id="quizFeedback"></div>
+                    <button class="btn btn-primary" id="quizSubmitBtn" disabled>Submit Answer</button>
+                </div>
+
+                <div class="lesson-nav-footer">
+                    <a href="03_forex.html" class="btn btn-outline">← Previous: Forex</a>
+                    <a href="05_support_resistance.html" class="btn btn-primary">Next: Support & Resistance →</a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 DarkAIs Academy. Institutional-grade algorithmic education.</p>
+    </footer>
+
+    <script src="../js/academy.js"></script>
+    <script>
+        setupQuiz(1, "A long lower shadow indicates that sellers drove prices down, but aggressive buyer demand absorbed the liquidity and pushed price back up.", "04");
+    </script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>11: Bot Architecture & Templates — DarkAIs Academy</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;800&family=Roboto:wght@300;400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="../index.html">
+                <h1>🌑 DARKAIS <span class="accent">ACADEMY</span></h1>
+            </a>
+        </div>
+        <nav class="nav">
+            <a href="../index.html" class="nav-link">Curriculum</a>
+            <a href="../simulator.html" class="nav-link">Strategy Studio</a>
+            <a href="../glossary.html" class="nav-link">Dictionary</a>
+        </nav>
+        <div class="header-right">
+            <div class="progress-badge">
+                <span>Progress:</span>
+                <div class="bar"><div class="bar-fill" id="globalProgressBar" style="width: 0%;"></div></div>
+                <span id="globalProgressText">0%</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="lesson-layout">
+        <aside class="lesson-sidebar">
+            <div class="sidebar-title">Curriculum Track</div>
+            <ul class="sidebar-menu">
+                <li class="sidebar-item" data-sidebar-id="01"><a href="01_gateway.html"><span class="num">01</span> Gateway to Trading</a></li>
+                <li class="sidebar-item" data-sidebar-id="02"><a href="02_markets.html"><span class="num">02</span> Financial Markets</a></li>
+                <li class="sidebar-item" data-sidebar-id="03"><a href="03_forex.html"><span class="num">03</span> Forex Deep Dive</a></li>
+                <li class="sidebar-item" data-sidebar-id="04"><a href="04_candlesticks.html"><span class="num">04</span> Candlestick Secrets</a></li>
+                <li class="sidebar-item" data-sidebar-id="05"><a href="05_support_resistance.html"><span class="num">05</span> Support & Resistance</a></li>
+                <li class="sidebar-item" data-sidebar-id="06"><a href="06_indicators.html"><span class="num">06</span> Quantitative Indicators</a></li>
+                <li class="sidebar-item" data-sidebar-id="07"><a href="07_fundamentals.html"><span class="num">07</span> Fundamental News</a></li>
+                <li class="sidebar-item" data-sidebar-id="08"><a href="08_statistical_sentiment.html"><span class="num">08</span> Sentiment & Quant</a></li>
+                <li class="sidebar-item" data-sidebar-id="09"><a href="09_risk_psychology.html"><span class="num">09</span> Risk & Psychology</a></li>
+                <li class="sidebar-item" data-sidebar-id="10"><a href="10_apis_platforms.html"><span class="num">10</span> APIs & Platforms</a></li>
+                <li class="sidebar-item active" data-sidebar-id="11"><a href="11_system_architecture.html"><span class="num">11</span> Bot Architecture</a></li>
+                <li class="sidebar-item" data-sidebar-id="12"><a href="12_prop_firm_challenge.html"><span class="num">12</span> Prop Firm Mastery</a></li>
+            </ul>
+        </aside>
+
+        <main class="lesson-main">
+            <div class="breadcrumbs">
+                <a href="../index.html">Academy</a> <span>›</span> 
+                <a href="../index.html#part4">Part 4: Infrastructure & Execution</a> <span>›</span> 
+                <span>Course 11</span>
+            </div>
+
+            <div class="lesson-header">
+                <div class="lesson-meta">
+                    <span class="lesson-module-tag">MODULE 11 • CODE STARTER</span>
+                    <span class="lesson-time">⏱️ 25 MIN READ</span>
+                </div>
+                <h1 class="lesson-title">Building an Institutional-Grade Bot: Full Architecture & Starter Code</h1>
+                <p class="lesson-lead">Study the complete multi-layer architecture of an automated trading robot and grab full, ready-to-deploy Python and Node.js starter code templates.</p>
+            </div>
+
+            <div class="lesson-body">
+                <h2>1. The Four-Tier Bot Architecture</h2>
+                <ol>
+                    <li><strong>Tier 1: Data Ingestion & Normalization:</strong> Ingests WebSockets and transforms tick streams into uniform OHLCV candles and clean numeric arrays.</li>
+                    <li><strong>Tier 2: Quantitative Signal Matrix:</strong> Evaluates mathematical indicators, machine learning weights, or support/resistance bounces.</li>
+                    <li><strong>Tier 3: Risk & Position Sizing Gatekeeper (Airbag):</strong> Calculates dynamic lot sizes, enforces daily max drawdown limits, and blocks trades if spread is too high.</li>
+                    <li><strong>Tier 4: Execution & Lifecycle Monitor:</strong> Transmits orders, monitors fills, tracks Trailing Stop Losses, and logs performance telemetry to a web dashboard.</li>
+                </ol>
+
+                <h2>2. Complete Node.js Algorithmic Bot Template</h2>
+                <div class="code-block">
+                    <div class="code-header">
+                        <span>Node.js (Complete Production Engine Template)</span>
+                        <button class="copy-btn" onclick="copyCode(this)">COPY</button>
+                    </div>
+                    <pre><code>/**
+ * DarkAIs Institutional Trading Engine
+ */
+class InstitutionalBot {
+    constructor(config) {
+        this.symbol = config.symbol || 'EUR/USD';
+        this.maxRiskPerTrade = config.maxRisk || 0.01; // 1%
+        this.maxDailyLoss = config.maxDailyLoss || 0.04; // 4%
+        this.currentDailyLoss = 0;
+        this.history = [];
+    }
+
+    onTick(tick) {
+        // Step 1: Risk Gatekeeper
+        if (this.currentDailyLoss >= this.maxDailyLoss) {
+            console.error("[CIRCUIT BREAKER] Max daily loss hit. Trading paused.");
+            return;
+        }
+
+        this.history.push(tick.price);
+        if (this.history.length > 20) this.history.shift();
+
+        // Step 2: Signal Generation
+        const signal = this.analyzeSignal();
+        if (signal !== "NEUTRAL") {
+            this.execute(signal, tick);
+        }
+    }
+
+    analyzeSignal() {
+        if (this.history.length < 10) return "NEUTRAL";
+        const sma = this.history.reduce((a, b) => a + b, 0) / this.history.length;
+        const current = this.history[this.history.length - 1];
+        
+        if (current < sma - 0.00020) return "BUY";
+        if (current > sma + 0.00020) return "SELL";
+        return "NEUTRAL";
+    }
+
+    execute(side, tick) {
+        console.log(`[ORDER SENT] ${side} 1.0 Lot ${this.symbol} @ ${tick.price.toFixed(5)}`);
+    }
+}</code></pre>
+                </div>
+
+                <h2>3. Knowledge Check Exam</h2>
+                <div class="quiz-container" id="quizBox" data-locked="false">
+                    <div class="quiz-header">
+                        <div class="quiz-title">📝 Chapter 11 Certification Quiz</div>
+                        <span style="font-size:12px; color:var(--accent);">100 XP</span>
+                    </div>
+                    <div class="quiz-question">What is the primary role of the "Risk Gatekeeper / Circuit Breaker" layer in an automated trading bot?</div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-idx="0">A) To make the bot trade faster</div>
+                        <div class="quiz-option" data-idx="1">B) To intercept and block orders if risk parameters, spreads, or daily drawdown limits are breached</div>
+                        <div class="quiz-option" data-idx="2">C) To draw colorful charts</div>
+                        <div class="quiz-option" data-idx="3">D) To calculate taxes</div>
+                    </div>
+                    <div class="quiz-feedback" id="quizFeedback"></div>
+                    <button class="btn btn-primary" id="quizSubmitBtn" disabled>Submit Answer</button>
+                </div>
+
+                <div class="lesson-nav-footer">
+                    <a href="10_apis_platforms.html" class="btn btn-outline">← Previous: APIs</a>
+                    <a href="12_prop_firm_challenge.html" class="btn btn-primary">Next: Prop Firm Mastery →</a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 DarkAIs Academy. Institutional-grade algorithmic education.</p>
+    </footer>
+
+    <script src="../js/academy.js"></script>
+    <script>
+        setupQuiz(1, "The Risk Gatekeeper acts as an automated safety airbag, preventing account blowups by enforcing hard limits on lot size, daily loss, and adverse market conditions.", "11");
+    </script>
+</body>
+</html>

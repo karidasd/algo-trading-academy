@@ -1,8 +1,9 @@
 <div align="center">
 
 # 🌑 DarkAIs Algorithmic Trading Academy
-**Institutional Quantitative Trading Curriculum, In-Lesson Botaki Simulators & Prop Firm Mastery**
+**Institutional Quantitative Trading Curriculum, In-Lesson Botaki Simulators, Strategy Sandbox & Prop Firm Mastery**
 
+[![GitHub Pages](https://img.shields.io/badge/%F0%9F%8C%90%20Live%20Academy-GitHub%20Pages-00F0FF?style=for-the-badge)](https://karidasd.github.io/algo-trading-academy/)
 [![Node.js](https://img.shields.io/badge/Node.js-18+-43853D?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
 [![Curriculum](https://img.shields.io/badge/Modules-12%20Interactive-00F0FF?style=for-the-badge)]()
@@ -10,12 +11,14 @@
 
 <br/>
 
+### 🌐 [Click Here to Open the Live Academy Website](https://karidasd.github.io/algo-trading-academy/)
+
 </div>
 
 ---
 
 ## 📖 Overview
-**DarkAIs Academy** is a full-stack, open-source educational platform designed to take aspiring quantitative traders from absolute foundational concepts to deploying production-ready automated trading algorithms. 
+**DarkAIs Academy** is a full-stack, open-source educational platform designed to take aspiring quantitative traders from absolute foundational concepts to deploying production-ready automated trading algorithms.
 
 Inspired by top proprietary trading firms like **FTMO**, the platform bridges the gap between theoretical market mechanics and practical algorithmic execution by embedding live, client-side **Botaki trading simulators** directly within the lessons.
 
@@ -23,11 +26,13 @@ Inspired by top proprietary trading firms like **FTMO**, the platform bridges th
 
 ## ✨ Key Features
 
+- 🌐 **Zero-Server Static Deployment**: Works 100% directly in any web browser via **GitHub Pages** without requiring local Node.js or backend servers.
 - 🎓 **12 Full-Scale Modules**: From Central Limit Order Books and Forex pips to Quantitative Indicators and passing Prop Firm evaluation challenges.
 - 🤖 **Interactive Botaki Simulators**: Real-time simulated trading engines (Mean Reversion, S&R Range, Momentum) executing live ticks right inside the browser.
 - 📈 **Strategy Sandbox & Backtester**: A dedicated backtest studio capable of simulating 1,000-candle runs with equity curve visualization, Sharpe ratio estimations, win rates, and drawdowns.
 - 📝 **Certification Quizzes**: Interactive knowledge-check exams at the conclusion of every lesson with instant grading and audio feedback.
-- 📊 **Progress Persistence**: Client-side progress tracking saving completed chapters and XP across sessions.
+- 📜 **Personalized Diploma Generator**: Interactive graduation studio rendering and downloading verifiable, cryptographically hashed Diplomas (PNG).
+- 📊 **Progress Persistence**: Client-side progress tracking saving completed chapters and XP across sessions in `localStorage`.
 - 📚 **Quant & Trader's Dictionary**: A searchable vault defining 40+ key terms (Slippage, Drawdown, Order Blocks, MEV, Lot Sizing, FIX protocol).
 - 💻 **Production-Ready Code Snippets**: Copyable, clean Python and Node.js code snippets ready to be hooked up to broker APIs.
 
@@ -52,26 +57,23 @@ Inspired by top proprietary trading firms like **FTMO**, the platform bridges th
 
 ---
 
-## 🚀 Quick Start (Local Setup)
+## 🚀 How to Run
 
+### Option 1: Live via GitHub Pages (Zero Install)
+Simply navigate to: **[https://karidasd.github.io/algo-trading-academy/](https://karidasd.github.io/algo-trading-academy/)**
+
+### Option 2: Run Locally (Node.js)
 1. **Clone the Repository:**
    ```bash
    git clone https://github.com/karidasd/algo-trading-academy.git
    cd algo-trading-academy
    ```
-
-2. **Install Dependencies:**
+2. **Install & Launch:**
    ```bash
    npm install
-   ```
-
-3. **Start the Academy Portal:**
-   ```bash
    npm start
    ```
-
-4. **Access the Academy:**
-   Open your browser at [http://localhost:3000](http://localhost:3000).
+3. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ---
 

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graduation Certificate — DarkAIs Academy</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Orbitron:wght@400;700;800;900&family=Roboto:wght@300;400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="index.html">
+                <h1>🌑 DARKAIS <span class="accent">ACADEMY</span></h1>
+            </a>
+        </div>
+        <nav class="nav">
+            <a href="index.html" class="nav-link">Curriculum</a>
+            <a href="simulator.html" class="nav-link">Strategy Studio</a>
+            <a href="glossary.html" class="nav-link">Dictionary</a>
+            <a href="certificate.html" class="nav-link active">🎓 Diploma</a>
+        </nav>
+        <div class="header-right">
+            <div class="progress-badge">
+                <span>Progress:</span>
+                <div class="bar"><div class="bar-fill" id="globalProgressBar" style="width: 0%;"></div></div>
+                <span id="globalProgressText">0%</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="hero-wrapper" style="padding: 40px 20px 30px;">
+        <div class="hero-content">
+            <span class="hero-tag">CERTIFICATION CENTER</span>
+            <h1 class="hero-title">Graduation <span class="glow">Certificate Studio</span></h1>
+            <p class="hero-desc">Generate your verified, institutional DarkAIs Certified Quantitative & Algorithmic Trader Diploma with unique cryptographic verification hash.</p>
+        </div>
+    </div>
+
+    <div class="academy-container">
+        <div style="display: grid; grid-template-columns: 340px 1fr; gap: 30px; align-items: start;">
+            <!-- Certificate Controls -->
+            <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 24px;">
+                <h3 style="font-size: 16px; margin-bottom: 20px; color: var(--accent);">📜 Student Credentials</h3>
+                
+                <div style="margin-bottom: 20px;">
+                    <label style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 6px;">STUDENT FULL NAME</label>
+                    <input type="text" id="studentNameInput" value="Alexandros Karidas" placeholder="Enter your full name" style="width: 100%; background: var(--bg-panel); color: var(--text-primary); border: 1px solid var(--border); padding: 12px; border-radius: var(--radius-sm); font-size: 15px; font-weight: bold;">
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <label style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 6px;">SPECIALIZATION TRACK</label>
+                    <select id="certTrackInput" style="width: 100%; background: var(--bg-panel); color: var(--text-primary); border: 1px solid var(--border); padding: 12px; border-radius: var(--radius-sm);">
+                        <option value="Quantitative Forex & Algorithmic Systems">Quantitative Forex & Algorithmic Systems</option>
+                        <option value="High-Frequency Prop Firm Trading (FTMO)">High-Frequency Prop Firm Trading (FTMO)</option>
+                        <option value="Full-Stack Trading Bot Engineering">Full-Stack Trading Bot Engineering</option>
+                    </select>
+                </div>
+
+                <button id="generateCertBtn" class="btn btn-primary" style="width: 100%; margin-bottom: 12px;">⚡ Render Certificate</button>
+                <button id="downloadCertBtn" class="btn btn-success" style="width: 100%;">📥 Download Diploma (PNG)</button>
+            </div>
+
+            <!-- Canvas Certificate Preview -->
+            <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 20px; text-align: center;">
+                <canvas id="certCanvas" width="900" height="600" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 10px 40px rgba(0,0,0,0.8);"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 DarkAIs Academy. Institutional-grade algorithmic education.</p>
+    </footer>
+
+    <script src="js/academy.js"></script>
+    <script>
+        const canvas = document.getElementById('certCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function drawCertificate() {
+            const name = document.getElementById('studentNameInput').value || 'Certified Trader';
+            const track = document.getElementById('certTrackInput').value;
+            const dateStr = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+            const certHash = "DAI-" + Math.random().toString(36).substring(2, 10).toUpperCase() + "-" + Date.now().toString().slice(-4);
+
+            // Background
+            ctx.fillStyle = '#06090F';
+            ctx.fillRect(0, 0, 900, 600);
+
+            // Tech Grid background
+            ctx.strokeStyle = 'rgba(0, 240, 255, 0.03)';
+            ctx.lineWidth = 1;
+            for (let x = 0; x < 900; x += 30) {
+                ctx.beginPath();
+                ctx.moveTo(x, 0);
+                ctx.lineTo(x, 600);
+                ctx.stroke();
+            }
+            for (let y = 0; y < 600; y += 30) {
+                ctx.beginPath();
+                ctx.moveTo(0, y);
+                ctx.lineTo(900, y);
+                ctx.stroke();
+            }
+
+            // Outer Neon Gold / Cyan Border
+            ctx.strokeStyle = '#00F0FF';
+            ctx.lineWidth = 4;
+            ctx.strokeRect(25, 25, 850, 550);
+
+            ctx.strokeStyle = '#FFB800';
+            ctx.lineWidth = 1.5;
+            ctx.strokeRect(35, 35, 830, 530);
+
+            // Corner Accents
+            const drawCorner = (x, y) => {
+                ctx.fillStyle = '#00F0FF';
+                ctx.fillRect(x - 5, y - 5, 10, 10);
+            };
+            drawCorner(25, 25);
+            drawCorner(875, 25);
+            drawCorner(25, 575);
+            drawCorner(875, 575);
+
+            // Logo & Title
+            ctx.textAlign = 'center';
+            ctx.fillStyle = '#94A3B8';
+            ctx.font = '700 13px "Orbitron", sans-serif';
+            ctx.letterSpacing = '3px';
+            ctx.fillText('DARKAIS ALGORITHMIC TRADING ACADEMY', 450, 85);
+
+            ctx.fillStyle = '#FFB800';
+            ctx.font = '900 28px "Orbitron", sans-serif';
+            ctx.fillText('CERTIFICATE OF MASTERY', 450, 130);
+
+            ctx.fillStyle = '#64748B';
+            ctx.font = '14px "Roboto", sans-serif';
+            ctx.fillText('THIS IS TO OFFICIALLY CERTIFY THAT', 450, 180);
+
+            // Student Name
+            ctx.fillStyle = '#00F0FF';
+            ctx.font = '700 36px "Orbitron", sans-serif';
+            ctx.fillText(name.toUpperCase(), 450, 240);
+
+            // Underline under name
+            ctx.strokeStyle = 'rgba(0, 240, 255, 0.4)';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(250, 255);
+            ctx.lineTo(650, 255);
+            ctx.stroke();
+
+            // Achievement Text
+            ctx.fillStyle = '#E2E8F0';
+            ctx.font = '15px "Roboto", sans-serif';
+            ctx.fillText('has successfully completed the complete 12-Module Quantitative Curriculum, passed all', 450, 300);
+            ctx.fillText('algorithmic certification exams, and demonstrated institutional proficiency in:', 450, 325);
+
+            ctx.fillStyle = '#FFB800';
+            ctx.font = '700 18px "Orbitron", sans-serif';
+            ctx.fillText(track, 450, 370);
+
+            // Footer info
+            ctx.textAlign = 'left';
+            ctx.fillStyle = '#64748B';
+            ctx.font = '12px "JetBrains Mono", monospace';
+            ctx.fillText(`DATE OF ISSUANCE: ${dateStr.toUpperCase()}`, 70, 490);
+            ctx.fillText(`VERIFICATION HASH: ${certHash}`, 70, 515);
+
+            // Signature & Seal
+            ctx.textAlign = 'right';
+            ctx.fillStyle = '#00F0FF';
+            ctx.font = '700 14px "Orbitron", sans-serif';
+            ctx.fillText('DARKAIS QUANT LABS', 830, 485);
+            ctx.fillStyle = '#64748B';
+            ctx.font = '12px "Roboto", sans-serif';
+            ctx.fillText('Authorized Signature • Automated Verification', 830, 510);
+
+            // Digital Stamp / Badge circle
+            ctx.beginPath();
+            ctx.arc(450, 480, 35, 0, Math.PI * 2);
+            ctx.strokeStyle = '#FFB800';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+            ctx.fillStyle = '#FFB800';
+            ctx.font = '700 10px "Orbitron", sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('VERIFIED', 450, 475);
+            ctx.fillText('QUANT', 450, 490);
+        }
+
+        document.getElementById('generateCertBtn').addEventListener('click', () => {
+            drawCertificate();
+            playSound('success');
+        });
+
+        document.getElementById('downloadCertBtn').addEventListener('click', () => {
+            const link = document.createElement('a');
+            link.download = `DarkAIs_Certificate_${document.getElementById('studentNameInput').value.replace(/\s+/g, '_')}.png`;
+            link.href = canvas.toDataURL();
+            link.click();
+            playSound('trade');
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            drawCertificate();
+        });
+    </script>
+</body>
+</html>

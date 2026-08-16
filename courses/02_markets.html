@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02: Financial Markets — DarkAIs Academy</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;800&family=Roboto:wght@300;400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="../index.html">
+                <h1>🌑 DARKAIS <span class="accent">ACADEMY</span></h1>
+            </a>
+        </div>
+        <nav class="nav">
+            <a href="../index.html" class="nav-link">Curriculum</a>
+            <a href="../simulator.html" class="nav-link">Strategy Studio</a>
+            <a href="../glossary.html" class="nav-link">Dictionary</a>
+        </nav>
+        <div class="header-right">
+            <div class="progress-badge">
+                <span>Progress:</span>
+                <div class="bar"><div class="bar-fill" id="globalProgressBar" style="width: 0%;"></div></div>
+                <span id="globalProgressText">0%</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="lesson-layout">
+        <aside class="lesson-sidebar">
+            <div class="sidebar-title">Curriculum Track</div>
+            <ul class="sidebar-menu">
+                <li class="sidebar-item" data-sidebar-id="01"><a href="01_gateway.html"><span class="num">01</span> Gateway to Trading</a></li>
+                <li class="sidebar-item active" data-sidebar-id="02"><a href="02_markets.html"><span class="num">02</span> Financial Markets</a></li>
+                <li class="sidebar-item" data-sidebar-id="03"><a href="03_forex.html"><span class="num">03</span> Forex Deep Dive</a></li>
+                <li class="sidebar-item" data-sidebar-id="04"><a href="04_candlesticks.html"><span class="num">04</span> Candlestick Secrets</a></li>
+                <li class="sidebar-item" data-sidebar-id="05"><a href="05_support_resistance.html"><span class="num">05</span> Support & Resistance</a></li>
+                <li class="sidebar-item" data-sidebar-id="06"><a href="06_indicators.html"><span class="num">06</span> Quantitative Indicators</a></li>
+                <li class="sidebar-item" data-sidebar-id="07"><a href="07_fundamentals.html"><span class="num">07</span> Fundamental News</a></li>
+                <li class="sidebar-item" data-sidebar-id="08"><a href="08_statistical_sentiment.html"><span class="num">08</span> Sentiment & Quant</a></li>
+                <li class="sidebar-item" data-sidebar-id="09"><a href="09_risk_psychology.html"><span class="num">09</span> Risk & Psychology</a></li>
+                <li class="sidebar-item" data-sidebar-id="10"><a href="10_apis_platforms.html"><span class="num">10</span> APIs & Platforms</a></li>
+                <li class="sidebar-item" data-sidebar-id="11"><a href="11_system_architecture.html"><span class="num">11</span> Bot Architecture</a></li>
+                <li class="sidebar-item" data-sidebar-id="12"><a href="12_prop_firm_challenge.html"><span class="num">12</span> Prop Firm Mastery</a></li>
+            </ul>
+        </aside>
+
+        <main class="lesson-main">
+            <div class="breadcrumbs">
+                <a href="../index.html">Academy</a> <span>›</span> 
+                <a href="../index.html#part1">Part 1: Foundations</a> <span>›</span> 
+                <span>Course 02</span>
+            </div>
+
+            <div class="lesson-header">
+                <div class="lesson-meta">
+                    <span class="lesson-module-tag">MODULE 02 • ASSET CLASSES</span>
+                    <span class="lesson-time">⏱️ 14 MIN READ</span>
+                </div>
+                <h1 class="lesson-title">Financial Markets, Liquidity & Asset Dynamics</h1>
+                <p class="lesson-lead">Explore how different asset classes function, comparative liquidity metrics, and how to calibrate algorithmic models for Forex, Equities, and Crypto.</p>
+            </div>
+
+            <div class="lesson-body">
+                <h2>1. Global Financial Asset Spectrum</h2>
+                <p>An algorithm optimized for one asset class will frequently fail on another if the underlying market microstructure is ignored. Here is the institutional breakdown:</p>
+
+                <div style="overflow-x: auto; margin: 20px 0;">
+                    <table style="width: 100%; border-collapse: collapse; background: var(--bg-card); border: 1px solid var(--border); font-size: 14px;">
+                        <thead>
+                            <tr style="background: var(--bg-panel); color: var(--accent); text-align: left;">
+                                <th style="padding: 12px; border: 1px solid var(--border);">Market</th>
+                                <th style="padding: 12px; border: 1px solid var(--border);">Daily Volume</th>
+                                <th style="padding: 12px; border: 1px solid var(--border);">Trading Hours</th>
+                                <th style="padding: 12px; border: 1px solid var(--border);">Algorithmic Suitability</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 12px; border: 1px solid var(--border); font-weight: bold;">Forex (FX)</td>
+                                <td style="padding: 12px; border: 1px solid var(--border);">$7.5+ Trillion</td>
+                                <td style="padding: 12px; border: 1px solid var(--border);">24/5 (Mon-Fri)</td>
+                                <td style="padding: 12px; border: 1px solid var(--border); color: var(--success);">Ideal for Grid & Mean Reversion</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border: 1px solid var(--border); font-weight: bold;">Equities / Stocks</td>
+                                <td style="padding: 12px; border: 1px solid var(--border);">$500+ Billion</td>
+                                <td style="padding: 12px; border: 1px solid var(--border);">6.5 hrs/day + Pre/Post</td>
+                                <td style="padding: 12px; border: 1px solid var(--border); color: var(--accent);">Momentum, Earnings & Pairs Trading</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border: 1px solid var(--border); font-weight: bold;">Crypto & DEX</td>
+                                <td style="padding: 12px; border: 1px solid var(--border);">$100+ Billion</td>
+                                <td style="padding: 12px; border: 1px solid var(--border);">24/7/365</td>
+                                <td style="padding: 12px; border: 1px solid var(--border); color: var(--warning);">Sniping, Arbitrage & Volatility Breakout</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2>2. Volatility vs. Liquidity</h2>
+                <p>Quant traders calculate market efficiency through the ratio of volume to volatility:</p>
+                <ul>
+                    <li><strong>High Liquidity + Moderate Volatility (e.g. EUR/USD, S&P 500):</strong> Lowest slippage, tightest spreads, perfect for automated execution with strict risk boundaries.</li>
+                    <li><strong>Low Liquidity + High Volatility (e.g. Micro-Cap Crypto):</strong> Enormous percentage moves, but order fills cause severe price impact.</li>
+                </ul>
+
+                <blockquote>
+                    "Liquidity is like oxygen: you don't notice it when it's there, but when it's gone, it's the only thing that matters." — Market Proverb
+                </blockquote>
+
+                <h2>3. Knowledge Check Exam</h2>
+                <div class="quiz-container" id="quizBox" data-locked="false">
+                    <div class="quiz-header">
+                        <div class="quiz-title">📝 Chapter 02 Certification Quiz</div>
+                        <span style="font-size:12px; color:var(--accent);">100 XP</span>
+                    </div>
+                    <div class="quiz-question">Which market possesses the highest global daily trading volume and runs 24 hours a day, 5 days a week?</div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-idx="0">A) New York Stock Exchange (NYSE)</div>
+                        <div class="quiz-option" data-idx="1">B) Decentralized Crypto DEXs</div>
+                        <div class="quiz-option" data-idx="2">C) Foreign Exchange (Forex) Market</div>
+                        <div class="quiz-option" data-idx="3">D) Commodities Futures Market</div>
+                    </div>
+                    <div class="quiz-feedback" id="quizFeedback"></div>
+                    <button class="btn btn-primary" id="quizSubmitBtn" disabled>Submit Answer</button>
+                </div>
+
+                <div class="lesson-nav-footer">
+                    <a href="01_gateway.html" class="btn btn-outline">← Previous: Gateway</a>
+                    <a href="03_forex.html" class="btn btn-primary">Next: Forex Deep Dive →</a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 DarkAIs Academy. Institutional-grade algorithmic education.</p>
+    </footer>
+
+    <script src="../js/academy.js"></script>
+    <script>
+        setupQuiz(2, "The Forex market exceeds $7.5 Trillion in daily volume, operating continuously across Sydney, Tokyo, London, and New York sessions.", "02");
+    </script>
+</body>
+</html>

@@ -8,6 +8,8 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Serve root and public static assets
+app.use(express.static(__dirname));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 
@@ -21,7 +23,6 @@ app.get('/api/forex/:pair', (req, res) => {
     if (pair.includes('BTC')) base = 64000.0;
     if (pair.includes('SOL')) base = 150.0;
 
-    // Realistic micro-wave + Gaussian-like noise
     const wave = Math.sin(time / 4000) * (base * 0.0015);
     const noise = (Math.random() - 0.5) * (base * 0.0004);
     const price = (base + wave + noise).toFixed(pair.includes('BTC') || pair.includes('SOL') ? 2 : 5);
