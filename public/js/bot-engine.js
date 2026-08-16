@@ -52,11 +52,18 @@ class BotakiEngine {
     async fetchPrice() {
         try {
             const res = await fetch('/api/forex/eurusd');
-            const data = await res.json();
-            return data.price;
-        } catch (e) {
-            return 1.1000 + (Math.random() - 0.5) * 0.003;
-        }
+            if (res.ok) {
+                const data = await res.json();
+                return data.price;
+            }
+        } catch (e) {}
+        
+        // Client-side fallback for GitHub Pages & static hosting
+        const time = Date.now();
+        const base = 1.08500;
+        const wave = Math.sin(time / 3500) * 0.0018;
+        const noise = (Math.random() - 0.5) * 0.0004;
+        return parseFloat((base + wave + noise).toFixed(5));
     }
 
     start() {
