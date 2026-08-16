@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trading Psychology Simulator — DarkAIs Academy</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;800;900&family=Roboto:wght@300;400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="index.html">
+                <h1>🌑 DARKAIS <span class="accent">ACADEMY</span></h1>
+            </a>
+        </div>
+        <nav class="nav">
+            <a href="index.html" class="nav-link">Curriculum</a>
+            <a href="simulator.html" class="nav-link">Strategy Studio</a>
+            <a href="charts.html" class="nav-link">Live Charts</a>
+            <a href="calculator.html" class="nav-link">🧮 Calculator</a>
+            <a href="pinescript.html" class="nav-link">🌲 Pine Script</a>
+            <a href="solana.html" class="nav-link">⚡ Solana Sniper</a>
+            <a href="journal.html" class="nav-link">📓 Journal</a>
+            <a href="confluence.html" class="nav-link">🎯 Confluence</a>
+            <a href="psychology.html" class="nav-link active">🧠 Psychology</a>
+            <a href="montecarlo.html" class="nav-link">🎲 Monte Carlo</a>
+            <a href="downloads.html" class="nav-link">📦 Downloads</a>
+            <a href="certificate.html" class="nav-link">🎓 Diploma</a>
+        </nav>
+        <div class="header-right">
+            <button class="search-trigger-btn" id="searchTriggerBtn"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> Search <kbd>Ctrl+K</kbd></button>
+            <div class="theme-picker">
+                <div class="theme-dot cyan" onclick="setTheme('cyan')" title="Cyber Cyan"></div>
+                <div class="theme-dot matrix" onclick="setTheme('matrix')" title="Matrix Green"></div>
+                <div class="theme-dot gold" onclick="setTheme('gold')" title="FTMO Gold"></div>
+                <div class="theme-dot purple" onclick="setTheme('purple')" title="Solana Purple"></div>
+            </div>
+            <button class="icon-btn" id="muteBtn" onclick="toggleMute()" title="Toggle Sound">🔊</button>
+            <div class="progress-badge">
+                <div class="bar"><div class="bar-fill" id="globalProgressBar" style="width: 0%;"></div></div>
+                <span id="globalProgressText">0%</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="hero-wrapper" style="padding: 30px 20px 20px;">
+        <div class="hero-content">
+            <span class="hero-tag">COGNITIVE BIAS LAB</span>
+            <h1 class="hero-title">Trading Psychology & <span class="glow">Dilemma Simulator</span></h1>
+            <p class="hero-desc">Test your mental discipline under simulated high-pressure market conditions and discover how automated bots eliminate destructive retail psychological biases.</p>
+        </div>
+    </div>
+
+    <div class="academy-container" style="max-width: 900px;">
+        <!-- Dilemma Card Container -->
+        <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 28px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                <span style="font-family:'Orbitron'; font-size:12px; color:var(--accent);" id="scenarioNum">SCENARIO 1 OF 4</span>
+                <span style="font-size:12px; color:var(--text-muted);">Mental Discipline Check</span>
+            </div>
+
+            <h3 style="font-size: 19px; line-height: 1.4; margin-bottom: 20px;" id="scenarioText">
+                Loading Scenario...
+            </h3>
+
+            <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px;" id="dilemmaOptions">
+                <!-- Injected dynamically -->
+            </div>
+
+            <div class="callout" id="dilemmaFeedback" style="display: none; margin: 0 0 20px 0;">
+                <div class="callout-title" id="feedbackTitle">Analysis</div>
+                <p style="font-size: 14px; margin: 0;" id="feedbackBody"></p>
+            </div>
+
+            <button id="nextScenarioBtn" class="btn btn-primary" style="display: none; width: 100%;">Next Scenario →</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 DarkAIs Academy. Institutional-grade algorithmic education.</p>
+    </footer>
+
+    <script src="js/academy.js"></script>
+    <script>
+        const SCENARIOS = [
+            {
+                text: "Your trading bot experiences 3 consecutive stop-losses (-2.25% daily loss). You see a massive green breakout candle on EUR/USD that wasn't generated by your algorithm. What is your immediate decision?",
+                options: [
+                    { text: "Manually enter a 2.0 Lot BUY to win back today's losses quickly (Revenge Trading).", correct: false, bias: "Gambler's Fallacy & Revenge Trading Bias", reason: "Attempting to 'win back' money with discretionary high-lot sizing violates the daily risk boundary and is the #1 reason for blowing funded accounts." },
+                    { text: "Do nothing. Let the automated system adhere strictly to its algorithmic rules.", correct: true, bias: "Institutional Discipline (Zero Emotion)", reason: "3 consecutive losses are a natural variance in statistical distributions. A disciplined trader trusts the mathematical law of large numbers." }
+                ]
+            },
+            {
+                text: "You are in an open winning trade that is currently up +1.2R, but your Take-Profit target is set at +2.5R. A small red 1-minute candle appears. What do you do?",
+                options: [
+                    { text: "Panic and close the trade immediately to secure whatever profit is on the table.", correct: false, bias: "Disposition Effect (Fear of Giving Back Profit)", reason: "Cutting winners prematurely destroys your positive mathematical expectancy and ruins your risk-to-reward ratio." },
+                    { text: "Hold the position and let the pre-calculated Stop Loss / Take Profit orders manage the outcome.", correct: true, bias: "Mathematical Asymmetry", reason: "Institutional traders let their winning trades run to full targets, allowing a 50% win rate to generate massive positive returns." }
+                ]
+            },
+            {
+                text: "High-impact US CPI inflation news will be released in 3 minutes. Your bot is about to trigger an entry signal. What should happen?",
+                options: [
+                    { text: "Halt new entries and let the automated news circuit breaker pause trading for 15 minutes.", correct: true, bias: "Microstructure Risk Awareness", reason: "Spreads widen dramatically during Tier-1 news (often from 0.5 pips to 8 pips), causing severe slippage and unpredictable execution." },
+                    { text: "Double the lot size to gamble on the news candle direction.", correct: false, bias: "Reckless Gambling Bias", reason: "News gambling is not trading; slippage on market orders during news spikes will trigger instant account disqualification." }
+                ]
+            }
+        ];
+
+        let currentIdx = 0;
+
+        function renderScenario() {
+            const sc = SCENARIOS[currentIdx];
+            document.getElementById('scenarioNum').innerText = `SCENARIO ${currentIdx + 1} OF ${SCENARIOS.length}`;
+            document.getElementById('scenarioText').innerText = sc.text;
+            
+            const optBox = document.getElementById('dilemmaOptions');
+            optBox.innerHTML = '';
+            document.getElementById('dilemmaFeedback').style.display = 'none';
+            document.getElementById('nextScenarioBtn').style.display = 'none';
+
+            sc.options.forEach((opt, idx) => {
+                const btn = document.createElement('div');
+                btn.className = 'quiz-option';
+                btn.innerText = opt.text;
+                btn.onclick = () => selectOption(idx);
+                optBox.appendChild(btn);
+            });
+        }
+
+        function selectOption(idx) {
+            const sc = SCENARIOS[currentIdx];
+            const choice = sc.options[idx];
+            const optEls = document.querySelectorAll('#dilemmaOptions .quiz-option');
+
+            optEls.forEach((el, i) => {
+                el.classList.add('locked');
+                if (sc.options[i].correct) el.classList.add('correct');
+                else if (i === idx) el.classList.add('wrong');
+            });
+
+            const fb = document.getElementById('dilemmaFeedback');
+            const title = document.getElementById('feedbackTitle');
+            const body = document.getElementById('feedbackBody');
+
+            fb.style.display = 'block';
+            if (choice.correct) {
+                fb.className = 'callout success';
+                title.innerText = `✓ Correct Decision: ${choice.bias}`;
+                body.innerText = choice.reason;
+                playSound('success');
+            } else {
+                fb.className = 'callout danger';
+                title.innerText = `🛑 Psychological Trap Detected: ${choice.bias}`;
+                body.innerText = choice.reason;
+                playSound('error');
+            }
+
+            document.getElementById('nextScenarioBtn').style.display = 'block';
+        }
+
+        document.getElementById('nextScenarioBtn').addEventListener('click', () => {
+            currentIdx = (currentIdx + 1) % SCENARIOS.length;
+            renderScenario();
+            playSound('trade');
+        });
+
+        document.addEventListener('DOMContentLoaded', renderScenario);
+    </script>
+</body>
+</html>

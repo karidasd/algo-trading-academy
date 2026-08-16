@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trader's Journal & Analytics — DarkAIs Academy</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;800;900&family=Roboto:wght@300;400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="index.html">
+                <h1>🌑 DARKAIS <span class="accent">ACADEMY</span></h1>
+            </a>
+        </div>
+        <nav class="nav">
+            <a href="index.html" class="nav-link">Curriculum</a>
+            <a href="simulator.html" class="nav-link">Strategy Studio</a>
+            <a href="charts.html" class="nav-link">Live Charts</a>
+            <a href="calculator.html" class="nav-link">🧮 Calculator</a>
+            <a href="pinescript.html" class="nav-link">🌲 Pine Script</a>
+            <a href="solana.html" class="nav-link">⚡ Solana Sniper</a>
+            <a href="journal.html" class="nav-link active">📓 Journal</a>
+            <a href="confluence.html" class="nav-link">🎯 Confluence</a>
+            <a href="psychology.html" class="nav-link">🧠 Psychology</a>
+            <a href="montecarlo.html" class="nav-link">🎲 Monte Carlo</a>
+            <a href="downloads.html" class="nav-link">📦 Downloads</a>
+            <a href="certificate.html" class="nav-link">🎓 Diploma</a>
+        </nav>
+        <div class="header-right">
+            <button class="search-trigger-btn" id="searchTriggerBtn"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> Search <kbd>Ctrl+K</kbd></button>
+            <div class="theme-picker">
+                <div class="theme-dot cyan" onclick="setTheme('cyan')" title="Cyber Cyan"></div>
+                <div class="theme-dot matrix" onclick="setTheme('matrix')" title="Matrix Green"></div>
+                <div class="theme-dot gold" onclick="setTheme('gold')" title="FTMO Gold"></div>
+                <div class="theme-dot purple" onclick="setTheme('purple')" title="Solana Purple"></div>
+            </div>
+            <button class="icon-btn" id="muteBtn" onclick="toggleMute()" title="Toggle Sound">🔊</button>
+            <div class="progress-badge">
+                <div class="bar"><div class="bar-fill" id="globalProgressBar" style="width: 0%;"></div></div>
+                <span id="globalProgressText">0%</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="hero-wrapper" style="padding: 30px 20px 20px;">
+        <div class="hero-content">
+            <span class="hero-tag">PERFORMANCE TRACKER</span>
+            <h1 class="hero-title">Quantitative <span class="glow">Trader's Journal</span></h1>
+            <p class="hero-desc">Log your algorithmic and manual executions, analyze win rates and profit factors, and track your cumulative equity curve over time.</p>
+        </div>
+    </div>
+
+    <div class="academy-container" style="max-width: 1300px;">
+        <!-- KPI Strip -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin-bottom: 24px;">
+            <div class="stat-card" style="padding: 14px;">
+                <div class="stat-info">
+                    <p>Total Trades Logged</p>
+                    <h4 id="statTotalTrades" style="color:var(--accent); font-size:18px;">0</h4>
+                </div>
+            </div>
+            <div class="stat-card" style="padding: 14px;">
+                <div class="stat-info">
+                    <p>Win Rate %</p>
+                    <h4 id="statJournalWinrate" style="color:var(--success); font-size:18px;">0.0%</h4>
+                </div>
+            </div>
+            <div class="stat-card" style="padding: 14px;">
+                <div class="stat-info">
+                    <p>Cumulative Net PnL</p>
+                    <h4 id="statCumulativePnl" style="font-size:18px;">$0.00</h4>
+                </div>
+            </div>
+            <div class="stat-card" style="padding: 14px;">
+                <div class="stat-info">
+                    <p>Profit Factor</p>
+                    <h4 id="statJournalPF" style="color:var(--warning); font-size:18px;">0.00</h4>
+                </div>
+            </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 340px 1fr; gap: 24px; align-items: start;">
+            <!-- Trade Entry Form -->
+            <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 20px;">
+                <h3 style="font-size: 16px; margin-bottom: 16px; color: var(--accent);">📝 Log New Trade</h3>
+                
+                <div style="margin-bottom: 12px;">
+                    <label style="font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 4px;">ASSET / PAIR</label>
+                    <input type="text" id="jAsset" value="EUR/USD" style="width: 100%; background: var(--bg-panel); color: var(--text-primary); border: 1px solid var(--border); padding: 8px; border-radius: var(--radius-sm);">
+                </div>
+
+                <div style="margin-bottom: 12px;">
+                    <label style="font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 4px;">DIRECTION</label>
+                    <select id="jSide" style="width: 100%; background: var(--bg-panel); color: var(--text-primary); border: 1px solid var(--border); padding: 8px; border-radius: var(--radius-sm);">
+                        <option value="BUY">🟢 BUY (Long)</option>
+                        <option value="SELL">🔴 SELL (Short)</option>
+                    </select>
+                </div>
+
+                <div style="margin-bottom: 12px;">
+                    <label style="font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 4px;">NET PNL ($)</label>
+                    <input type="number" id="jPnl" value="150" step="10" style="width: 100%; background: var(--bg-panel); color: var(--text-primary); border: 1px solid var(--border); padding: 8px; border-radius: var(--radius-sm); font-weight: bold;">
+                </div>
+
+                <div style="margin-bottom: 16px;">
+                    <label style="font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 4px;">STRATEGY / SETUP</label>
+                    <input type="text" id="jStrategy" value="Mean Reversion SMA" style="width: 100%; background: var(--bg-panel); color: var(--text-primary); border: 1px solid var(--border); padding: 8px; border-radius: var(--radius-sm);">
+                </div>
+
+                <button id="addTradeBtn" class="btn btn-primary" style="width: 100%;">+ Record Execution</button>
+            </div>
+
+            <!-- Equity Canvas & Trade History -->
+            <div style="display: flex; flex-direction: column; gap: 18px;">
+                <!-- Performance Curve -->
+                <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 18px;">
+                    <h4 style="font-size: 13px; color: var(--text-secondary); margin-bottom: 10px;">📈 Account Equity Growth Curve</h4>
+                    <canvas id="journalCanvas" width="800" height="200" style="width: 100%; height: 200px; background:#030508; border:1px solid var(--border); border-radius:6px;"></canvas>
+                </div>
+
+                <!-- History Table -->
+                <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden;">
+                    <table class="calendar-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Asset</th>
+                                <th>Side</th>
+                                <th>Strategy</th>
+                                <th>Net PnL</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="journalTableBody">
+                            <!-- Injected dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 DarkAIs Academy. Institutional-grade algorithmic education.</p>
+    </footer>
+
+    <script src="js/academy.js"></script>
+    <script>
+        const JOURNAL_KEY = 'darkais_trader_journal';
+        const canvas = document.getElementById('journalCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function getTrades() {
+            try {
+                return JSON.parse(localStorage.getItem(JOURNAL_KEY) || '[]');
+            } catch(e) { return []; }
+        }
+
+        function saveTrades(trades) {
+            localStorage.setItem(JOURNAL_KEY, JSON.stringify(trades));
+            renderJournal();
+        }
+
+        function renderJournal() {
+            const trades = getTrades();
+            const tbody = document.getElementById('journalTableBody');
+            tbody.innerHTML = '';
+
+            let totalPnl = 0;
+            let wins = 0;
+            let grossProfit = 0;
+            let grossLoss = 0;
+            let equityHistory = [0];
+
+            trades.forEach((t, idx) => {
+                totalPnl += t.pnl;
+                equityHistory.push(totalPnl);
+                if (t.pnl > 0) { wins++; grossProfit += t.pnl; }
+                else { grossLoss += Math.abs(t.pnl); }
+
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td class="mono">${t.date}</td>
+                    <td><strong>${t.asset}</strong></td>
+                    <td style="color:${t.side === 'BUY' ? 'var(--success)' : 'var(--danger)'}; font-weight:bold;">${t.side}</td>
+                    <td>${t.strategy}</td>
+                    <td class="mono" style="color:${t.pnl >= 0 ? 'var(--success)' : 'var(--danger)'}; font-weight:bold;">${t.pnl >= 0 ? '+' : ''}$${t.pnl.toFixed(2)}</td>
+                    <td><button class="copy-btn" onclick="deleteTrade(${idx})" style="color:var(--danger); border-color:var(--danger);">✕</button></td>
+                `;
+                tbody.appendChild(row);
+            });
+
+            const winRate = trades.length > 0 ? ((wins / trades.length) * 100).toFixed(1) : '0.0';
+            const pf = grossLoss > 0 ? (grossProfit / grossLoss).toFixed(2) : (grossProfit > 0 ? '∞' : '0.00');
+
+            document.getElementById('statTotalTrades').innerText = trades.length;
+            document.getElementById('statJournalWinrate').innerText = `${winRate}%`;
+            const pnlEl = document.getElementById('statCumulativePnl');
+            pnlEl.innerText = `${totalPnl >= 0 ? '+' : ''}$${totalPnl.toFixed(2)}`;
+            pnlEl.style.color = totalPnl >= 0 ? 'var(--success)' : 'var(--danger)';
+            document.getElementById('statJournalPF').innerText = pf;
+
+            // Draw Equity Canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            if (equityHistory.length > 1) {
+                const padding = 20;
+                const min = Math.min(...equityHistory, 0);
+                const max = Math.max(...equityHistory, 100);
+                const range = max - min || 1;
+                const getY = v => canvas.height - padding - ((v - min) / range) * (canvas.height - padding * 2);
+                const getX = (i, total) => padding + (i / total) * (canvas.width - padding * 2);
+
+                ctx.beginPath();
+                ctx.moveTo(getX(0, equityHistory.length - 1), getY(equityHistory[0]));
+                for (let i = 1; i < equityHistory.length; i++) {
+                    ctx.lineTo(getX(i, equityHistory.length - 1), getY(equityHistory[i]));
+                }
+                ctx.strokeStyle = totalPnl >= 0 ? '#00F0FF' : '#FF3366';
+                ctx.lineWidth = 2.5;
+                ctx.stroke();
+            }
+        }
+
+        function deleteTrade(index) {
+            const trades = getTrades();
+            trades.splice(index, 1);
+            saveTrades(trades);
+            playSound('error');
+        }
+
+        document.getElementById('addTradeBtn').addEventListener('click', () => {
+            const asset = document.getElementById('jAsset').value.trim() || 'EUR/USD';
+            const side = document.getElementById('jSide').value;
+            const pnl = parseFloat(document.getElementById('jPnl').value) || 0;
+            const strategy = document.getElementById('jStrategy').value.trim() || 'Manual';
+            const date = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+
+            const trades = getTrades();
+            trades.push({ asset, side, pnl, strategy, date });
+            saveTrades(trades);
+            playSound('success');
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Populate sample data if empty
+            if (getTrades().length === 0) {
+                saveTrades([
+                    { asset: 'EUR/USD', side: 'BUY', pnl: 180, strategy: 'Mean Reversion SMA', date: 'Aug 15, 10:30' },
+                    { asset: 'GBP/USD', side: 'SELL', pnl: -90, strategy: 'S&R Range Rejection', date: 'Aug 15, 14:15' },
+                    { asset: 'Gold (XAU)', side: 'BUY', pnl: 320, strategy: 'Macro News Sniper', date: 'Aug 16, 09:00' }
+                ]);
+            } else {
+                renderJournal();
+            }
+        });
+    </script>
+</body>
+</html>

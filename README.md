@@ -5,7 +5,7 @@
 <br/><br/>
 
 # 🌑 DarkAIs Algorithmic Trading Academy
-**Institutional Quantitative Curriculum, In-Lesson Botaki Simulators, Pine Script Generator & Prop Firm Mastery**
+**Institutional Quantitative Curriculum, In-Lesson Botaki Simulators, Pine Script Generator, Solana Sniper & Prop Firm Mastery**
 
 [![GitHub Pages](https://img.shields.io/badge/%F0%9F%8C%90%20Live%20Academy-GitHub%20Pages-00F0FF?style=for-the-badge)](https://karidasd.github.io/algo-trading-academy/)
 [![Node.js](https://img.shields.io/badge/Node.js-18+-43853D?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
@@ -22,7 +22,7 @@
 ---
 
 ## 📖 Overview
-**DarkAIs Academy** is a full-stack, open-source educational platform designed to take aspiring quantitative traders from absolute foundational concepts to deploying production-ready automated trading algorithms.
+**DarkAIs Academy** is a full-stack, open-source educational platform designed to take aspiring quantitative traders from absolute foundational concepts to deploying production-ready automated trading algorithms across Forex, Equities, and Solana DeFi.
 
 Inspired by top proprietary trading firms like **FTMO**, the platform bridges the gap between theoretical market mechanics and practical algorithmic execution by embedding live, client-side **Botaki trading simulators** directly within the lessons.
 
@@ -32,6 +32,10 @@ Inspired by top proprietary trading firms like **FTMO**, the platform bridges th
 
 - 🌐 **Zero-Server Static Deployment**: Works 100% directly in any web browser via **GitHub Pages** without requiring local Node.js servers.
 - 🔍 **Global Spotlight Search (`Ctrl + K`)**: Instant search across all 12 modules, 40+ glossary terms, and all quantitative tools.
+- ⚡ **Solana & DEX Memecoin Sniper Simulator**: Calibrate Jito MEV tips, slippage buffers, anti-rug honeypot filters, and auto-sell take-profit triggers in a real-time Raydium launch simulator.
+- 📓 **Trader's Performance Journal & Equity Tracker**: Log manual and algorithmic executions, compute Win Rate %, Profit Factor, and track cumulative equity growth stored locally in browser storage.
+- 🎯 **Multi-Timeframe Confluence Matrix**: Align Macro Trends (4H), Market Structure Shifts (15m BOS/ChoCH), and Micro Triggers (1m/5m Pinbars) to filter retail traps and execute Grade-A trade setups.
+- 🧠 **Trading Psychology & Dilemma Simulator**: Interactive high-pressure market scenarios tackling revenge trading, loss aversion, and FOMO.
 - 🌲 **Visual Pine Script v5 Generator**: Build TradingView strategies with indicator filters, ATR trailing stops, and download ready-to-paste Pine Script code.
 - 🎲 **Monte Carlo Multi-Universe Simulator**: Simulate 100 to 500 parallel account universes to visualize drawdown variance and calculate exact Risk of Ruin probabilities.
 - 🤖 **AI Trading Bot Prompts Vault**: Curated prompt engineering templates for ChatGPT, Claude, and Gemini to generate bot code and debug backtest models.

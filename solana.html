@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solana & DEX Sniper Simulator — DarkAIs Academy</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;800;900&family=Roboto:wght@300;400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="index.html">
+                <h1>🌑 DARKAIS <span class="accent">ACADEMY</span></h1>
+            </a>
+        </div>
+        <nav class="nav">
+            <a href="index.html" class="nav-link">Curriculum</a>
+            <a href="simulator.html" class="nav-link">Strategy Studio</a>
+            <a href="charts.html" class="nav-link">Live Charts</a>
+            <a href="calculator.html" class="nav-link">🧮 Calculator</a>
+            <a href="pinescript.html" class="nav-link">🌲 Pine Script</a>
+            <a href="solana.html" class="nav-link active">⚡ Solana Sniper</a>
+            <a href="journal.html" class="nav-link">📓 Journal</a>
+            <a href="confluence.html" class="nav-link">🎯 Confluence</a>
+            <a href="psychology.html" class="nav-link">🧠 Psychology</a>
+            <a href="montecarlo.html" class="nav-link">🎲 Monte Carlo</a>
+            <a href="downloads.html" class="nav-link">📦 Downloads</a>
+            <a href="certificate.html" class="nav-link">🎓 Diploma</a>
+        </nav>
+        <div class="header-right">
+            <button class="search-trigger-btn" id="searchTriggerBtn"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> Search <kbd>Ctrl+K</kbd></button>
+            <div class="theme-picker">
+                <div class="theme-dot cyan" onclick="setTheme('cyan')" title="Cyber Cyan"></div>
+                <div class="theme-dot matrix" onclick="setTheme('matrix')" title="Matrix Green"></div>
+                <div class="theme-dot gold" onclick="setTheme('gold')" title="FTMO Gold"></div>
+                <div class="theme-dot purple" onclick="setTheme('purple')" title="Solana Purple"></div>
+            </div>
+            <button class="icon-btn" id="muteBtn" onclick="toggleMute()" title="Toggle Sound">🔊</button>
+            <div class="progress-badge">
+                <div class="bar"><div class="bar-fill" id="globalProgressBar" style="width: 0%;"></div></div>
+                <span id="globalProgressText">0%</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="hero-wrapper" style="padding: 30px 20px 20px;">
+        <div class="hero-content">
+            <span class="hero-tag" style="border-color:#C084FC; color:#C084FC;">SOLANA MEMECOIN LAB</span>
+            <h1 class="hero-title">Raydium & DEX <span class="glow">Sniper Bot Simulator</span></h1>
+            <p class="hero-desc">Simulate high-speed memecoin sniping on Solana: calibrate Jito MEV tips, slippage buffers, anti-rug honeypot filters, and auto-sell take profit triggers.</p>
+        </div>
+    </div>
+
+    <div class="academy-container" style="max-width: 1300px;">
+        <div style="display: grid; grid-template-columns: 360px 1fr; gap: 24px; align-items: start;">
+            <!-- Sniper Settings -->
+            <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 22px;">
+                <h3 style="font-size: 16px; margin-bottom: 18px; color: #C084FC;">⚡ Bot Parameters</h3>
+                
+                <div style="margin-bottom: 14px;">
+                    <label style="font-size: 11.5px; color: var(--text-muted); display: block; margin-bottom: 4px;">SNIPE AMOUNT (SOL)</label>
+                    <input type="number" id="snipeSol" value="2.5" step="0.5" style="width: 100%; background: var(--bg-panel); color: var(--text-primary); border: 1px solid var(--border); padding: 8px; border-radius: var(--radius-sm); font-weight:bold;">
+                </div>
+
+                <div style="margin-bottom: 14px;">
+                    <label style="font-size: 11.5px; color: var(--text-muted); display: block; margin-bottom: 4px;">JITO ANTI-MEV TIP (SOL)</label>
+                    <input type="number" id="jitoTip" value="0.05" step="0.01" style="width: 100%; background: var(--bg-panel); color: var(--text-primary); border: 1px solid var(--border); padding: 8px; border-radius: var(--radius-sm);">
+                </div>
+
+                <div style="margin-bottom: 14px;">
+                    <label style="font-size: 11.5px; color: var(--text-muted); display: block; margin-bottom: 4px;">SLIPPAGE TOLERANCE (%)</label>
+                    <input type="number" id="snipeSlippage" value="15" style="width: 100%; background: var(--bg-panel); color: var(--text-primary); border: 1px solid var(--border); padding: 8px; border-radius: var(--radius-sm);">
+                </div>
+
+                <div style="margin-bottom: 14px;">
+                    <label style="display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--text-primary); cursor: pointer; margin-bottom: 4px;">
+                        <input type="checkbox" id="checkRug" checked> Anti-Rug & Mint Revoked Filter
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--text-primary); cursor: pointer;">
+                        <input type="checkbox" id="checkLp" checked> Liquidity Pool (LP) Burn Check
+                    </label>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <label style="font-size: 11.5px; color: var(--text-muted); display: block; margin-bottom: 4px;">AUTO-SELL TAKE PROFIT (%)</label>
+                    <input type="number" id="autoSellTp" value="100" step="25" style="width: 100%; background: var(--bg-panel); color: var(--text-primary); border: 1px solid var(--border); padding: 8px; border-radius: var(--radius-sm);">
+                </div>
+
+                <button id="launchSnipeBtn" class="btn btn-primary" style="width: 100%; background:#A855F7; border-color:#A855F7; box-shadow:0 0 15px rgba(168,85,247,0.3);">🚀 SNIPE NEW TOKEN LAUNCH</button>
+            </div>
+
+            <!-- Visual Launch Feed & Terminal -->
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+                <!-- Status Cards -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px;">
+                    <div class="stat-card" style="padding: 14px;">
+                        <div class="stat-info">
+                            <p>Detected Token</p>
+                            <h4 id="tokenNameTag" style="color: #C084FC; font-size: 16px;">$PEPE_SOL</h4>
+                        </div>
+                    </div>
+                    <div class="stat-card" style="padding: 14px;">
+                        <div class="stat-info">
+                            <p>Current Multiplier</p>
+                            <h4 id="tokenMultiplier" style="color: var(--accent); font-size: 18px;">1.00x</h4>
+                        </div>
+                    </div>
+                    <div class="stat-card" style="padding: 14px;">
+                        <div class="stat-info">
+                            <p>Realized PnL</p>
+                            <h4 id="snipePnlTag" style="color: var(--success); font-size: 18px;">+0.00 SOL</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Launch Canvas Chart -->
+                <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 18px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <h4 style="font-size: 13px; color: var(--text-secondary);">📈 Live Memecoin Micro-Tick Chart</h4>
+                        <span id="sniperStatusBadge" style="font-size: 11px; color: #C084FC;" class="mono">Standby</span>
+                    </div>
+                    <canvas id="sniperCanvas" width="800" height="240" style="width: 100%; height: 240px; background: #030508; border: 1px solid var(--border); border-radius: 6px;"></canvas>
+                </div>
+
+                <!-- Execution Terminal -->
+                <div class="terminal-window" id="sniperTerminal" style="height: 150px;">
+                    <div class="term-line"><span class="term-time">[Ready]</span><span class="term-info"> Solana Sniper Engine online. Click "SNIPE NEW TOKEN LAUNCH" to simulate Raydium LP event.</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 DarkAIs Academy. Institutional-grade algorithmic education.</p>
+    </footer>
+
+    <script src="js/academy.js"></script>
+    <script>
+        const canvas = document.getElementById('sniperCanvas');
+        const ctx = canvas.getContext('2d');
+        const term = document.getElementById('sniperTerminal');
+        let snipeInterval = null;
+
+        function logSnipe(msg, type = 'info') {
+            const time = new Date().toLocaleTimeString('en-US', { hour12: false });
+            const line = document.createElement('div');
+            line.className = 'term-line';
+            let c = 'term-info';
+            if (type === 'buy') c = 'term-buy';
+            if (type === 'sell') c = 'term-sell';
+            if (type === 'profit') c = 'term-highlight';
+            line.innerHTML = `<span class="term-time">[${time}]</span><span class="${c}"> ${msg}</span>`;
+            term.appendChild(line);
+            term.scrollTop = term.scrollHeight;
+        }
+
+        document.getElementById('launchSnipeBtn').addEventListener('click', () => {
+            clearInterval(snipeInterval);
+            const solAmount = parseFloat(document.getElementById('snipeSol').value) || 2.5;
+            const jito = parseFloat(document.getElementById('jitoTip').value) || 0.05;
+            const tpPct = parseFloat(document.getElementById('autoSellTp').value) || 100;
+            const checkRug = document.getElementById('checkRug').checked;
+            const isRug = Math.random() < 0.35; // 35% chance token is a rug
+
+            const tokenNames = ['$DARK_AI', '$SOL_PUMP', '$QUANT_DOGE', '$CHAD_SOL', '$NEON_CAT'];
+            const token = tokenNames[Math.floor(Math.random() * tokenNames.length)];
+            document.getElementById('tokenNameTag').innerText = token;
+            document.getElementById('sniperStatusBadge').innerText = 'SNIPING...';
+
+            logSnipe(`🎯 [NEW LP DETECTED] Raydium Pool created for ${token} with 50 SOL Liquidity!`, 'profit');
+            logSnipe(`⚡ Sending Jito Bundle with ${jito} SOL Tip to Validator Leader...`, 'info');
+
+            if (checkRug && isRug) {
+                setTimeout(() => {
+                    logSnipe(`🛡️ [ANTI-RUG BLOCKED] Mint Authority NOT revoked! Honeypot detected. Aborting snipe.`, 'sell');
+                    document.getElementById('sniperStatusBadge').innerText = 'RUG AVOIDED';
+                    playSound('error');
+                }, 600);
+                return;
+            }
+
+            logSnipe(`🟢 [SNIPE FILLED] Bought ${solAmount} SOL of ${token} in Slot #28471932!`, 'buy');
+            playSound('trade');
+
+            let mult = 1.0;
+            let ticks = [1.0];
+            let elapsed = 0;
+
+            snipeInterval = setInterval(() => {
+                elapsed++;
+                const pump = (Math.random() - 0.38) * 0.15;
+                mult = Math.max(0.1, mult + pump);
+                ticks.push(mult);
+                if (ticks.length > 40) ticks.shift();
+
+                document.getElementById('tokenMultiplier').innerText = `${mult.toFixed(2)}x`;
+
+                // Draw chart
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                const min = Math.min(...ticks, 0.5);
+                const max = Math.max(...ticks, 2.5);
+                const range = max - min || 1;
+                const getY = v => canvas.height - 20 - ((v - min) / range) * (canvas.height - 40);
+                const getX = (idx, total) => 20 + (idx / total) * (canvas.width - 40);
+
+                ctx.beginPath();
+                ctx.moveTo(getX(0, ticks.length - 1), getY(ticks[0]));
+                for (let i = 1; i < ticks.length; i++) {
+                    ctx.lineTo(getX(i, ticks.length - 1), getY(ticks[i]));
+                }
+                ctx.strokeStyle = mult >= 1.0 ? '#C084FC' : '#FF3366';
+                ctx.lineWidth = 2.5;
+                ctx.stroke();
+
+                // Auto-TP or Stop
+                const gainPct = (mult - 1.0) * 100;
+                if (gainPct >= tpPct || mult <= 0.4 || elapsed >= 25) {
+                    clearInterval(snipeInterval);
+                    const netSol = solAmount * (mult - 1.0) - jito;
+                    const isProfit = netSol >= 0;
+                    document.getElementById('snipePnlTag').innerText = `${isProfit ? '+' : ''}${netSol.toFixed(2)} SOL`;
+                    document.getElementById('snipePnlTag').style.color = isProfit ? 'var(--success)' : 'var(--danger)';
+                    logSnipe(`🎯 [AUTO-SELL EXECUTED] Sold 100% @ ${mult.toFixed(2)}x | Net Return: ${netSol >= 0 ? '+' : ''}${netSol.toFixed(2)} SOL`, isProfit ? 'profit' : 'sell');
+                    document.getElementById('sniperStatusBadge').innerText = 'COMPLETED';
+                    playSound(isProfit ? 'success' : 'error');
+                }
+            }, 300);
+        });
+    </script>
+</body>
+</html>

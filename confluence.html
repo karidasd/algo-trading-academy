@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Timeframe Confluence Matrix — DarkAIs Academy</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;800;900&family=Roboto:wght@300;400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="index.html">
+                <h1>🌑 DARKAIS <span class="accent">ACADEMY</span></h1>
+            </a>
+        </div>
+        <nav class="nav">
+            <a href="index.html" class="nav-link">Curriculum</a>
+            <a href="simulator.html" class="nav-link">Strategy Studio</a>
+            <a href="charts.html" class="nav-link">Live Charts</a>
+            <a href="calculator.html" class="nav-link">🧮 Calculator</a>
+            <a href="pinescript.html" class="nav-link">🌲 Pine Script</a>
+            <a href="solana.html" class="nav-link">⚡ Solana Sniper</a>
+            <a href="journal.html" class="nav-link">📓 Journal</a>
+            <a href="confluence.html" class="nav-link active">🎯 Confluence</a>
+            <a href="psychology.html" class="nav-link">🧠 Psychology</a>
+            <a href="montecarlo.html" class="nav-link">🎲 Monte Carlo</a>
+            <a href="downloads.html" class="nav-link">📦 Downloads</a>
+            <a href="certificate.html" class="nav-link">🎓 Diploma</a>
+        </nav>
+        <div class="header-right">
+            <button class="search-trigger-btn" id="searchTriggerBtn"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> Search <kbd>Ctrl+K</kbd></button>
+            <div class="theme-picker">
+                <div class="theme-dot cyan" onclick="setTheme('cyan')" title="Cyber Cyan"></div>
+                <div class="theme-dot matrix" onclick="setTheme('matrix')" title="Matrix Green"></div>
+                <div class="theme-dot gold" onclick="setTheme('gold')" title="FTMO Gold"></div>
+                <div class="theme-dot purple" onclick="setTheme('purple')" title="Solana Purple"></div>
+            </div>
+            <button class="icon-btn" id="muteBtn" onclick="toggleMute()" title="Toggle Sound">🔊</button>
+            <div class="progress-badge">
+                <div class="bar"><div class="bar-fill" id="globalProgressBar" style="width: 0%;"></div></div>
+                <span id="globalProgressText">0%</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="hero-wrapper" style="padding: 30px 20px 20px;">
+        <div class="hero-content">
+            <span class="hero-tag">INSTITUTIONAL EXECUTION MATRIX</span>
+            <h1 class="hero-title">Multi-Timeframe <span class="glow">Confluence Matrix</span></h1>
+            <p class="hero-desc">Align Macro Trends (4H), Market Structure Shifts (15m), and Micro Triggers (1m/5m) to filter out retail traps and execute Grade-A trade setups.</p>
+        </div>
+    </div>
+
+    <div class="academy-container" style="max-width: 1200px;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start;">
+            <!-- Confluence Checklist -->
+            <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 24px;">
+                <h3 style="font-size: 16px; margin-bottom: 18px; color: var(--accent);">🧩 Setup Checklist</h3>
+                
+                <div style="margin-bottom: 16px;">
+                    <label style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 6px;">1. HIGHER TIMEFRAME (4H / DAILY) BIAS</label>
+                    <select id="confHtf" style="width: 100%; background: var(--bg-panel); color: var(--text-primary); border: 1px solid var(--border); padding: 10px; border-radius: var(--radius-sm);">
+                        <option value="25">Aligned with Strong Macro Trend (+25%)</option>
+                        <option value="15">Price at Major Support / Demand Block (+15%)</option>
+                        <option value="0">Counter-Trend / Choppy Consolidation (0%)</option>
+                    </select>
+                </div>
+
+                <div style="margin-bottom: 16px;">
+                    <label style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 6px;">2. INTERMEDIATE (15M) STRUCTURE SHIFT</label>
+                    <select id="confMtf" style="width: 100%; background: var(--bg-panel); color: var(--text-primary); border: 1px solid var(--border); padding: 10px; border-radius: var(--radius-sm);">
+                        <option value="25">Clear Break of Structure (BOS) & ChoCH (+25%)</option>
+                        <option value="15">Retest of Broken S&R Flips (+15%)</option>
+                        <option value="0">No Structure Confirmation (0%)</option>
+                    </select>
+                </div>
+
+                <div style="margin-bottom: 16px;">
+                    <label style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 6px;">3. LOWER TIMEFRAME (1M / 5M) TRIGGER</label>
+                    <select id="confLtf" style="width: 100%; background: var(--bg-panel); color: var(--text-primary); border: 1px solid var(--border); padding: 10px; border-radius: var(--radius-sm);">
+                        <option value="25">Liquidity Sweep Wick + Pinbar Rejection (+25%)</option>
+                        <option value="15">EMA Crossover + Momentum Expansion (+15%)</option>
+                        <option value="0">Late Entry / Extended FOMO Candle (0%)</option>
+                    </select>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <label style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 6px;">4. MACRO VOLATILITY & TIMING</label>
+                    <select id="confTiming" style="width: 100%; background: var(--bg-panel); color: var(--text-primary); border: 1px solid var(--border); padding: 10px; border-radius: var(--radius-sm);">
+                        <option value="25">London / NY Session Open & Zero High-Impact News (+25%)</option>
+                        <option value="10">Asian Consolidation Session (+10%)</option>
+                        <option value="-20">High Impact News within 15 Minutes (-20% Penalty)</option>
+                    </select>
+                </div>
+
+                <button id="calcConfluenceBtn" class="btn btn-primary" style="width: 100%;">🎯 Evaluate Setup Confluence</button>
+            </div>
+
+            <!-- Confluence Score Output -->
+            <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 24px;">
+                <h3 style="font-size: 16px; margin-bottom: 18px; color: var(--accent);">📊 Confluence Evaluation</h3>
+                
+                <div style="text-align: center; padding: 20px 0;">
+                    <div style="font-size: 54px; font-weight: 800; font-family: 'Orbitron', monospace;" id="scoreDisplay">100%</div>
+                    <div style="font-size: 18px; font-weight: bold; margin-top: 8px;" id="gradeDisplay" style="color:var(--success);">🟢 GRADE-A INSTITUTIONAL SETUP</div>
+                </div>
+
+                <div class="callout" id="confluenceAdvisory" style="margin-top: 10px;">
+                    <div class="callout-title" id="advTitle">Optimal Probability Execution</div>
+                    <p style="font-size: 13.5px; margin: 0;" id="advBody">
+                        All multi-timeframe conditions are aligned in harmony. Recommended risk: Standard 1.0% account size with a strict 1:2 R:R target.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 DarkAIs Academy. Institutional-grade algorithmic education.</p>
+    </footer>
+
+    <script src="js/academy.js"></script>
+    <script>
+        function updateConfluence() {
+            const htf = parseInt(document.getElementById('confHtf').value);
+            const mtf = parseInt(document.getElementById('confMtf').value);
+            const ltf = parseInt(document.getElementById('confLtf').value);
+            const timing = parseInt(document.getElementById('confTiming').value);
+
+            let score = Math.max(0, Math.min(100, htf + mtf + ltf + timing));
+            document.getElementById('scoreDisplay').innerText = `${score}%`;
+
+            const scoreEl = document.getElementById('scoreDisplay');
+            const gradeEl = document.getElementById('gradeDisplay');
+            const advBox = document.getElementById('confluenceAdvisory');
+            const advTitle = document.getElementById('advTitle');
+            const advBody = document.getElementById('advBody');
+
+            if (score >= 80) {
+                scoreEl.style.color = 'var(--success)';
+                gradeEl.innerText = '🟢 GRADE-A INSTITUTIONAL SETUP';
+                gradeEl.style.color = 'var(--success)';
+                advBox.className = 'callout success';
+                advTitle.innerText = '✓ High-Probability Algorithmic Setup';
+                advBody.innerText = 'All multi-timeframe conditions are aligned. Full lot allocation (1.0% risk) is mathematically justified.';
+            } else if (score >= 50) {
+                scoreEl.style.color = 'var(--warning)';
+                gradeEl.innerText = '🟡 MODERATE PROBABILITY SETUP';
+                gradeEl.style.color = 'var(--warning)';
+                advBox.className = 'callout warning';
+                advTitle.innerText = '⚠️ Reduced Size Advisory';
+                advBody.innerText = 'Setup has partial confluence. Recommend scaling down risk to 0.5% lot size or waiting for structural retest.';
+            } else {
+                scoreEl.style.color = 'var(--danger)';
+                gradeEl.innerText = '🔴 LOW PROBABILITY RETAIL TRAP';
+                gradeEl.style.color = 'var(--danger)';
+                advBox.className = 'callout danger';
+                advTitle.innerText = '🛑 Do Not Execute';
+                advBody.innerText = 'High risk of stop-hunt or counter-trend chop. Algorithms should remain idle.';
+            }
+            playSound('trade');
+        }
+
+        document.getElementById('calcConfluenceBtn').addEventListener('click', updateConfluence);
+        ['confHtf', 'confMtf', 'confLtf', 'confTiming'].forEach(id => {
+            document.getElementById(id).addEventListener('change', updateConfluence);
+        });
+        document.addEventListener('DOMContentLoaded', updateConfluence);
+    </script>
+</body>
+</html>

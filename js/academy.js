@@ -121,13 +121,17 @@ const SEARCH_INDEX = [
     { title: "Course 10: Broker APIs, WebSockets & Platforms", url: "courses/10_apis_platforms.html", type: "Module", tags: "mt5 ctrader rest websocket fix protocol" },
     { title: "Course 11: Bot Architecture & Full Code Templates", url: "courses/11_system_architecture.html", type: "Module", tags: "python node bot code architecture template" },
     { title: "Course 12: Prop Firm Mastery & FTMO Challenges", url: "courses/12_prop_firm_challenge.html", type: "Module", tags: "ftmo max daily loss challenge funded" },
+    { title: "⚡ Solana & DEX Memecoin Sniper Simulator", url: "solana.html", type: "Tool", tags: "solana raydium sniper memecoin jito anti-mev rugpull" },
+    { title: "📓 Trader's Performance Journal & Equity Tracker", url: "journal.html", type: "Tool", tags: "journal log trades winrate profit factor equity curve" },
+    { title: "🎯 Multi-Timeframe Confluence Matrix", url: "confluence.html", type: "Tool", tags: "confluence 4h 15m 1m market structure bos choch" },
+    { title: "🧠 Trading Psychology & Dilemma Simulator", url: "psychology.html", type: "Tool", tags: "psychology cognitive bias discipline loss aversion fomo" },
+    { title: "🌲 Pine Script v5 Code Generator", url: "pinescript.html", type: "Tool", tags: "pine script tradingview indicator strategy builder" },
     { title: "🧮 FTMO Challenge & Risk Calculator", url: "calculator.html", type: "Tool", tags: "lot size calculator daily loss drawdown" },
     { title: "📊 Live TradingView Terminal", url: "charts.html", type: "Tool", tags: "real-time charts eurusd gold btc sol" },
+    { title: "🎲 Monte Carlo 500-Universe Risk Simulator", url: "montecarlo.html", type: "Tool", tags: "monte carlo risk of ruin bankruptcy simulation" },
     { title: "🎯 Candlestick Pattern Reflex Game", url: "game.html", type: "Game", tags: "speed game flashcards pattern training" },
     { title: "📰 Economic News Calendar & Circuit Breaker", url: "calendar.html", type: "Tool", tags: "news calendar nfp cpi auto-pause" },
-    { title: "🌲 Pine Script v5 Code Generator", url: "pinescript.html", type: "Tool", tags: "pine script tradingview indicator strategy builder" },
     { title: "🤖 AI Trading Bot Prompts Vault", url: "prompts.html", type: "Resource", tags: "chatgpt claude prompts ai bot python" },
-    { title: "🎲 Monte Carlo 500-Universe Risk Simulator", url: "montecarlo.html", type: "Tool", tags: "monte carlo risk of ruin bankruptcy simulation" },
     { title: "📦 Downloadable Bot Starter Pack", url: "downloads.html", type: "Code", tags: "python node mq5 ea downloads" },
     { title: "🎓 Graduation Diploma Studio", url: "certificate.html", type: "Certificate", tags: "diploma certificate verification mastery" },
     { title: "📖 Trader's & Quant Dictionary", url: "glossary.html", type: "Reference", tags: "glossary dictionary terms slippage sharpe ratio" }
@@ -176,7 +180,6 @@ function setupSpotlight() {
         ).slice(0, 7);
 
         resultsList.innerHTML = matches.map((m, idx) => {
-            // Adjust relative link if inside /courses/
             const isInsideCourses = window.location.pathname.includes('/courses/');
             const linkUrl = isInsideCourses && !m.url.startsWith('courses/') ? `../${m.url}` : (isInsideCourses && m.url.startsWith('courses/') ? m.url.replace('courses/', '') : m.url);
             
