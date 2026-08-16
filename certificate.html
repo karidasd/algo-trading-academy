@@ -45,7 +45,7 @@
                 
                 <div style="margin-bottom: 20px;">
                     <label style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 6px;">STUDENT FULL NAME</label>
-                    <input type="text" id="studentNameInput" value="Alexandros Karidas" placeholder="Enter your full name" style="width: 100%; background: var(--bg-panel); color: var(--text-primary); border: 1px solid var(--border); padding: 12px; border-radius: var(--radius-sm); font-size: 15px; font-weight: bold;">
+                    <input type="text" id="studentNameInput" value="" placeholder="Type your full name here..." style="width: 100%; background: var(--bg-panel); color: var(--text-primary); border: 1px solid var(--border); padding: 12px; border-radius: var(--radius-sm); font-size: 15px; font-weight: bold;">
                 </div>
 
                 <div style="margin-bottom: 20px;">
@@ -78,7 +78,8 @@
         const ctx = canvas.getContext('2d');
 
         function drawCertificate() {
-            const name = document.getElementById('studentNameInput').value || 'Certified Trader';
+            const rawName = document.getElementById('studentNameInput').value.trim();
+            const name = rawName.length > 0 ? rawName : 'STUDENT NAME';
             const track = document.getElementById('certTrackInput').value;
             const dateStr = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
             const certHash = "DAI-" + Math.random().toString(36).substring(2, 10).toUpperCase() + "-" + Date.now().toString().slice(-4);
@@ -194,9 +195,19 @@
             playSound('success');
         });
 
+        document.getElementById('studentNameInput').addEventListener('input', () => {
+            drawCertificate();
+        });
+
+        document.getElementById('certTrackInput').addEventListener('change', () => {
+            drawCertificate();
+        });
+
         document.getElementById('downloadCertBtn').addEventListener('click', () => {
+            const rawName = document.getElementById('studentNameInput').value.trim();
+            const fileName = rawName.length > 0 ? rawName.replace(/\s+/g, '_') : 'Student';
             const link = document.createElement('a');
-            link.download = `DarkAIs_Certificate_${document.getElementById('studentNameInput').value.replace(/\s+/g, '_')}.png`;
+            link.download = `DarkAIs_Certificate_${fileName}.png`;
             link.href = canvas.toDataURL();
             link.click();
             playSound('trade');
