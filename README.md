@@ -1,5 +1,9 @@
 <div align="center">
 
+<img src="assets/banner.jpg" alt="DarkAIs Algorithmic Trading Academy Banner" width="100%" style="border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.8);" />
+
+<br/><br/>
+
 # 🌑 DarkAIs Algorithmic Trading Academy
 **Institutional Quantitative Curriculum, In-Lesson Botaki Simulators, Pine Script Generator & Prop Firm Mastery**
 
