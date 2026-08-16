@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>12: Prop Firm Mastery — DarkAIs Academy</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;800&family=Roboto:wght@300;400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="../index.html">
+                <h1>🌑 DARKAIS <span class="accent">ACADEMY</span></h1>
+            </a>
+        </div>
+        <nav class="nav">
+            <a href="../index.html" class="nav-link">Curriculum</a>
+            <a href="../simulator.html" class="nav-link">Strategy Studio</a>
+            <a href="../glossary.html" class="nav-link">Dictionary</a>
+        </nav>
+        <div class="header-right">
+            <div class="progress-badge">
+                <span>Progress:</span>
+                <div class="bar"><div class="bar-fill" id="globalProgressBar" style="width: 0%;"></div></div>
+                <span id="globalProgressText">0%</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="lesson-layout">
+        <aside class="lesson-sidebar">
+            <div class="sidebar-title">Curriculum Track</div>
+            <ul class="sidebar-menu">
+                <li class="sidebar-item" data-sidebar-id="01"><a href="01_gateway.html"><span class="num">01</span> Gateway to Trading</a></li>
+                <li class="sidebar-item" data-sidebar-id="02"><a href="02_markets.html"><span class="num">02</span> Financial Markets</a></li>
+                <li class="sidebar-item" data-sidebar-id="03"><a href="03_forex.html"><span class="num">03</span> Forex Deep Dive</a></li>
+                <li class="sidebar-item" data-sidebar-id="04"><a href="04_candlesticks.html"><span class="num">04</span> Candlestick Secrets</a></li>
+                <li class="sidebar-item" data-sidebar-id="05"><a href="05_support_resistance.html"><span class="num">05</span> Support & Resistance</a></li>
+                <li class="sidebar-item" data-sidebar-id="06"><a href="06_indicators.html"><span class="num">06</span> Quantitative Indicators</a></li>
+                <li class="sidebar-item" data-sidebar-id="07"><a href="07_fundamentals.html"><span class="num">07</span> Fundamental News</a></li>
+                <li class="sidebar-item" data-sidebar-id="08"><a href="08_statistical_sentiment.html"><span class="num">08</span> Sentiment & Quant</a></li>
+                <li class="sidebar-item" data-sidebar-id="09"><a href="09_risk_psychology.html"><span class="num">09</span> Risk & Psychology</a></li>
+                <li class="sidebar-item" data-sidebar-id="10"><a href="10_apis_platforms.html"><span class="num">10</span> APIs & Platforms</a></li>
+                <li class="sidebar-item" data-sidebar-id="11"><a href="11_system_architecture.html"><span class="num">11</span> Bot Architecture</a></li>
+                <li class="sidebar-item active" data-sidebar-id="12"><a href="12_prop_firm_challenge.html"><span class="num">12</span> Prop Firm Mastery</a></li>
+            </ul>
+        </aside>
+
+        <main class="lesson-main">
+            <div class="breadcrumbs">
+                <a href="../index.html">Academy</a> <span>›</span> 
+                <a href="../index.html#part4">Part 4: Institutional Scaling</a> <span>›</span> 
+                <span>Course 12</span>
+            </div>
+
+            <div class="lesson-header">
+                <div class="lesson-meta">
+                    <span class="lesson-module-tag">MODULE 12 • PROP FIRM MASTERY</span>
+                    <span class="lesson-time">⏱️ 20 MIN READ</span>
+                </div>
+                <h1 class="lesson-title">Mastering Prop Firm Challenges: FTMO Rules & Evaluation</h1>
+                <p class="lesson-lead">Learn how proprietary trading firms like FTMO evaluate talent, the strict mathematical constraints of Maximum Daily Loss vs Max Total Drawdown, and how to configure bots to pass evaluation phases.</p>
+            </div>
+
+            <div class="lesson-body">
+                <h2>1. How Prop Trading Evaluations Work (FTMO Model)</h2>
+                <p>Proprietary trading firms allocate funded accounts (ranging from $10,000 up to $200,000+) to skilled traders who prove consistency through a 2-step evaluation process:</p>
+
+                <div style="overflow-x: auto; margin: 20px 0;">
+                    <table style="width: 100%; border-collapse: collapse; background: var(--bg-card); border: 1px solid var(--border); font-size: 14px;">
+                        <thead>
+                            <tr style="background: var(--bg-panel); color: var(--accent); text-align: left;">
+                                <th style="padding: 10px; border: 1px solid var(--border);">Evaluation Metric</th>
+                                <th style="padding: 10px; border: 1px solid var(--border);">FTMO Standard Rule</th>
+                                <th style="padding: 10px; border: 1px solid var(--border);">Algorithmic Safeguard</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid var(--border); font-weight:bold;">Profit Target</td>
+                                <td style="padding: 10px; border: 1px solid var(--border); color: var(--success);">+10% (Phase 1) / +5% (Phase 2)</td>
+                                <td style="padding: 10px; border: 1px solid var(--border);">Consistent 1:2 R:R trades</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid var(--border); font-weight:bold;">Maximum Daily Loss</td>
+                                <td style="padding: 10px; border: 1px solid var(--border); color: var(--danger);">-5% of starting day equity</td>
+                                <td style="padding: 10px; border: 1px solid var(--border);">Hard circuit-breaker stop at -3.5%</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid var(--border); font-weight:bold;">Maximum Total Loss</td>
+                                <td style="padding: 10px; border: 1px solid var(--border); color: var(--danger);">-10% overall drawdown</td>
+                                <td style="padding: 10px; border: 1px solid var(--border);">Cap aggregate active open risk to 2.5%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2>2. The Number One Reason Traders Fail Prop Challenges</h2>
+                <p>Over 88% of failed challenge attempts are caused by violating the <strong>Maximum Daily Loss</strong> rule—typically during a single volatile trading session where the trader chased losses. By automating your strategy with hard-coded circuit breakers, human emotion is removed and the rules are respected 100% of the time.</p>
+
+                <blockquote>
+                    "In prop trading, consistency and capital protection are rewarded far more than reckless high-stakes gambling." — DarkAIs Principle
+                </blockquote>
+
+                <h2>3. Knowledge Check Exam & Graduation</h2>
+                <div class="quiz-container" id="quizBox" data-locked="false">
+                    <div class="quiz-header">
+                        <div class="quiz-title">🎓 Final Academy Graduation Exam</div>
+                        <span style="font-size:12px; color:var(--accent);">100 XP</span>
+                    </div>
+                    <div class="quiz-question">On a $100,000 FTMO Challenge account with a 5% Maximum Daily Loss rule, what is the maximum equity drawdown permitted from the start of the day?</div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-idx="0">A) $10,000</div>
+                        <div class="quiz-option" data-idx="1">B) $5,000</div>
+                        <div class="quiz-option" data-idx="2">C) $1,000</div>
+                        <div class="quiz-option" data-idx="3">D) Unlimited until market close</div>
+                    </div>
+                    <div class="quiz-feedback" id="quizFeedback"></div>
+                    <button class="btn btn-primary" id="quizSubmitBtn" disabled>Submit Final Exam</button>
+                </div>
+
+                <div class="lesson-nav-footer">
+                    <a href="11_system_architecture.html" class="btn btn-outline">← Previous: Bot Architecture</a>
+                    <a href="../index.html" class="btn btn-primary">🎓 Back to Academy Overview</a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 DarkAIs Academy. Institutional-grade algorithmic education.</p>
+    </footer>
+
+    <script src="../js/academy.js"></script>
+    <script>
+        setupQuiz(1, "5% of $100,000 is $5,000. If equity falls below $95,000 at any point during that trading day, the challenge is failed.", "12");
+    </script>
+</body>
+</html>

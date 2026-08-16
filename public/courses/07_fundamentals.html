@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>07: Fundamental News — DarkAIs Academy</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;800&family=Roboto:wght@300;400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="../index.html">
+                <h1>🌑 DARKAIS <span class="accent">ACADEMY</span></h1>
+            </a>
+        </div>
+        <nav class="nav">
+            <a href="../index.html" class="nav-link">Curriculum</a>
+            <a href="../simulator.html" class="nav-link">Strategy Studio</a>
+            <a href="../glossary.html" class="nav-link">Dictionary</a>
+        </nav>
+        <div class="header-right">
+            <div class="progress-badge">
+                <span>Progress:</span>
+                <div class="bar"><div class="bar-fill" id="globalProgressBar" style="width: 0%;"></div></div>
+                <span id="globalProgressText">0%</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="lesson-layout">
+        <aside class="lesson-sidebar">
+            <div class="sidebar-title">Curriculum Track</div>
+            <ul class="sidebar-menu">
+                <li class="sidebar-item" data-sidebar-id="01"><a href="01_gateway.html"><span class="num">01</span> Gateway to Trading</a></li>
+                <li class="sidebar-item" data-sidebar-id="02"><a href="02_markets.html"><span class="num">02</span> Financial Markets</a></li>
+                <li class="sidebar-item" data-sidebar-id="03"><a href="03_forex.html"><span class="num">03</span> Forex Deep Dive</a></li>
+                <li class="sidebar-item" data-sidebar-id="04"><a href="04_candlesticks.html"><span class="num">04</span> Candlestick Secrets</a></li>
+                <li class="sidebar-item" data-sidebar-id="05"><a href="05_support_resistance.html"><span class="num">05</span> Support & Resistance</a></li>
+                <li class="sidebar-item" data-sidebar-id="06"><a href="06_indicators.html"><span class="num">06</span> Quantitative Indicators</a></li>
+                <li class="sidebar-item active" data-sidebar-id="07"><a href="07_fundamentals.html"><span class="num">07</span> Fundamental News</a></li>
+                <li class="sidebar-item" data-sidebar-id="08"><a href="08_statistical_sentiment.html"><span class="num">08</span> Sentiment & Quant</a></li>
+                <li class="sidebar-item" data-sidebar-id="09"><a href="09_risk_psychology.html"><span class="num">09</span> Risk & Psychology</a></li>
+                <li class="sidebar-item" data-sidebar-id="10"><a href="10_apis_platforms.html"><span class="num">10</span> APIs & Platforms</a></li>
+                <li class="sidebar-item" data-sidebar-id="11"><a href="11_system_architecture.html"><span class="num">11</span> Bot Architecture</a></li>
+                <li class="sidebar-item" data-sidebar-id="12"><a href="12_prop_firm_challenge.html"><span class="num">12</span> Prop Firm Mastery</a></li>
+            </ul>
+        </aside>
+
+        <main class="lesson-main">
+            <div class="breadcrumbs">
+                <a href="../index.html">Academy</a> <span>›</span> 
+                <a href="../index.html#part2">Part 2: Trading Analysis</a> <span>›</span> 
+                <span>Course 07</span>
+            </div>
+
+            <div class="lesson-header">
+                <div class="lesson-meta">
+                    <span class="lesson-module-tag">MODULE 07 • MACROECONOMICS</span>
+                    <span class="lesson-time">⏱️ 14 MIN READ</span>
+                </div>
+                <h1 class="lesson-title">Macroeconomics, News Sniping & Economic Calendars</h1>
+                <p class="lesson-lead">Learn how high-impact macroeconomic data releases (CPI, NFP, Interest Rates) create instantaneous liquidity shocks and how to build automated news sniper systems.</p>
+            </div>
+
+            <div class="lesson-body">
+                <h2>1. The Big Three Macroeconomic Catalysts</h2>
+                <ul>
+                    <li><strong>Interest Rate Decisions (Fed, ECB, BoE):</strong> The fundamental anchor of currency valuations. High rates attract foreign capital, appreciating the currency.</li>
+                    <li><strong>Consumer Price Index (CPI):</strong> Primary indicator of inflation. Unexpectedly hot inflation often triggers rate hike expectations, sending the currency rallying.</li>
+                    <li><strong>Non-Farm Payrolls (NFP):</strong> US employment report published on the 1st Friday of every month. Generates the most violent 60-second intraday spikes in the Forex market.</li>
+                </ul>
+
+                <h2>2. Algorithmic News Sniping Logic</h2>
+                <p>News trading bots consume fast JSON calendar feeds and evaluate deviation from consensus:</p>
+                <div class="code-block">
+                    <div class="code-header">
+                        <span>Python (News Delta Parser)</span>
+                        <button class="copy-btn" onclick="copyCode(this)">COPY</button>
+                    </div>
+                    <pre><code>def evaluate_news_release(event_name, actual_value, forecast_value, threshold_delta):
+    delta = actual_value - forecast_value
+    print(f"[{event_name}] Actual: {actual_value} | Forecast: {forecast_value} | Delta: {delta:+.2f}")
+    
+    if delta >= threshold_delta:
+        return "STRONG_BUY"
+    elif delta <= -threshold_delta:
+        return "STRONG_SELL"
+    return "NO_ACTION"</code></pre>
+                </div>
+
+                <h2>3. Knowledge Check Exam</h2>
+                <div class="quiz-container" id="quizBox" data-locked="false">
+                    <div class="quiz-header">
+                        <div class="quiz-title">📝 Chapter 07 Certification Quiz</div>
+                        <span style="font-size:12px; color:var(--accent);">100 XP</span>
+                    </div>
+                    <div class="quiz-question">When US NFP (Non-Farm Payrolls) numbers come out significantly higher than forecast, what is the usual immediate market reaction on USD?</div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-idx="0">A) USD immediately strengthens as economic growth signals tight monetary policy</div>
+                        <div class="quiz-option" data-idx="1">B) USD immediately drops to zero</div>
+                        <div class="quiz-option" data-idx="2">C) Markets halt permanently</div>
+                        <div class="quiz-option" data-idx="3">D) Gold rallies aggressively</div>
+                    </div>
+                    <div class="quiz-feedback" id="quizFeedback"></div>
+                    <button class="btn btn-primary" id="quizSubmitBtn" disabled>Submit Answer</button>
+                </div>
+
+                <div class="lesson-nav-footer">
+                    <a href="06_indicators.html" class="btn btn-outline">← Previous: Indicators</a>
+                    <a href="08_statistical_sentiment.html" class="btn btn-primary">Next: Sentiment & Quant →</a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 DarkAIs Academy. Institutional-grade algorithmic education.</p>
+    </footer>
+
+    <script src="../js/academy.js"></script>
+    <script>
+        setupQuiz(0, "Stronger-than-expected labor data signals economic resilience and higher interest rate outlooks, causing rapid institutional inflows into the US Dollar.", "07");
+    </script>
+</body>
+</html>

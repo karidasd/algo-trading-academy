@@ -3,90 +3,332 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DarkAIs Academy</title>
+    <title>DarkAIs Academy — Institutional Algorithmic Trading & Prop Firm Mastery</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;800;900&family=Roboto:wght@300;400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <header class="header">
         <div class="logo">
-            <h1>🌑 DarkAIs <span class="accent">Academy</span></h1>
+            <a href="index.html">
+                <h1>🌑 DARKAIS <span class="accent">ACADEMY</span></h1>
+            </a>
         </div>
         <nav class="nav">
-            <a href="index.html" class="active">Home</a>
-            <a href="lesson1.html">Forex Basics</a>
-            <a href="lesson2.html">Technical Analysis</a>
+            <a href="index.html" class="nav-link active">Curriculum</a>
+            <a href="simulator.html" class="nav-link">Strategy Studio</a>
+            <a href="glossary.html" class="nav-link">Dictionary</a>
         </nav>
+        <div class="header-right">
+            <div class="progress-badge">
+                <span>Progress:</span>
+                <div class="bar"><div class="bar-fill" id="globalProgressBar" style="width: 0%;"></div></div>
+                <span id="globalProgressText">0% (0/12)</span>
+            </div>
+        </div>
     </header>
 
-    <main class="hero">
+    <!-- HERO SECTION -->
+    <div class="hero-wrapper">
         <div class="hero-content">
-            <h2>Welcome to DarkAIs Academy</h2>
-            <p>Master the financial markets and learn how to build automated trading bots, just like the pros.</p>
-            <a href="lesson1.html" class="btn btn-primary">Start Learning</a>
+            <span class="hero-tag">INSTITUTIONAL QUANTITATIVE EDUCATION</span>
+            <h1 class="hero-title">Master Financial Markets & <span class="glow">Build Automated Trading Bots</span></h1>
+            <p class="hero-desc">An interactive, end-to-end trading academy inspired by top proprietary trading firms. Study institutional market microstructure, quantitative indicators, risk mechanics, and test live automated botakis in real-time.</p>
+            <div class="hero-actions">
+                <a href="courses/01_gateway.html" class="btn btn-primary">▶ Start Course 01</a>
+                <a href="simulator.html" class="btn btn-outline">⚡ Strategy Sandbox</a>
+                <a href="glossary.html" class="btn btn-outline">📖 Trader's Dictionary</a>
+            </div>
         </div>
+    </div>
+
+    <!-- STATS STRIP -->
+    <div class="stats-strip">
+        <div class="stat-card">
+            <div class="stat-icon">📚</div>
+            <div class="stat-info">
+                <h4>12 Modules</h4>
+                <p>Complete Curriculum</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">🤖</div>
+            <div class="stat-info">
+                <h4>Botaki Simulators</h4>
+                <p>Live In-Lesson Bots</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">📈</div>
+            <div class="stat-info">
+                <h4>Quant Sandbox</h4>
+                <p>1,000-Tick Backtester</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">🏆</div>
+            <div class="stat-info">
+                <h4>Prop Firm Ready</h4>
+                <p>FTMO Challenge Strategy</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CURRICULUM -->
+    <main class="academy-container">
+        <!-- PART 1 -->
+        <section id="part1">
+            <div class="track-header">
+                <div class="track-title">
+                    <span>Part 1: Foundations & Market Mechanics</span>
+                    <span class="track-badge">3 MODULES</span>
+                </div>
+            </div>
+            <div class="course-grid">
+                <a href="courses/01_gateway.html" class="course-card" data-lesson-id="01">
+                    <div class="course-card-top">
+                        <span class="course-number">COURSE 01</span>
+                        <span class="course-duration">⏱️ 12 MIN</span>
+                    </div>
+                    <h3>Gateway to Trading & Order Execution</h3>
+                    <p>Central Limit Order Books, Bid/Ask spreads, Market vs Limit orders, and programmatic order routing.</p>
+                    <div class="course-tags">
+                        <span class="tag">Order Book</span>
+                        <span class="tag">Execution</span>
+                        <span class="tag">Slippage</span>
+                    </div>
+                    <div class="course-footer">
+                        <span>Start Lesson →</span>
+                    </div>
+                </a>
+
+                <a href="courses/02_markets.html" class="course-card" data-lesson-id="02">
+                    <div class="course-card-top">
+                        <span class="course-number">COURSE 02</span>
+                        <span class="course-duration">⏱️ 14 MIN</span>
+                    </div>
+                    <h3>Financial Markets & Asset Dynamics</h3>
+                    <p>Comparative volume, trading hours, and algorithmic suitability across Forex, Equities, and Crypto.</p>
+                    <div class="course-tags">
+                        <span class="tag">Forex</span>
+                        <span class="tag">Stocks</span>
+                        <span class="tag">Crypto</span>
+                    </div>
+                    <div class="course-footer">
+                        <span>Start Lesson →</span>
+                    </div>
+                </a>
+
+                <a href="courses/03_forex.html" class="course-card" data-lesson-id="03">
+                    <div class="course-card-top">
+                        <span class="course-number">COURSE 03</span>
+                        <span class="course-duration">⏱️ 15 MIN</span>
+                    </div>
+                    <h3>Forex Anatomy: Pips, Lots & Leverage</h3>
+                    <p>Currency quotation math, global sessions, margin calculations, and dynamic lot-sizing algorithms.</p>
+                    <div class="course-tags">
+                        <span class="tag">Pips & Lots</span>
+                        <span class="tag">Leverage</span>
+                        <span class="tag">Sessions</span>
+                    </div>
+                    <div class="course-footer">
+                        <span>Start Lesson →</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- PART 2 -->
+        <section id="part2" style="margin-top: 40px;">
+            <div class="track-header">
+                <div class="track-title">
+                    <span>Part 2: Technical & Quantitative Analysis</span>
+                    <span class="track-badge">3 MODULES</span>
+                </div>
+            </div>
+            <div class="course-grid">
+                <a href="courses/04_candlesticks.html" class="course-card" data-lesson-id="04">
+                    <div class="course-card-top">
+                        <span class="course-number">COURSE 04</span>
+                        <span class="course-duration">⏱️ 16 MIN</span>
+                    </div>
+                    <h3>Candlestick Secrets & Pattern Recognition</h3>
+                    <p>OHLC data parsing, pinbars, liquidity wicks, and programmatic candlestick pattern detectors.</p>
+                    <div class="course-tags">
+                        <span class="tag">OHLC</span>
+                        <span class="tag">Price Action</span>
+                        <span class="tag">Pinbars</span>
+                    </div>
+                    <div class="course-footer">
+                        <span>Start Lesson →</span>
+                    </div>
+                </a>
+
+                <a href="courses/05_support_resistance.html" class="course-card" data-lesson-id="05">
+                    <div class="course-card-top">
+                        <span class="course-number">COURSE 05</span>
+                        <span class="course-duration">⏱️ 18 MIN</span>
+                    </div>
+                    <h3>Support & Resistance / Order Blocks</h3>
+                    <p>Institutional liquidity zones, polarity flips, and an interactive live <strong>S&R Range Botaki</strong> simulator.</p>
+                    <div class="course-tags">
+                        <span class="tag bot">🤖 Botaki Live</span>
+                        <span class="tag">Support/Resistance</span>
+                        <span class="tag">Order Blocks</span>
+                    </div>
+                    <div class="course-footer">
+                        <span>Start Lesson →</span>
+                    </div>
+                </a>
+
+                <a href="courses/06_indicators.html" class="course-card" data-lesson-id="06">
+                    <div class="course-card-top">
+                        <span class="course-number">COURSE 06</span>
+                        <span class="course-duration">⏱️ 20 MIN</span>
+                    </div>
+                    <h3>Quantitative Indicators: SMA, RSI & MACD</h3>
+                    <p>Mathematical formulas, lag reduction, and an interactive <strong>Mean Reversion SMA Botaki</strong> with live chart.</p>
+                    <div class="course-tags">
+                        <span class="tag bot">🤖 Botaki Live</span>
+                        <span class="tag">SMA / EMA</span>
+                        <span class="tag">RSI Math</span>
+                    </div>
+                    <div class="course-footer">
+                        <span>Start Lesson →</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- PART 3 -->
+        <section id="part3" style="margin-top: 40px;">
+            <div class="track-header">
+                <div class="track-title">
+                    <span>Part 3: Fundamental & Quantitative Edge</span>
+                    <span class="track-badge">3 MODULES</span>
+                </div>
+            </div>
+            <div class="course-grid">
+                <a href="courses/07_fundamentals.html" class="course-card" data-lesson-id="07">
+                    <div class="course-card-top">
+                        <span class="course-number">COURSE 07</span>
+                        <span class="course-duration">⏱️ 14 MIN</span>
+                    </div>
+                    <h3>Macroeconomics & News Sniping</h3>
+                    <p>Interest rates, CPI, NFP catalysts, and automated news delta parsers for instant news sniping.</p>
+                    <div class="course-tags">
+                        <span class="tag">CPI & NFP</span>
+                        <span class="tag">Central Banks</span>
+                        <span class="tag">News Sniper</span>
+                    </div>
+                    <div class="course-footer">
+                        <span>Start Lesson →</span>
+                    </div>
+                </a>
+
+                <a href="courses/08_statistical_sentiment.html" class="course-card" data-lesson-id="08">
+                    <div class="course-card-top">
+                        <span class="course-number">COURSE 08</span>
+                        <span class="course-duration">⏱️ 17 MIN</span>
+                    </div>
+                    <h3>Sentiment Analysis & Statistical Arbitrage</h3>
+                    <p>Retail crowd positioning, contrarian indicator models, and cointegrated pairs trading with Z-Scores.</p>
+                    <div class="course-tags">
+                        <span class="tag">Sentiment</span>
+                        <span class="tag">Contrarian</span>
+                        <span class="tag">Pairs Arbitrage</span>
+                    </div>
+                    <div class="course-footer">
+                        <span>Start Lesson →</span>
+                    </div>
+                </a>
+
+                <a href="courses/09_risk_psychology.html" class="course-card" data-lesson-id="09">
+                    <div class="course-card-top">
+                        <span class="course-number">COURSE 09</span>
+                        <span class="course-duration">⏱️ 22 MIN</span>
+                    </div>
+                    <h3>Risk Management & Psychological Bias</h3>
+                    <p>The math of drawdowns, the 90/90/90 rule, asymmetric reward-to-risk, and emotional immunity via bots.</p>
+                    <div class="course-tags">
+                        <span class="tag">Risk Math</span>
+                        <span class="tag">Drawdown</span>
+                        <span class="tag">90/90/90</span>
+                    </div>
+                    <div class="course-footer">
+                        <span>Start Lesson →</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- PART 4 -->
+        <section id="part4" style="margin-top: 40px;">
+            <div class="track-header">
+                <div class="track-title">
+                    <span>Part 4: Infrastructure & Institutional Scaling</span>
+                    <span class="track-badge">3 MODULES</span>
+                </div>
+            </div>
+            <div class="course-grid">
+                <a href="courses/10_apis_platforms.html" class="course-card" data-lesson-id="10">
+                    <div class="course-card-top">
+                        <span class="course-number">COURSE 10</span>
+                        <span class="course-duration">⏱️ 16 MIN</span>
+                    </div>
+                    <h3>Broker APIs, WebSockets & Platforms</h3>
+                    <p>MetaTrader 5 Expert Advisors, cTrader cBots, WebSockets price streams, and latency optimization.</p>
+                    <div class="course-tags">
+                        <span class="tag">WebSockets</span>
+                        <span class="tag">MT5 / EA</span>
+                        <span class="tag">REST API</span>
+                    </div>
+                    <div class="course-footer">
+                        <span>Start Lesson →</span>
+                    </div>
+                </a>
+
+                <a href="courses/11_system_architecture.html" class="course-card" data-lesson-id="11">
+                    <div class="course-card-top">
+                        <span class="course-number">COURSE 11</span>
+                        <span class="course-duration">⏱️ 25 MIN</span>
+                    </div>
+                    <h3>Bot Architecture & Full Code Templates</h3>
+                    <p>The complete 4-tier bot framework with downloadable, production-ready Node.js & Python starter code.</p>
+                    <div class="course-tags">
+                        <span class="tag">Architecture</span>
+                        <span class="tag">Node.js</span>
+                        <span class="tag">Python Starter</span>
+                    </div>
+                    <div class="course-footer">
+                        <span>Start Lesson →</span>
+                    </div>
+                </a>
+
+                <a href="courses/12_prop_firm_challenge.html" class="course-card" data-lesson-id="12">
+                    <div class="course-card-top">
+                        <span class="course-number">COURSE 12</span>
+                        <span class="course-duration">⏱️ 20 MIN</span>
+                    </div>
+                    <h3>Prop Firm Mastery & FTMO Challenges</h3>
+                    <p>Passing funded evaluations, maximum daily loss safeguards, consistency rules, and scaling to $200k+ accounts.</p>
+                    <div class="course-tags">
+                        <span class="tag">FTMO Rules</span>
+                        <span class="tag">Funded Accounts</span>
+                        <span class="tag">Graduation</span>
+                    </div>
+                    <div class="course-footer">
+                        <span>Start Lesson →</span>
+                    </div>
+                </a>
+            </div>
+        </section>
     </main>
 
-    <section class="courses-section">
-        <h3 class="section-title">Part 1: Basics</h3>
-        <div class="courses-grid">
-            <a href="lesson1.html" class="course-card">
-                <div class="course-number">01</div>
-                <h4>Gateway to Trading</h4>
-                <p>Introduction to trading, mean reversion, and your first automated execution.</p>
-            </a>
-            <a href="lesson_02.html" class="course-card">
-                <div class="course-number">02</div>
-                <h4>Financial Markets</h4>
-                <p>Understanding instruments, liquidity, and trading terminology.</p>
-            </a>
-            <a href="lesson_03.html" class="course-card">
-                <div class="course-number">03</div>
-                <h4>Forex</h4>
-                <p>Forex market structure, currency pairs, pips, and margin trading.</p>
-            </a>
-        </div>
-    </section>
-
-    <section class="courses-section" style="padding-top:0;">
-        <h3 class="section-title">Part 2: Trading Analysis</h3>
-        <div class="courses-grid">
-            <a href="lesson2.html" class="course-card">
-                <div class="course-number">04</div>
-                <h4>Technical Analysis</h4>
-                <p>Candlesticks, charts, Support & Resistance, and automated range trading.</p>
-            </a>
-            <a href="lesson_05.html" class="course-card">
-                <div class="course-number">05</div>
-                <h4>Fundamental Analysis</h4>
-                <p>Economic news, calendars, interest rates, and geopolitical events.</p>
-            </a>
-            <a href="lesson_06.html" class="course-card">
-                <div class="course-number">06</div>
-                <h4>Statistical & Sentiment</h4>
-                <p>Using data, volume profiles, and market sentiment for your edge.</p>
-            </a>
-        </div>
-    </section>
-
-    <section class="courses-section" style="padding-top:0;">
-        <h3 class="section-title">Part 3: Advanced & Platforms</h3>
-        <div class="courses-grid">
-            <a href="lesson_07.html" class="course-card">
-                <div class="course-number">07</div>
-                <h4>Trading Platforms</h4>
-                <p>MetaTrader, cTrader, API integration, and webhook setups.</p>
-            </a>
-            <a href="lesson_08.html" class="course-card">
-                <div class="course-number">08</div>
-                <h4>Putting it all together</h4>
-                <p>Building your complete, deployable automated trading system.</p>
-            </a>
-        </div>
-    </section>
-
     <footer>
-        <p>&copy; 2026 DarkAIs Academy. Educational purposes only.</p>
+        <p>&copy; 2026 DarkAIs Academy. Institutional-grade quantitative & algorithmic education. All rights reserved.</p>
     </footer>
+
+    <script src="js/academy.js"></script>
 </body>
 </html>

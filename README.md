@@ -1,0 +1,88 @@
+<div align="center">
+
+# 🌑 DarkAIs Algorithmic Trading Academy
+**Institutional Quantitative Trading Curriculum, In-Lesson Botaki Simulators & Prop Firm Mastery**
+
+[![Node.js](https://img.shields.io/badge/Node.js-18+-43853D?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
+[![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
+[![Curriculum](https://img.shields.io/badge/Modules-12%20Interactive-00F0FF?style=for-the-badge)]()
+[![Prop Firm Ready](https://img.shields.io/badge/Prop%20Firm-FTMO%20Compatible-FFB800?style=for-the-badge)]()
+
+<br/>
+
+</div>
+
+---
+
+## 📖 Overview
+**DarkAIs Academy** is a full-stack, open-source educational platform designed to take aspiring quantitative traders from absolute foundational concepts to deploying production-ready automated trading algorithms. 
+
+Inspired by top proprietary trading firms like **FTMO**, the platform bridges the gap between theoretical market mechanics and practical algorithmic execution by embedding live, client-side **Botaki trading simulators** directly within the lessons.
+
+---
+
+## ✨ Key Features
+
+- 🎓 **12 Full-Scale Modules**: From Central Limit Order Books and Forex pips to Quantitative Indicators and passing Prop Firm evaluation challenges.
+- 🤖 **Interactive Botaki Simulators**: Real-time simulated trading engines (Mean Reversion, S&R Range, Momentum) executing live ticks right inside the browser.
+- 📈 **Strategy Sandbox & Backtester**: A dedicated backtest studio capable of simulating 1,000-candle runs with equity curve visualization, Sharpe ratio estimations, win rates, and drawdowns.
+- 📝 **Certification Quizzes**: Interactive knowledge-check exams at the conclusion of every lesson with instant grading and audio feedback.
+- 📊 **Progress Persistence**: Client-side progress tracking saving completed chapters and XP across sessions.
+- 📚 **Quant & Trader's Dictionary**: A searchable vault defining 40+ key terms (Slippage, Drawdown, Order Blocks, MEV, Lot Sizing, FIX protocol).
+- 💻 **Production-Ready Code Snippets**: Copyable, clean Python and Node.js code snippets ready to be hooked up to broker APIs.
+
+---
+
+## 🗺️ Curriculum Blueprint
+
+| Part | Module | Title | Core Focus |
+| :--- | :--- | :--- | :--- |
+| **Part 1: Foundations** | **01** | **Gateway to Trading** | Order Books, Bid/Ask spread, Market vs Limit execution. |
+| | **02** | **Financial Markets** | Comparative dynamics across Forex, Equities, and Crypto. |
+| | **03** | **Forex Deep Dive** | Pips, lots, leverage math, and dynamic lot sizing algorithms. |
+| **Part 2: Technical Analysis** | **04** | **Candlestick Secrets** | OHLC parsing, liquidity wicks, and programmatic pinbar detectors. |
+| | **05** | **Support & Resistance** | Institutional order blocks with live **S&R Range Botaki**. |
+| | **06** | **Quantitative Indicators** | SMA/EMA math, RSI momentum with live **Mean Reversion Botaki**. |
+| **Part 3: Quant Edge** | **07** | **Fundamental News** | CPI, NFP catalysts, and automated news delta sniper algorithms. |
+| | **08** | **Sentiment & Quant** | Retail positioning ratios and statistical cointegration pairs trading. |
+| | **09** | **Risk & Psychology** | Drawdown math, the 90/90/90 rule, and emotional bias immunity. |
+| **Part 4: Infrastructure** | **10** | **APIs & Platforms** | WebSockets, REST APIs, MT5 Expert Advisors, and FIX protocol. |
+| | **11** | **Bot Architecture** | Full 4-tier trading bot system with complete Python & Node.js starters. |
+| | **12** | **Prop Firm Mastery** | Passing $200k+ FTMO challenges, daily drawdown safeguards. |
+
+---
+
+## 🚀 Quick Start (Local Setup)
+
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/karidasd/algo-trading-academy.git
+   cd algo-trading-academy
+   ```
+
+2. **Install Dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Start the Academy Portal:**
+   ```bash
+   npm start
+   ```
+
+4. **Access the Academy:**
+   Open your browser at [http://localhost:3000](http://localhost:3000).
+
+---
+
+## ⚠️ Risk Disclaimer
+**This software and educational content is strictly for educational and simulation purposes.** 
+> **The 90/90/90 Rule:** 90% of retail traders lose 90% of their starting capital in their first 90 days. 
+
+Trading financial markets and cryptocurrencies carries substantial risk. Never risk real capital you cannot afford to lose, and always backtest algorithms thoroughly in a paper/demo environment before live deployment.
+
+---
+
+<div align="center">
+  <i>Built with precision for the next generation of quantitative and algorithmic traders.</i>
+</div>

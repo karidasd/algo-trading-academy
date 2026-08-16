@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trader's & Quant Glossary — DarkAIs Academy</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;800&family=Roboto:wght@300;400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="index.html">
+                <h1>🌑 DARKAIS <span class="accent">ACADEMY</span></h1>
+            </a>
+        </div>
+        <nav class="nav">
+            <a href="index.html" class="nav-link">Curriculum</a>
+            <a href="simulator.html" class="nav-link">Strategy Studio</a>
+            <a href="glossary.html" class="nav-link active">Dictionary</a>
+        </nav>
+        <div class="header-right">
+            <div class="progress-badge">
+                <span>Progress:</span>
+                <div class="bar"><div class="bar-fill" id="globalProgressBar" style="width: 0%;"></div></div>
+                <span id="globalProgressText">0%</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="hero-wrapper" style="padding: 50px 20px 40px;">
+        <div class="hero-content">
+            <span class="hero-tag">REFERENCE VAULT</span>
+            <h1 class="hero-title">Trader's & <span class="glow">Quant Dictionary</span></h1>
+            <p class="hero-desc">Over 40+ fundamental terms, algorithmic metrics, market microstructure definitions, and prop firm terminology.</p>
+        </div>
+    </div>
+
+    <div class="academy-container">
+        <div class="glossary-search-box">
+            <input type="text" id="glossarySearch" class="glossary-input" placeholder="🔍 Search terms (e.g., Slippage, Sharpe Ratio, Lot, MEV, Drawdown, Pip, Order Block)...">
+        </div>
+
+        <div class="glossary-grid" id="glossaryGrid">
+            <!-- Populated dynamically / statically -->
+            <div class="glossary-card" data-term="pip point percentage">
+                <h3>Pip (Point in Percentage)</h3>
+                <p>The smallest standardized unit of price change in Forex (usually 0.0001 for EUR/USD). For a standard 1.0 lot, 1 pip equals roughly $10 USD.</p>
+            </div>
+            <div class="glossary-card" data-term="slippage execution latency">
+                <h3>Slippage</h3>
+                <p>The difference between the expected price of a trade and the price at which the order is actually executed by the broker or DEX pool due to volatility or latency.</p>
+            </div>
+            <div class="glossary-card" data-term="spread bid ask liquidity">
+                <h3>Spread</h3>
+                <p>The gap between the Bid (highest price a buyer will pay) and the Ask (lowest price a seller will accept). It represents the immediate cost of entering a position.</p>
+            </div>
+            <div class="glossary-card" data-term="sharpe ratio quant risk return">
+                <h3>Sharpe Ratio</h3>
+                <p>A metric measuring risk-adjusted return: (Portfolio Return - Risk Free Rate) / Standard Deviation. A Sharpe ratio above 2.0 indicates an institutional-grade algorithmic strategy.</p>
+            </div>
+            <div class="glossary-card" data-term="maximum drawdown peak equity">
+                <h3>Max Drawdown (MDD)</h3>
+                <p>The maximum observed percentage loss from a peak to a trough of a portfolio before a new peak is attained. Crucial for passing Prop Firm challenges (often capped at 10%).</p>
+            </div>
+            <div class="glossary-card" data-term="mev maximal extractable value frontrun">
+                <h3>MEV (Maximal Extractable Value)</h3>
+                <p>In decentralized finance (Solana / Ethereum), value extracted by block producers or searchers through front-running, back-running, or sandwiching decentralized trades.</p>
+            </div>
+            <div class="glossary-card" data-term="order block smart money ict">
+                <h3>Order Block (OB)</h3>
+                <p>Institutional footprint on a candlestick chart where banks or smart money accumulated large positions before an explosive expansion in price.</p>
+            </div>
+            <div class="glossary-card" data-term="leverage margin borrowing">
+                <h3>Leverage</h3>
+                <p>A loan provided by a broker enabling traders to control larger position sizes with small capital (e.g. 1:100 leverage turns a $1,000 deposit into $100,000 purchasing power).</p>
+            </div>
+            <div class="glossary-card" data-term="mean reversion sma ema average">
+                <h3>Mean Reversion</h3>
+                <p>A financial theory suggesting that asset prices and historical returns eventually return back to their long-term average or mean over time.</p>
+            </div>
+            <div class="glossary-card" data-term="trailing stop loss lock profits">
+                <h3>Trailing Stop Loss</h3>
+                <p>A dynamic risk management order that automatically shifts in the direction of a winning trade by a predetermined distance, locking in profits as price advances.</p>
+            </div>
+            <div class="glossary-card" data-term="api application programming interface websocket rest">
+                <h3>REST API & WebSockets</h3>
+                <p>Protocols enabling automated bots to communicate with broker servers: REST is used for transactional execution (Buy/Sell), while WebSockets stream continuous tick-level live prices.</p>
+            </div>
+            <div class="glossary-card" data-term="90 90 90 rule risk retail failure">
+                <h3>The 90/90/90 Rule</h3>
+                <p>A widely cited financial market statistic: 90% of new retail traders lose 90% of their starting capital within their first 90 days due to over-leveraging and lack of emotional discipline.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 DarkAIs Academy. Institutional-grade algorithmic education.</p>
+    </footer>
+
+    <script src="js/academy.js"></script>
+    <script>
+        const searchInput = document.getElementById('glossarySearch');
+        const cards = document.querySelectorAll('.glossary-card');
+        
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+            cards.forEach(card => {
+                const text = (card.innerText + " " + (card.dataset.term || "")).toLowerCase();
+                card.style.display = text.includes(query) ? 'block' : 'none';
+            });
+        });
+    </script>
+</body>
+</html>

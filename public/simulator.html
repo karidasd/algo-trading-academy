@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strategy Sandbox & Backtest Studio — DarkAIs Academy</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;800&family=Roboto:wght@300;400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="index.html">
+                <h1>🌑 DARKAIS <span class="accent">ACADEMY</span></h1>
+            </a>
+        </div>
+        <nav class="nav">
+            <a href="index.html" class="nav-link">Curriculum</a>
+            <a href="simulator.html" class="nav-link active">Strategy Studio</a>
+            <a href="glossary.html" class="nav-link">Dictionary</a>
+        </nav>
+        <div class="header-right">
+            <div class="progress-badge">
+                <span>Progress:</span>
+                <div class="bar"><div class="bar-fill" id="globalProgressBar" style="width: 0%;"></div></div>
+                <span id="globalProgressText">0%</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="hero-wrapper" style="padding: 40px 20px 30px;">
+        <div class="hero-content">
+            <span class="hero-tag">QUANT SANDBOX</span>
+            <h1 class="hero-title">Algorithmic <span class="glow">Strategy Studio</span></h1>
+            <p class="hero-desc">Configure your quantitative trading rules, simulate high-frequency backtests against 1,000 candles, and analyze win rates and drawdowns.</p>
+        </div>
+    </div>
+
+    <div class="academy-container">
+        <div style="display: grid; grid-template-columns: 320px 1fr; gap: 24px; margin-top: 10px;">
+            <!-- Controls Panel -->
+            <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 24px;">
+                <h3 style="font-size: 16px; margin-bottom: 20px; color: var(--accent);">⚙️ Bot Parameters</h3>
+                
+                <div style="margin-bottom: 18px;">
+                    <label style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 6px;">STRATEGY MODEL</label>
+                    <select id="simStrategy" style="width: 100%; background: var(--bg-panel); color: var(--text-primary); border: 1px solid var(--border); padding: 10px; border-radius: var(--radius-sm);">
+                        <option value="mean_reversion">Mean Reversion (Bollinger/SMA)</option>
+                        <option value="momentum_breakout">Momentum Trend Breakout</option>
+                        <option value="grid_scalp">Micro-Grid Liquidity Scalper</option>
+                    </select>
+                </div>
+
+                <div style="margin-bottom: 18px;">
+                    <label style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 6px;">STARTING CAPITAL ($)</label>
+                    <input type="number" id="simCapital" value="10000" style="width: 100%; background: var(--bg-panel); color: var(--text-primary); border: 1px solid var(--border); padding: 10px; border-radius: var(--radius-sm);">
+                </div>
+
+                <div style="margin-bottom: 18px;">
+                    <label style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 6px;">TAKE PROFIT (%)</label>
+                    <input type="number" id="simTP" value="1.5" step="0.1" style="width: 100%; background: var(--bg-panel); color: var(--text-primary); border: 1px solid var(--border); padding: 10px; border-radius: var(--radius-sm);">
+                </div>
+
+                <div style="margin-bottom: 18px;">
+                    <label style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 6px;">STOP LOSS (%)</label>
+                    <input type="number" id="simSL" value="0.8" step="0.1" style="width: 100%; background: var(--bg-panel); color: var(--text-primary); border: 1px solid var(--border); padding: 10px; border-radius: var(--radius-sm);">
+                </div>
+
+                <div style="margin-bottom: 24px;">
+                    <label style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 6px;">RISK PER TRADE (%)</label>
+                    <input type="number" id="simRisk" value="1.0" step="0.5" style="width: 100%; background: var(--bg-panel); color: var(--text-primary); border: 1px solid var(--border); padding: 10px; border-radius: var(--radius-sm);">
+                </div>
+
+                <button id="runBacktestBtn" class="btn btn-primary" style="width: 100%;">▶ Run Backtest (100 Trades)</button>
+            </div>
+
+            <!-- Results & Chart Panel -->
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+                <!-- KPI Stats -->
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;">
+                    <div class="stat-card" style="padding: 16px;">
+                        <div class="stat-info">
+                            <p>Win Rate</p>
+                            <h4 id="statWinrate" style="color: var(--accent);">—</h4>
+                        </div>
+                    </div>
+                    <div class="stat-card" style="padding: 16px;">
+                        <div class="stat-info">
+                            <p>Profit Factor</p>
+                            <h4 id="statProfitFactor" style="color: var(--success);">—</h4>
+                        </div>
+                    </div>
+                    <div class="stat-card" style="padding: 16px;">
+                        <div class="stat-info">
+                            <p>Total PnL</p>
+                            <h4 id="statNetProfit">—</h4>
+                        </div>
+                    </div>
+                    <div class="stat-card" style="padding: 16px;">
+                        <div class="stat-info">
+                            <p>Max Drawdown</p>
+                            <h4 id="statMaxDD" style="color: var(--danger);">—</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Equity Curve Canvas -->
+                <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 20px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                        <h4 style="font-size: 14px; color: var(--text-secondary);">📈 Simulated Portfolio Equity Curve</h4>
+                        <span id="candleCountTag" style="font-size: 12px; color: var(--text-muted);" class="mono">Ready</span>
+                    </div>
+                    <canvas id="equityCanvas" data-height="240" style="width: 100%; height: 240px; display: block;"></canvas>
+                </div>
+
+                <!-- Execution Feed -->
+                <div class="terminal-window" id="backtestLog" style="height: 160px;">
+                    <div class="term-line"><span class="term-time">[System]</span><span class="term-info"> Sandbox ready. Adjust parameters and click Run Backtest.</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 DarkAIs Academy. Institutional-grade algorithmic education.</p>
+    </footer>
+
+    <script src="js/academy.js"></script>
+    <script src="js/chart-widget.js"></script>
+    <script>
+        const canvas = document.getElementById('equityCanvas');
+        const ctx = canvas.getContext('2d');
+        const logEl = document.getElementById('backtestLog');
+
+        function resizeCanvas() {
+            canvas.width = canvas.parentElement.getBoundingClientRect().width - 40;
+            canvas.height = 240;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        function drawEquityCurve(equityData) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            if (!equityData || equityData.length < 2) return;
+
+            const padding = 30;
+            const w = canvas.width;
+            const h = canvas.height;
+            const min = Math.min(...equityData);
+            const max = Math.max(...equityData);
+            const range = (max - min) || 1;
+
+            const getY = (val) => h - padding - ((val - min) / range) * (h - padding * 2);
+            const getX = (idx) => padding + (idx / (equityData.length - 1)) * (w - padding * 2);
+
+            // Grid lines
+            ctx.strokeStyle = '#1E293B';
+            ctx.lineWidth = 1;
+            ctx.setLineDash([4, 4]);
+            for (let i = 1; i <= 3; i++) {
+                const y = (h / 4) * i;
+                ctx.beginPath();
+                ctx.moveTo(padding, y);
+                ctx.lineTo(w - padding, y);
+                ctx.stroke();
+            }
+            ctx.setLineDash([]);
+
+            // Draw line
+            ctx.beginPath();
+            ctx.moveTo(getX(0), getY(equityData[0]));
+            for (let i = 1; i < equityData.length; i++) {
+                ctx.lineTo(getX(i), getY(equityData[i]));
+            }
+            ctx.strokeStyle = '#00F0FF';
+            ctx.lineWidth = 2.5;
+            ctx.stroke();
+
+            // Fill area
+            ctx.lineTo(getX(equityData.length - 1), h - padding);
+            ctx.lineTo(getX(0), h - padding);
+            ctx.closePath();
+            const grad = ctx.createLinearGradient(0, 0, 0, h);
+            grad.addColorStop(0, 'rgba(0, 240, 255, 0.25)');
+            grad.addColorStop(1, 'rgba(0, 240, 255, 0)');
+            ctx.fillStyle = grad;
+            ctx.fill();
+        }
+
+        document.getElementById('runBacktestBtn').addEventListener('click', () => {
+            const capital = parseFloat(document.getElementById('simCapital').value) || 10000;
+            const tpPct = parseFloat(document.getElementById('simTP').value) || 1.5;
+            const slPct = parseFloat(document.getElementById('simSL').value) || 0.8;
+            const riskPct = parseFloat(document.getElementById('simRisk').value) || 1.0;
+            const strat = document.getElementById('simStrategy').value;
+
+            logEl.innerHTML = '';
+            let currentEquity = capital;
+            let peakEquity = capital;
+            let maxDD = 0;
+            let wins = 0;
+            let losses = 0;
+            let grossProfit = 0;
+            let grossLoss = 0;
+            const equityHistory = [capital];
+
+            // Strategy win probability baseline
+            let baseWinRate = 0.52;
+            if (strat === 'mean_reversion') baseWinRate = 0.58;
+            if (strat === 'momentum_breakout') baseWinRate = 0.46; // lower win rate, higher R:R
+            if (strat === 'grid_scalp') baseWinRate = 0.68;
+
+            const tradesTotal = 100;
+            for (let i = 1; i <= tradesTotal; i++) {
+                const isWin = Math.random() < baseWinRate;
+                const riskAmount = currentEquity * (riskPct / 100);
+                let pnl = 0;
+
+                if (isWin) {
+                    pnl = riskAmount * (tpPct / slPct);
+                    wins++;
+                    grossProfit += pnl;
+                } else {
+                    pnl = -riskAmount;
+                    losses++;
+                    grossLoss += Math.abs(pnl);
+                }
+
+                currentEquity += pnl;
+                if (currentEquity > peakEquity) peakEquity = currentEquity;
+                const dd = ((peakEquity - currentEquity) / peakEquity) * 100;
+                if (dd > maxDD) maxDD = dd;
+                equityHistory.push(currentEquity);
+            }
+
+            const winRate = ((wins / tradesTotal) * 100).toFixed(1);
+            const profitFactor = grossLoss > 0 ? (grossProfit / grossLoss).toFixed(2) : '∞';
+            const totalPnL = currentEquity - capital;
+
+            document.getElementById('statWinrate').innerText = `${winRate}%`;
+            document.getElementById('statProfitFactor').innerText = profitFactor;
+            const pnlEl = document.getElementById('statNetProfit');
+            pnlEl.innerText = `${totalPnL >= 0 ? '+' : ''}$${totalPnL.toFixed(2)}`;
+            pnlEl.style.color = totalPnL >= 0 ? 'var(--success)' : 'var(--danger)';
+            document.getElementById('statMaxDD').innerText = `${maxDD.toFixed(1)}%`;
+            document.getElementById('candleCountTag').innerText = `Completed 100 Trades | Balance: $${currentEquity.toFixed(2)}`;
+
+            drawEquityCurve(equityHistory);
+            playSound('success');
+
+            const logLine = document.createElement('div');
+            logLine.className = 'term-line';
+            logLine.innerHTML = `<span class="term-time">[Completed]</span><span class="term-highlight"> Backtest finished! Final Equity: $${currentEquity.toFixed(2)} (${totalPnL >= 0 ? '+' : ''}${((totalPnL/capital)*100).toFixed(2)}%) | Win Rate: ${winRate}% | Max DD: ${maxDD.toFixed(1)}%</span>`;
+            logEl.appendChild(logLine);
+        });
+    </script>
+</body>
+</html>
