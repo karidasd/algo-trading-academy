@@ -19,12 +19,16 @@
             <a href="simulator.html" class="nav-link">Strategy Studio</a>
             <a href="charts.html" class="nav-link">Live Charts</a>
             <a href="calculator.html" class="nav-link">🧮 Calculator</a>
+            <a href="pinescript.html" class="nav-link">🌲 Pine Script</a>
+            <a href="prompts.html" class="nav-link">🤖 AI Prompts</a>
+            <a href="montecarlo.html" class="nav-link">🎲 Monte Carlo</a>
             <a href="game.html" class="nav-link">🎯 Game</a>
             <a href="calendar.html" class="nav-link">📰 Calendar</a>
             <a href="downloads.html" class="nav-link">📦 Downloads</a>
             <a href="certificate.html" class="nav-link">🎓 Diploma</a>
         </nav>
         <div class="header-right">
+            <button class="search-trigger-btn" id="searchTriggerBtn">🔍 Search <kbd>Ctrl+K</kbd></button>
             <div class="theme-picker">
                 <div class="theme-dot cyan" onclick="setTheme('cyan')" title="Cyber Cyan"></div>
                 <div class="theme-dot matrix" onclick="setTheme('matrix')" title="Matrix Green"></div>
@@ -34,7 +38,7 @@
             <button class="icon-btn" id="muteBtn" onclick="toggleMute()" title="Toggle Sound">🔊</button>
             <div class="progress-badge">
                 <div class="bar"><div class="bar-fill" id="globalProgressBar" style="width: 0%;"></div></div>
-                <span id="globalProgressText">0% (0/12)</span>
+                <span id="globalProgressText">0%</span>
             </div>
         </div>
     </header>
@@ -47,10 +51,11 @@
             <p class="hero-desc">An interactive, end-to-end trading academy inspired by top proprietary trading firms. Study institutional market microstructure, quantitative indicators, risk mechanics, and test live automated botakis in real-time.</p>
             <div class="hero-actions">
                 <a href="courses/01_gateway.html" class="btn btn-primary">▶ Start Course 01</a>
-                <a href="simulator.html" class="btn btn-outline">⚡ Strategy Sandbox</a>
-                <a href="charts.html" class="btn btn-outline">📊 Live TradingView</a>
+                <a href="pinescript.html" class="btn btn-outline">🌲 Pine Script Builder</a>
+                <a href="prompts.html" class="btn btn-outline">🤖 AI Bot Prompts</a>
+                <a href="montecarlo.html" class="btn btn-outline">🎲 Monte Carlo</a>
                 <a href="calculator.html" class="btn btn-outline">🧮 FTMO Calculator</a>
-                <a href="game.html" class="btn btn-outline">🎯 Pattern Game</a>
+                <a href="charts.html" class="btn btn-outline">📊 TradingView Live</a>
                 <a href="downloads.html" class="btn btn-outline">📦 Bot Code</a>
                 <a href="certificate.html" class="btn btn-outline">🎓 Diploma</a>
             </div>
@@ -74,17 +79,17 @@
             </div>
         </div>
         <div class="stat-card">
-            <div class="stat-icon">📈</div>
+            <div class="stat-icon">🌲</div>
             <div class="stat-info">
-                <h4>Quant Sandbox</h4>
-                <p>1,000-Tick Backtester</p>
+                <h4>Pine Script v5</h4>
+                <p>Visual Strategy Builder</p>
             </div>
         </div>
         <div class="stat-card">
-            <div class="stat-icon">🏆</div>
+            <div class="stat-icon">🎲</div>
             <div class="stat-info">
-                <h4>Prop Firm Ready</h4>
-                <p>FTMO Challenge Strategy</p>
+                <h4>Monte Carlo</h4>
+                <p>500-Universe Matrix</p>
             </div>
         </div>
     </div>
@@ -230,7 +235,7 @@
                         <span class="course-duration">⏱️ 14 MIN</span>
                     </div>
                     <h3>Macroeconomics & News Sniping</h3>
-                    <p>Interest rates, CPI, NFP catalysts, and automated news delta sniper algorithms.</p>
+                    <p>Interest rates, CPI, NFP catalysts, and automated news delta parsers for instant news sniping.</p>
                     <div class="course-tags">
                         <span class="tag">CPI & NFP</span>
                         <span class="tag">Central Banks</span>

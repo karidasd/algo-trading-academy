@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monte Carlo Multi-Universe Simulator — DarkAIs Academy</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;800;900&family=Roboto:wght@300;400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="index.html">
+                <h1>🌑 DARKAIS <span class="accent">ACADEMY</span></h1>
+            </a>
+        </div>
+        <nav class="nav">
+            <a href="index.html" class="nav-link">Curriculum</a>
+            <a href="simulator.html" class="nav-link">Strategy Studio</a>
+            <a href="charts.html" class="nav-link">Live Charts</a>
+            <a href="calculator.html" class="nav-link">🧮 Calculator</a>
+            <a href="pinescript.html" class="nav-link">🌲 Pine Script</a>
+            <a href="prompts.html" class="nav-link">🤖 AI Prompts</a>
+            <a href="montecarlo.html" class="nav-link active">🎲 Monte Carlo</a>
+            <a href="game.html" class="nav-link">🎯 Game</a>
+            <a href="calendar.html" class="nav-link">📰 Calendar</a>
+            <a href="downloads.html" class="nav-link">📦 Downloads</a>
+            <a href="certificate.html" class="nav-link">🎓 Diploma</a>
+        </nav>
+        <div class="header-right">
+            <button class="search-trigger-btn" id="searchTriggerBtn">🔍 Search <kbd>Ctrl+K</kbd></button>
+            <div class="theme-picker">
+                <div class="theme-dot cyan" onclick="setTheme('cyan')" title="Cyber Cyan"></div>
+                <div class="theme-dot matrix" onclick="setTheme('matrix')" title="Matrix Green"></div>
+                <div class="theme-dot gold" onclick="setTheme('gold')" title="FTMO Gold"></div>
+                <div class="theme-dot purple" onclick="setTheme('purple')" title="Solana Purple"></div>
+            </div>
+            <button class="icon-btn" id="muteBtn" onclick="toggleMute()" title="Toggle Sound">🔊</button>
+            <div class="progress-badge">
+                <div class="bar"><div class="bar-fill" id="globalProgressBar" style="width: 0%;"></div></div>
+                <span id="globalProgressText">0%</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="hero-wrapper" style="padding: 30px 20px 20px;">
+        <div class="hero-content">
+            <span class="hero-tag">PROBABILISTIC QUANT ENGINE</span>
+            <h1 class="hero-title">Monte Carlo <span class="glow">Multi-Universe Simulator</span></h1>
+            <p class="hero-desc">Simulate 100 to 500 parallel account universes across 100 trades to visualize the mathematical certainty of the 90/90/90 rule and calculate your true Risk of Ruin %.</p>
+        </div>
+    </div>
+
+    <div class="academy-container" style="max-width: 1300px;">
+        <div style="display: grid; grid-template-columns: 340px 1fr; gap: 24px; align-items: start;">
+            <!-- Simulation Controls -->
+            <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 22px;">
+                <h3 style="font-size: 16px; margin-bottom: 18px; color: var(--accent);">⚙️ Monte Carlo Inputs</h3>
+                
+                <div style="margin-bottom: 14px;">
+                    <label style="font-size: 11.5px; color: var(--text-muted); display: block; margin-bottom: 4px;">STARTING BALANCE ($)</label>
+                    <input type="number" id="mcCapital" value="10000" style="width: 100%; background: var(--bg-panel); color: var(--text-primary); border: 1px solid var(--border); padding: 8px; border-radius: var(--radius-sm);">
+                </div>
+
+                <div style="margin-bottom: 14px;">
+                    <label style="font-size: 11.5px; color: var(--text-muted); display: block; margin-bottom: 4px;">RISK PER TRADE (%)</label>
+                    <select id="mcRiskPct" style="width: 100%; background: var(--bg-panel); color: var(--text-primary); border: 1px solid var(--border); padding: 8px; border-radius: var(--radius-sm); font-weight: bold;">
+                        <option value="0.5">0.5% (Ultra Safe Institutional)</option>
+                        <option value="1.0" selected>1.0% (Professional Quant)</option>
+                        <option value="2.5">2.5% (Aggressive)</option>
+                        <option value="5.0">5.0% (Reckless Retail / High Ruin Risk)</option>
+                        <option value="10.0">10.0% (Guaranteed Account Blowup)</option>
+                    </select>
+                </div>
+
+                <div style="margin-bottom: 14px;">
+                    <label style="font-size: 11.5px; color: var(--text-muted); display: block; margin-bottom: 4px;">WIN RATE (%)</label>
+                    <input type="number" id="mcWinRate" value="50" min="20" max="90" style="width: 100%; background: var(--bg-panel); color: var(--text-primary); border: 1px solid var(--border); padding: 8px; border-radius: var(--radius-sm);">
+                </div>
+
+                <div style="margin-bottom: 14px;">
+                    <label style="font-size: 11.5px; color: var(--text-muted); display: block; margin-bottom: 4px;">REWARD : RISK RATIO (R:R)</label>
+                    <input type="number" id="mcRR" value="2.0" step="0.25" style="width: 100%; background: var(--bg-panel); color: var(--text-primary); border: 1px solid var(--border); padding: 8px; border-radius: var(--radius-sm);">
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <label style="font-size: 11.5px; color: var(--text-muted); display: block; margin-bottom: 4px;">PARALLEL UNIVERSES TO SIMULATE</label>
+                    <select id="mcUniverseCount" style="width: 100%; background: var(--bg-panel); color: var(--text-primary); border: 1px solid var(--border); padding: 8px; border-radius: var(--radius-sm);">
+                        <option value="50">50 Universes</option>
+                        <option value="100" selected>100 Universes</option>
+                        <option value="250">250 Universes</option>
+                        <option value="500">500 Universes (Full Matrix)</option>
+                    </select>
+                </div>
+
+                <button id="runMcBtn" class="btn btn-primary" style="width: 100%;">🎲 Run 500-Universe Simulation</button>
+            </div>
+
+            <!-- Visualization & Metrics -->
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+                <!-- KPI Bar -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px;">
+                    <div class="stat-card" style="padding: 14px;">
+                        <div class="stat-info">
+                            <p>Risk of Ruin (&gt;50% Loss)</p>
+                            <h4 id="mcRuinRisk" style="color: var(--success); font-size: 18px;">0.0%</h4>
+                        </div>
+                    </div>
+                    <div class="stat-card" style="padding: 14px;">
+                        <div class="stat-info">
+                            <p>Median Final Balance</p>
+                            <h4 id="mcMedianEquity" style="color: var(--accent); font-size: 18px;">$15,240</h4>
+                        </div>
+                    </div>
+                    <div class="stat-card" style="padding: 14px;">
+                        <div class="stat-info">
+                            <p>Best Case Timeline</p>
+                            <h4 id="mcBestEquity" style="color: var(--success); font-size: 18px;">$28,900</h4>
+                        </div>
+                    </div>
+                    <div class="stat-card" style="padding: 14px;">
+                        <div class="stat-info">
+                            <p>Worst Case Timeline</p>
+                            <h4 id="mcWorstEquity" style="color: var(--danger); font-size: 18px;">$8,410</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Canvas Chart -->
+                <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 18px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                        <h4 style="font-size:13px; color:var(--text-secondary);">📈 Parallel Simulation Universes (100 Trades per Path)</h4>
+                        <span id="mcStatusTag" style="font-size:11px; color:var(--text-muted);" class="mono">Ready</span>
+                    </div>
+                    <canvas id="mcCanvas" width="800" height="340" style="width:100%; height:340px; background:#04070B; border:1px solid var(--border); border-radius:6px;"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 DarkAIs Academy. Institutional-grade algorithmic education.</p>
+    </footer>
+
+    <script src="js/academy.js"></script>
+    <script>
+        const canvas = document.getElementById('mcCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = canvas.parentElement.getBoundingClientRect().width - 36;
+            canvas.height = 340;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        function runMonteCarlo() {
+            const capital = parseFloat(document.getElementById('mcCapital').value) || 10000;
+            const riskPct = parseFloat(document.getElementById('mcRiskPct').value) || 1.0;
+            const winRate = (parseFloat(document.getElementById('mcWinRate').value) || 50) / 100;
+            const rr = parseFloat(document.getElementById('mcRR').value) || 2.0;
+            const numUniverses = parseInt(document.getElementById('mcUniverseCount').value) || 100;
+            const numTrades = 100;
+
+            const allPaths = [];
+            let ruinCount = 0;
+            const finalBalances = [];
+
+            for (let u = 0; u < numUniverses; u++) {
+                let eq = capital;
+                const path = [eq];
+                let ruined = false;
+
+                for (let t = 1; t <= numTrades; t++) {
+                    const isWin = Math.random() < winRate;
+                    const risk$ = eq * (riskPct / 100);
+                    eq += isWin ? (risk$ * rr) : -risk$;
+                    if (eq < capital * 0.5) ruined = true;
+                    if (eq <= 0) { eq = 0; path.push(eq); break; }
+                    path.push(eq);
+                }
+
+                if (ruined) ruinCount++;
+                allPaths.push(path);
+                finalBalances.push(path[path.length - 1]);
+            }
+
+            finalBalances.sort((a,b) => a - b);
+            const median = finalBalances[Math.floor(finalBalances.length / 2)];
+            const best = finalBalances[finalBalances.length - 1];
+            const worst = finalBalances[0];
+            const ruinPct = ((ruinCount / numUniverses) * 100).toFixed(1);
+
+            const ruinEl = document.getElementById('mcRuinRisk');
+            ruinEl.innerText = `${ruinPct}%`;
+            ruinEl.style.color = ruinPct > 15 ? 'var(--danger)' : 'var(--success)';
+
+            document.getElementById('mcMedianEquity').innerText = `$${median.toLocaleString('en-US', {maximumFractionDigits:0})}`;
+            document.getElementById('mcBestEquity').innerText = `$${best.toLocaleString('en-US', {maximumFractionDigits:0})}`;
+            document.getElementById('mcWorstEquity').innerText = `$${worst.toLocaleString('en-US', {maximumFractionDigits:0})}`;
+            document.getElementById('mcStatusTag').innerText = `Simulated ${numUniverses} Universes`;
+
+            // Draw Paths on Canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const padding = 20;
+            const w = canvas.width;
+            const h = canvas.height;
+
+            let globalMin = 0;
+            let globalMax = Math.max(best, capital * 1.5);
+            const range = globalMax - globalMin || 1;
+
+            const getY = (val) => h - padding - ((val - globalMin) / range) * (h - padding * 2);
+            const getX = (step, maxStep) => padding + (step / maxStep) * (w - padding * 2);
+
+            // Starting balance line
+            ctx.strokeStyle = '#334155';
+            ctx.lineWidth = 1;
+            ctx.setLineDash([4, 4]);
+            ctx.beginPath();
+            ctx.moveTo(padding, getY(capital));
+            ctx.lineTo(w - padding, getY(capital));
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Draw each universe line
+            allPaths.forEach((path) => {
+                const finalVal = path[path.length - 1];
+                const isProfitable = finalVal >= capital;
+                
+                ctx.beginPath();
+                ctx.moveTo(getX(0, numTrades), getY(path[0]));
+                for (let i = 1; i < path.length; i++) {
+                    ctx.lineTo(getX(i, numTrades), getY(path[i]));
+                }
+                ctx.strokeStyle = isProfitable ? 'rgba(0, 240, 255, 0.15)' : 'rgba(255, 51, 102, 0.2)';
+                ctx.lineWidth = 1;
+                ctx.stroke();
+            });
+
+            playSound('success');
+        }
+
+        document.getElementById('runMcBtn').addEventListener('click', runMonteCarlo);
+        document.addEventListener('DOMContentLoaded', runMonteCarlo);
+    </script>
+</body>
+</html>

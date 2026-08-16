@@ -1,7 +1,7 @@
 <div align="center">
 
 # 🌑 DarkAIs Algorithmic Trading Academy
-**Institutional Quantitative Trading Curriculum, In-Lesson Botaki Simulators, Strategy Sandbox & Prop Firm Mastery**
+**Institutional Quantitative Curriculum, In-Lesson Botaki Simulators, Pine Script Generator & Prop Firm Mastery**
 
 [![GitHub Pages](https://img.shields.io/badge/%F0%9F%8C%90%20Live%20Academy-GitHub%20Pages-00F0FF?style=for-the-badge)](https://karidasd.github.io/algo-trading-academy/)
 [![Node.js](https://img.shields.io/badge/Node.js-18+-43853D?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
@@ -24,17 +24,22 @@ Inspired by top proprietary trading firms like **FTMO**, the platform bridges th
 
 ---
 
-## ✨ Key Features
+## ✨ Full Suite of Features & Institutional Tools
 
-- 🌐 **Zero-Server Static Deployment**: Works 100% directly in any web browser via **GitHub Pages** without requiring local Node.js or backend servers.
+- 🌐 **Zero-Server Static Deployment**: Works 100% directly in any web browser via **GitHub Pages** without requiring local Node.js servers.
+- 🔍 **Global Spotlight Search (`Ctrl + K`)**: Instant search across all 12 modules, 40+ glossary terms, and all quantitative tools.
+- 🌲 **Visual Pine Script v5 Generator**: Build TradingView strategies with indicator filters, ATR trailing stops, and download ready-to-paste Pine Script code.
+- 🎲 **Monte Carlo Multi-Universe Simulator**: Simulate 100 to 500 parallel account universes to visualize drawdown variance and calculate exact Risk of Ruin probabilities.
+- 🤖 **AI Trading Bot Prompts Vault**: Curated prompt engineering templates for ChatGPT, Claude, and Gemini to generate bot code and debug backtest models.
+- 🧮 **FTMO & Prop Firm Risk Calculator**: Real-time lot sizing, daily drawdown barriers, and consecutive stop-out safety margins.
+- 📊 **Live TradingView Terminal**: Embedded institutional charts with live market data across EUR/USD, GBP/USD, Gold (XAU/USD), Bitcoin, and Solana.
+- 🎯 **Candlestick Pattern Reflex Game**: 5-second countdown speed game to train pattern-recognition muscle memory with high scores and streaks.
+- 📰 **Economic Calendar & Circuit Breaker**: Macroeconomic volatility monitor simulating bot auto-pause rules before High-Impact news releases.
 - 🎓 **12 Full-Scale Modules**: From Central Limit Order Books and Forex pips to Quantitative Indicators and passing Prop Firm evaluation challenges.
-- 🤖 **Interactive Botaki Simulators**: Real-time simulated trading engines (Mean Reversion, S&R Range, Momentum) executing live ticks right inside the browser.
-- 📈 **Strategy Sandbox & Backtester**: A dedicated backtest studio capable of simulating 1,000-candle runs with equity curve visualization, Sharpe ratio estimations, win rates, and drawdowns.
-- 📝 **Certification Quizzes**: Interactive knowledge-check exams at the conclusion of every lesson with instant grading and audio feedback.
+- 🤖 **Interactive Botaki Simulators**: Real-time simulated trading engines (Mean Reversion, S&R Range, Momentum) executing live ticks inside lessons.
 - 📜 **Personalized Diploma Generator**: Interactive graduation studio rendering and downloading verifiable, cryptographically hashed Diplomas (PNG).
-- 📊 **Progress Persistence**: Client-side progress tracking saving completed chapters and XP across sessions in `localStorage`.
-- 📚 **Quant & Trader's Dictionary**: A searchable vault defining 40+ key terms (Slippage, Drawdown, Order Blocks, MEV, Lot Sizing, FIX protocol).
-- 💻 **Production-Ready Code Snippets**: Copyable, clean Python and Node.js code snippets ready to be hooked up to broker APIs.
+- 📦 **Downloadable Bot Starter Pack**: Ready-to-deploy Python, Node.js, and MetaTrader 5 Expert Advisor starter scripts.
+- 🎨 **Multi-Theme Engine**: Real-time switcher for Cyberpunk Cyan, Matrix Green, FTMO Gold, and Solana Purple themes.
 
 ---
 

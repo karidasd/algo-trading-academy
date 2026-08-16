@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Trading Prompts Vault — DarkAIs Academy</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;800;900&family=Roboto:wght@300;400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="index.html">
+                <h1>🌑 DARKAIS <span class="accent">ACADEMY</span></h1>
+            </a>
+        </div>
+        <nav class="nav">
+            <a href="index.html" class="nav-link">Curriculum</a>
+            <a href="simulator.html" class="nav-link">Strategy Studio</a>
+            <a href="charts.html" class="nav-link">Live Charts</a>
+            <a href="calculator.html" class="nav-link">🧮 Calculator</a>
+            <a href="pinescript.html" class="nav-link">🌲 Pine Script</a>
+            <a href="prompts.html" class="nav-link active">🤖 AI Prompts</a>
+            <a href="montecarlo.html" class="nav-link">🎲 Monte Carlo</a>
+            <a href="game.html" class="nav-link">🎯 Game</a>
+            <a href="calendar.html" class="nav-link">📰 Calendar</a>
+            <a href="downloads.html" class="nav-link">📦 Downloads</a>
+            <a href="certificate.html" class="nav-link">🎓 Diploma</a>
+        </nav>
+        <div class="header-right">
+            <button class="search-trigger-btn" id="searchTriggerBtn">🔍 Search <kbd>Ctrl+K</kbd></button>
+            <div class="theme-picker">
+                <div class="theme-dot cyan" onclick="setTheme('cyan')" title="Cyber Cyan"></div>
+                <div class="theme-dot matrix" onclick="setTheme('matrix')" title="Matrix Green"></div>
+                <div class="theme-dot gold" onclick="setTheme('gold')" title="FTMO Gold"></div>
+                <div class="theme-dot purple" onclick="setTheme('purple')" title="Solana Purple"></div>
+            </div>
+            <button class="icon-btn" id="muteBtn" onclick="toggleMute()" title="Toggle Sound">🔊</button>
+            <div class="progress-badge">
+                <div class="bar"><div class="bar-fill" id="globalProgressBar" style="width: 0%;"></div></div>
+                <span id="globalProgressText">0%</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="hero-wrapper" style="padding: 30px 20px 20px;">
+        <div class="hero-content">
+            <span class="hero-tag">PROMPT ENGINEERING VAULT</span>
+            <h1 class="hero-title">AI Trading Bot <span class="glow">Prompts Library</span></h1>
+            <p class="hero-desc">Battle-tested, institutional prompt templates for ChatGPT, Claude, and Gemini to generate bot architectures, convert Pine Script to Python, and debug risk rules.</p>
+        </div>
+    </div>
+
+    <div class="academy-container" style="max-width: 1100px;">
+        <!-- Prompt 1 -->
+        <div class="prompt-card">
+            <div class="prompt-header">
+                <h3>🚀 Strategy Idea to Python Async Architecture</h3>
+                <button class="btn btn-primary" onclick="copyCode(this)">COPY PROMPT</button>
+            </div>
+            <div class="prompt-body">You are an elite quantitative developer at a high-frequency trading firm.
+I want to translate a trading strategy concept into a production-ready, asynchronous Python bot using CCXT or broker REST/WebSocket APIs.
+
+STRATEGY DETAILS:
+- Asset: [e.g. EUR/USD or BTC/USDT]
+- Timeframe: [e.g. 5-minute candles]
+- Entry Rules: [e.g. Price bounces from 200 EMA with RSI < 30 divergence]
+- Risk Management: Max 1% account risk per trade, ATR-based Trailing Stop Loss, 1:2 R:R.
+- Circuit Breaker: If 3 consecutive losses occur within 24 hours, halt execution for 12 hours.
+
+REQUIREMENTS:
+1. Write clean, PEP8 compliant object-oriented Python code.
+2. Structure into separate modules: DataIngestion, SignalGenerator, RiskManager, and ExecutionEngine.
+3. Include error handling for rate limits, connection timeouts, and slippage.</div>
+        </div>
+
+        <!-- Prompt 2 -->
+        <div class="prompt-card">
+            <div class="prompt-header">
+                <h3>🌲 Pine Script v5 to Python Backtester Converter</h3>
+                <button class="btn btn-primary" onclick="copyCode(this)">COPY PROMPT</button>
+            </div>
+            <div class="prompt-body">You are an algorithmic systems engineer specializing in TradingView Pine Script and Python pandas/vectorbt.
+Convert the following Pine Script v5 strategy code into a vectorized Python backtesting script using Pandas and NumPy:
+
+[PASTE YOUR PINE SCRIPT V5 CODE HERE]
+
+REQUIREMENTS:
+1. Replicate all indicator calculations (EMA, RSI, ATR) exactly without lookahead bias.
+2. Calculate Sharpe Ratio, Sortino Ratio, Maximum Drawdown (MDD), Win Rate %, and Profit Factor.
+3. Plot the cumulative equity curve using Matplotlib.</div>
+        </div>
+
+        <!-- Prompt 3 -->
+        <div class="prompt-card">
+            <div class="prompt-header">
+                <h3>🛡️ FTMO Prop Firm Risk Gatekeeper Circuit Breaker</h3>
+                <button class="btn btn-primary" onclick="copyCode(this)">COPY PROMPT</button>
+            </div>
+            <div class="prompt-body">You are a risk management officer for a funded proprietary trading desk (FTMO rules).
+Review my current trading bot order execution function and inject an unbreakable Risk Gatekeeper layer.
+
+HARD CONSTRAINTS:
+1. Maximum Daily Drawdown limit: 4.5% of starting equity (to stay safely below the 5% FTMO violation rule).
+2. Maximum Overall Account Loss: 9.0% total drawdown.
+3. Dynamic Lot Sizing: Calculate exact lot sizes based on 0.75% risk per trade and stop-loss pips.
+4. News Filter: Block any new position entries 15 minutes before and 15 minutes after High-Impact news.
+
+Here is my current execution function:
+[PASTE YOUR CODE HERE]</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 DarkAIs Academy. Institutional-grade algorithmic education.</p>
+    </footer>
+
+    <script src="js/academy.js"></script>
+</body>
+</html>

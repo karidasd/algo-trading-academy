@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pine Script v5 Code Generator — DarkAIs Academy</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;800;900&family=Roboto:wght@300;400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="index.html">
+                <h1>🌑 DARKAIS <span class="accent">ACADEMY</span></h1>
+            </a>
+        </div>
+        <nav class="nav">
+            <a href="index.html" class="nav-link">Curriculum</a>
+            <a href="simulator.html" class="nav-link">Strategy Studio</a>
+            <a href="charts.html" class="nav-link">Live Charts</a>
+            <a href="calculator.html" class="nav-link">🧮 Calculator</a>
+            <a href="pinescript.html" class="nav-link active">🌲 Pine Script</a>
+            <a href="prompts.html" class="nav-link">🤖 AI Prompts</a>
+            <a href="montecarlo.html" class="nav-link">🎲 Monte Carlo</a>
+            <a href="game.html" class="nav-link">🎯 Game</a>
+            <a href="calendar.html" class="nav-link">📰 Calendar</a>
+            <a href="downloads.html" class="nav-link">📦 Downloads</a>
+            <a href="certificate.html" class="nav-link">🎓 Diploma</a>
+        </nav>
+        <div class="header-right">
+            <button class="search-trigger-btn" id="searchTriggerBtn">🔍 Search <kbd>Ctrl+K</kbd></button>
+            <div class="theme-picker">
+                <div class="theme-dot cyan" onclick="setTheme('cyan')" title="Cyber Cyan"></div>
+                <div class="theme-dot matrix" onclick="setTheme('matrix')" title="Matrix Green"></div>
+                <div class="theme-dot gold" onclick="setTheme('gold')" title="FTMO Gold"></div>
+                <div class="theme-dot purple" onclick="setTheme('purple')" title="Solana Purple"></div>
+            </div>
+            <button class="icon-btn" id="muteBtn" onclick="toggleMute()" title="Toggle Sound">🔊</button>
+            <div class="progress-badge">
+                <div class="bar"><div class="bar-fill" id="globalProgressBar" style="width: 0%;"></div></div>
+                <span id="globalProgressText">0%</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="hero-wrapper" style="padding: 30px 20px 20px;">
+        <div class="hero-content">
+            <span class="hero-tag">TRADINGVIEW STRATEGY BUILDER</span>
+            <h1 class="hero-title">Visual <span class="glow">Pine Script v5 Generator</span></h1>
+            <p class="hero-desc">Build institutional quantitative trading strategies visually with indicator filters, ATR trailing stops, and risk parameters, and generate ready-to-paste TradingView Pine Script v5 code.</p>
+        </div>
+    </div>
+
+    <div class="academy-container" style="max-width: 1300px;">
+        <div style="display: grid; grid-template-columns: 380px 1fr; gap: 24px; align-items: start;">
+            <!-- Builder Controls Panel -->
+            <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 22px;">
+                <h3 style="font-size: 16px; margin-bottom: 18px; color: var(--accent);">🛠️ Strategy Settings</h3>
+                
+                <div style="margin-bottom: 16px;">
+                    <label style="font-size: 11.5px; color: var(--text-muted); display: block; margin-bottom: 4px;">STRATEGY NAME</label>
+                    <input type="text" id="pineStratName" value="DarkAIs Institutional Trend" style="width: 100%; background: var(--bg-panel); color: var(--text-primary); border: 1px solid var(--border); padding: 9px; border-radius: var(--radius-sm);">
+                </div>
+
+                <div style="margin-bottom: 16px;">
+                    <label style="font-size: 11.5px; color: var(--text-muted); display: block; margin-bottom: 4px;">TREND FILTER (EMA CROSSOVER)</label>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                        <input type="number" id="pineFastEma" value="20" placeholder="Fast EMA" style="background: var(--bg-panel); color: var(--text-primary); border: 1px solid var(--border); padding: 9px; border-radius: var(--radius-sm);">
+                        <input type="number" id="pineSlowEma" value="50" placeholder="Slow EMA" style="background: var(--bg-panel); color: var(--text-primary); border: 1px solid var(--border); padding: 9px; border-radius: var(--radius-sm);">
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 16px;">
+                    <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-primary); cursor: pointer; margin-bottom: 6px;">
+                        <input type="checkbox" id="pineUseRsi" checked> Enable RSI Momentum Filter
+                    </label>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px;">
+                        <input type="number" id="pineRsiLen" value="14" placeholder="Length" style="background: var(--bg-panel); color: var(--text-primary); border: 1px solid var(--border); padding: 7px; border-radius: var(--radius-sm); font-size: 12px;">
+                        <input type="number" id="pineRsiOverSold" value="30" placeholder="Oversold" style="background: var(--bg-panel); color: var(--text-primary); border: 1px solid var(--border); padding: 7px; border-radius: var(--radius-sm); font-size: 12px;">
+                        <input type="number" id="pineRsiOverBought" value="70" placeholder="Overbought" style="background: var(--bg-panel); color: var(--text-primary); border: 1px solid var(--border); padding: 7px; border-radius: var(--radius-sm); font-size: 12px;">
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 16px;">
+                    <label style="font-size: 11.5px; color: var(--text-muted); display: block; margin-bottom: 4px;">RISK : REWARD (R:R RATIO)</label>
+                    <input type="number" id="pineRR" value="2.0" step="0.5" style="width: 100%; background: var(--bg-panel); color: var(--text-primary); border: 1px solid var(--border); padding: 9px; border-radius: var(--radius-sm);">
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <label style="font-size: 11.5px; color: var(--text-muted); display: block; margin-bottom: 4px;">STOP LOSS MODEL</label>
+                    <select id="pineSlModel" style="width: 100%; background: var(--bg-panel); color: var(--text-primary); border: 1px solid var(--border); padding: 9px; border-radius: var(--radius-sm);">
+                        <option value="atr">ATR Dynamic Trailing Stop (14 ATR)</option>
+                        <option value="fixed_pips">Fixed Pips Stop Loss (25 Pips)</option>
+                        <option value="percent">Percentage Stop Loss (1.0%)</option>
+                    </select>
+                </div>
+
+                <button id="generatePineBtn" class="btn btn-primary" style="width: 100%;">⚡ Generate Script</button>
+            </div>
+
+            <!-- Output Code Container -->
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+                <div class="code-block" style="margin: 0;">
+                    <div class="code-header">
+                        <span style="color:var(--accent);">TradingView Pine Script v5 Code (Auto-Generated)</span>
+                        <div style="display: flex; gap: 8px;">
+                            <button class="copy-btn" onclick="copyCode(this)">COPY SCRIPT</button>
+                            <button class="copy-btn" id="downloadPineBtn">DOWNLOAD .PINE</button>
+                        </div>
+                    </div>
+                    <pre><code id="pineCodeOutput" style="max-height: 520px;">// Generating Pine Script...</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 DarkAIs Academy. Institutional-grade algorithmic education.</p>
+    </footer>
+
+    <script src="js/academy.js"></script>
+    <script>
+        function generatePineScript() {
+            const name = document.getElementById('pineStratName').value || 'DarkAIs Strategy';
+            const fastEma = document.getElementById('pineFastEma').value || 20;
+            const slowEma = document.getElementById('pineSlowEma').value || 50;
+            const useRsi = document.getElementById('pineUseRsi').checked;
+            const rsiLen = document.getElementById('pineRsiLen').value || 14;
+            const rsiOversold = document.getElementById('pineRsiOverSold').value || 30;
+            const rsiOverbought = document.getElementById('pineRsiOverBought').value || 70;
+            const rr = document.getElementById('pineRR').value || 2.0;
+            const slModel = document.getElementById('pineSlModel').value;
+
+            let code = `//@version=5
+strategy("${name}", overlay=true, initial_capital=10000, default_qty_type=strategy.percent_of_equity, default_qty_value=10)
+
+// ── INDICATORS ─────────────────────────────────────────────────────────────
+fastEMA = ta.ema(close, ${fastEma})
+slowEMA = ta.ema(close, ${slowEma})
+
+plot(fastEMA, color=color.cyan, linewidth=2, title="Fast EMA (${fastEma})")
+plot(slowEMA, color=color.yellow, linewidth=2, title="Slow EMA (${slowEma})")
+`;
+
+            if (useRsi) {
+                code += `
+// RSI Momentum Filter
+rsiVal = ta.rsi(close, ${rsiLen})
+rsiLongFilter = rsiVal > ${rsiOversold} and rsiVal < 65
+rsiShortFilter = rsiVal < ${rsiOverbought} and rsiVal > 35
+`;
+            }
+
+            code += `
+// ── ENTRY LOGIC ────────────────────────────────────────────────────────────
+bullishCross = ta.crossover(fastEMA, slowEMA)
+bearishCross = ta.crossunder(fastEMA, slowEMA)
+
+longCondition = bullishCross ${useRsi ? 'and rsiLongFilter' : ''}
+shortCondition = bearishCross ${useRsi ? 'and rsiShortFilter' : ''}
+
+// ── RISK MANAGEMENT & EXITS ────────────────────────────────────────────────
+atrValue = ta.atr(14)
+`;
+
+            if (slModel === 'atr') {
+                code += `
+longStopPrice = close - (atrValue * 1.5)
+longTakeProfit = close + (atrValue * 1.5 * ${rr})
+shortStopPrice = close + (atrValue * 1.5)
+shortTakeProfit = close - (atrValue * 1.5 * ${rr})
+`;
+            } else if (slModel === 'percent') {
+                code += `
+longStopPrice = close * 0.99
+longTakeProfit = close * (1 + (0.01 * ${rr}))
+shortStopPrice = close * 1.01
+shortTakeProfit = close * (1 - (0.01 * ${rr}))
+`;
+            } else {
+                code += `
+longStopPrice = close - 0.0025
+longTakeProfit = close + (0.0025 * ${rr})
+shortStopPrice = close + 0.0025
+shortTakeProfit = close - (0.0025 * ${rr})
+`;
+            }
+
+            code += `
+if (longCondition and strategy.position_size == 0)
+    strategy.entry("Long", strategy.long)
+    strategy.exit("Exit Long", "Long", stop=longStopPrice, limit=longTakeProfit)
+
+if (shortCondition and strategy.position_size == 0)
+    strategy.entry("Short", strategy.short)
+    strategy.exit("Exit Short", "Short", stop=shortStopPrice, limit=shortTakeProfit)
+`;
+
+            document.getElementById('pineCodeOutput').innerText = code;
+        }
+
+        document.getElementById('generatePineBtn').addEventListener('click', () => {
+            generatePineScript();
+            playSound('success');
+        });
+
+        document.getElementById('downloadPineBtn').addEventListener('click', () => {
+            const code = document.getElementById('pineCodeOutput').innerText;
+            const blob = new Blob([code], { type: 'text/plain' });
+            const link = document.createElement('a');
+            link.download = 'DarkAIs_Strategy.pine';
+            link.href = URL.createObjectURL(blob);
+            link.click();
+            playSound('trade');
+        });
+
+        ['pineStratName', 'pineFastEma', 'pineSlowEma', 'pineUseRsi', 'pineRsiLen', 'pineRsiOverSold', 'pineRsiOverBought', 'pineRR', 'pineSlModel'].forEach(id => {
+            document.getElementById(id).addEventListener('input', generatePineScript);
+            document.getElementById(id).addEventListener('change', generatePineScript);
+        });
+
+        document.addEventListener('DOMContentLoaded', generatePineScript);
+    </script>
+</body>
+</html>
